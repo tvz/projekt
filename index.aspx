@@ -86,7 +86,7 @@
    
     <%--treci projekt u ravnini--%>
     <div id="proj">
-    <h2>Ime trečeg projekta!</h2>
+    <h2>Ime trećeg projekta!</h2>
     <h4>PROSTOR ZA SLIKU</h4>
     <h3><b>AUTOR PROJEKTA:</b> Ime Ime</h3>
     <h3><b>OPIS PROJEKTA:</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim</h3>
@@ -130,7 +130,7 @@
    
     <%--treci projekt u ravnini--%>
     <div id="proj">
-    <h2>Ime trečeg projekta!</h2>
+    <h2>Ime trećeg projekta!</h2>
     <h4>PROSTOR ZA SLIKU</h4>
     <h3><b>AUTOR PROJEKTA:</b> Ime Ime</h3>
     <h3><b>OPIS PROJEKTA:</b> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim</h3>
