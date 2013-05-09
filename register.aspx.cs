@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Configuration;
 using System.Data;
+using System.Data.OleDb;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
-using System.Security.Cryptography;
 using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
-using System.Xml.Linq;
-using System.Data.OleDb;
-using System.Text;
 
 
 public partial class register : System.Web.UI.Page
@@ -26,15 +23,12 @@ public partial class register : System.Web.UI.Page
      description: metoda kreira korisnika i odmah ga preusmjerava na index.aspx
      notice: kod passworda trazi non-alphanumeric znak, trenutno nije rijesen problem;
      security question i answer su skriveni, a po defaultu su zadani (radi validatora)
-     ako otkrijete neki neocekivani problem, molim da se javi
      */
 
     protected void CreateUserWizard1_CreatedUser(object sender, EventArgs e)
     {
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
         OleDbCommand command = new OleDbCommand();
-        SHA1CryptoServiceProvider sha1Algorithm = new SHA1CryptoServiceProvider();
-        UnicodeEncoding unEncode = new UnicodeEncoding();
         string pass_salt, prehashed_pass, hashed_pass, created, updated;
 
         try
