@@ -10,7 +10,8 @@
     <form id="form1" runat="server">
     <div>
     
-        <asp:Login ID="Login1" runat="server" onauthenticate="Login1_Authenticate">
+        <asp:Login ID="Login1" runat="server" DestinationPageUrl="~/index.aspx" 
+            onauthenticate="Login1_Authenticate">
         </asp:Login>
     
     </div>
