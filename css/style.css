@@ -1,0 +1,82 @@
+body {
+	margin: 0 auto; 
+	padding: 2%;
+	background: #b2cecf;
+	max-width: 1120px;
+}
+
+#logo
+{
+    font-family: 'Chango', cursive;
+    font-size: 40pt;
+    color: #282828;
+    float:left;
+    text-transform: uppercase;
+}
+
+/* Ragistracija - prijava*/
+#nav_login
+{
+    float: right;
+    padding-top: 3.2%;
+    margin:0;
+}
+
+A.LogLink
+{
+    font-family: Corbel;
+    font-size: 17px;
+    font-weight:bold;
+    color: #282828;
+ }
+
+A.LogLink:hover
+{
+   color:#d02552
+}
+
+
+span
+{
+    border-right: 1px solid #282828;
+    padding-right:10px;
+    margin-right:10px;
+}
+
+/*glavna navigacija*/
+#navigacija
+{
+    float: right;
+    text-transform: uppercase;
+    padding-top:5%;
+    width: 755px;
+}
+
+A.NavLink
+{
+    font-family: Corbel;
+    font-size: 22px;
+    font-weight:bold;
+    color: #282828;
+    padding-left:5%;
+ }
+
+A.NavLink:hover
+{
+   color:#d02552
+}
+
+A.NavLink:active
+{
+   color:#d02552
+}
+
+/*---------------------*/
+hr
+{
+  margin-top:110px;
+  height: 1px;
+  background-color: #fff;
+  color: #fff;
+  border: none;  
+}
