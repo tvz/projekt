@@ -127,6 +127,7 @@ public class Users
                 command.Parameters.Clear();           
             }    
         }
+        reader.Close();
         conn.Close();
     }
 }
