@@ -103,7 +103,7 @@ public class Users
             //FormsAuthentication.SetAuthCookie(username, true);
             //FormsAuthentication.RedirectFromLoginPage(username, true);
         }
-        catch (System.Exception ex) { System.Diagnostics.Debug.WriteLine(ex.StackTrace.ToString()); }
+        catch {}
         finally
         {
             command.Parameters.Clear();
