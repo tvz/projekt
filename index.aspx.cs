@@ -23,11 +23,14 @@ public partial class Default2 : System.Web.UI.Page
     private void list_projects()
     {
         List<Projects> projects_list = Projects.fetch_all();
-        string html= null;
+        string html_new_projects = null;
+        string html_old_projects = null;
 
         foreach(Projects project in projects_list)
         {
-            html += "<div id='proj'>"
+            if(DateTime.Now.AddDays(7) >= project.expiration_date)
+            {
+            html_old_projects += "<div id='proj'>"
             +"<h2>"+ project.name +"</h2>"
             +"<img src="+project.image_path+" alt="+ project.name+ "> "
             +"<h3><b>AUTOR PROJEKTA:</b> "+project.project_owner_username+ "</h3>"
@@ -36,9 +39,21 @@ public partial class Default2 : System.Web.UI.Page
             +"<h3><b>DO KRAJA:</b> " + (project.goal - project.DonationSum()) + "Kunića"+"</h3>"
             +"<input type='submit' name='Button4' value='DONIRAJ!' class='gumb' />"
             +"</div>";
-
+            }
+            else
+            {
+                html_new_projects += "<div id='proj'>"
+            + "<h2>" + project.name + "</h2>"
+            + "<img src=" + project.image_path + " alt=" + project.name + "> "
+            + "<h3><b>AUTOR PROJEKTA:</b> " + project.project_owner_username + "</h3>"
+            + "<h3><b>OPIS PROJEKTA:</b> " + project.description + " </h3>"
+            + "<h3><b>SAKUPLJENO:</b> " + project.DonationSum() + " Kunića " + "(" + project.DonationsPercent() + "%)" + "</h3>"
+            + "<h3><b>DO KRAJA:</b> " + (project.goal - project.DonationSum()) + "Kunića" + "</h3>"
+            + "<input type='submit' name='Button4' value='DONIRAJ!' class='gumb' />"
+            + "</div>";
+            }
         }
-        projekti.InnerHtml = html;
-
+       projekti_novi.InnerHtml = html_new_projects;
+       projekti_stari.InnerHtml = html_old_projects;
     }
 }
