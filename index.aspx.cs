@@ -10,16 +10,35 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
+using System.Collections.Generic;
 //jer ima promjena test
 public partial class Default2 : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        list_projects();
     }
     /*developer: Emilio
      description: metoda cita projekte iz baze i prikazuje na index.aspx*/
     private void list_projects()
     {
+        List<Projects> projects_list = Projects.fetch_all();
+        string html= null;
+
+        foreach(Projects project in projects_list)
+        {
+            html += "<div id='proj'>"
+            +"<h2>"+ project.name +"</h2>"
+            +"<img src="+project.image_path+" alt="+ project.name+ "> "
+            +"<h3><b>AUTOR PROJEKTA:</b> "+project.project_owner_username+ "</h3>"
+            +"<h3><b>OPIS PROJEKTA:</b> "+project.description+" </h3>"
+            +"<h3><b>SAKUPLJENO:</b> "+project.DonationSum() +" Kunića "+"("+ project.DonationsPercent() +"%)"+"</h3>"
+            +"<h3><b>DO KRAJA:</b> " + (project.goal - project.DonationSum()) + "Kunića"+"</h3>"
+            +"<input type='submit' name='Button4' value='DONIRAJ!' class='gumb' />"
+            +"</div>";
+
+        }
+        projekti.InnerHtml = html;
+
     }
 }

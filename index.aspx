@@ -56,7 +56,7 @@
     
     <h1>Najnoviji projekti</h1>
     
-    <div id="projekti">
+    <div runat="server" id="projekti">
     <%--prikaz tri projekta u ravnini--%>
     
     <%--prvi projekt u ravnini--%>
