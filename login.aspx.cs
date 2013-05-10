@@ -27,6 +27,10 @@ public partial class _Default : System.Web.UI.Page
         if (status)
             e.Authenticated = true;
     }
+
+    /* developer: Ivan
+     * description: metoda kreira novog korisnika i preusmjerava ga na index page (zasada)
+     */
     protected void CreateUserWizard1_CreatedUser(object sender, EventArgs e)
     {
         Users.register(CreateUserWizard1.UserName,
