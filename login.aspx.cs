@@ -27,4 +27,9 @@ public partial class _Default : System.Web.UI.Page
         if (status)
             e.Authenticated = true;
     }
+    protected void CreateUserWizard1_CreatedUser(object sender, EventArgs e)
+    {
+        Users.register(CreateUserWizard1.UserName,
+            CreateUserWizard1.Password, CreateUserWizard1.Email);
+    }
 }
