@@ -17,4 +17,9 @@ public partial class Default2 : System.Web.UI.Page
     {
 
     }
+    /*developer: Emilio
+     description: metoda cita projekte iz baze i prikazuje na index.aspx*/
+    private void list_projects()
+    {
+    }
 }
