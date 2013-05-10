@@ -11,7 +11,9 @@
     <div>
     
         <asp:Login ID="Login1" runat="server" DestinationPageUrl="~/index.aspx" 
-            onauthenticate="Login1_Authenticate">
+            onauthenticate="Login1_Authenticate" BackColor="#CCCCFF" Height="202px" 
+            Width="414px">
+            <CheckBoxStyle CssClass="background" />
         </asp:Login>
     <asp:CreateUserWizard ID="CreateUserWizard1" runat="server" Answer="a" 
         Question="b" ContinueDestinationPageUrl="~/index.aspx" 
