@@ -27,35 +27,7 @@ public partial class register : System.Web.UI.Page
 
     protected void CreateUserWizard1_CreatedUser(object sender, EventArgs e)
     {
-        OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
-        OleDbCommand command = new OleDbCommand();
-        string pass_salt, prehashed_pass, hashed_pass, created, updated;
-
-        try
-        {
-            pass_salt = FormsAuthentication.HashPasswordForStoringInConfigFile(DateTime.Now.ToString(), "SHA1").ToLower();
-            prehashed_pass = CreateUserWizard1.Password.ToString() + pass_salt;
-            hashed_pass = FormsAuthentication.HashPasswordForStoringInConfigFile(prehashed_pass, "SHA1").ToLower();
-
-            created = DateTime.Now.Date.ToShortDateString();
-            updated = DateTime.Now.Date.ToShortDateString();
-
-            command.CommandText = "INSERT INTO users ([username], [password_hash], [pass_salt], [email], [created_at], [updated_at]) VALUES (@username, @password_hash, @pass_salt, @email, @created_at, @updated_at)";
-            command.Parameters.AddWithValue("@username", CreateUserWizard1.UserName.ToString());
-            command.Parameters.AddWithValue("@password_hash", hashed_pass);
-            command.Parameters.AddWithValue("@pass_salt", pass_salt);
-            command.Parameters.AddWithValue("@email", CreateUserWizard1.Email.ToString());
-            command.Parameters.AddWithValue("@created_at", created);
-            command.Parameters.AddWithValue("@updated_at", updated);
-
-            command.Connection = conn;
-            conn.Open();
-            command.ExecuteNonQuery();
-        }
-        catch { }
-        finally
-        {
-            conn.Close();
-        }
+        Users.register(CreateUserWizard1.UserName, 
+            CreateUserWizard1.Password, CreateUserWizard1.Email);
     }
 }

@@ -5,16 +5,15 @@
 using System.Data.OleDb;
 using System.Configuration;
 using System.Web.Security;
+using System.Collections;
 public class Users
 {
-    
+
     /*varijable koje predstavljaju atribute u bazi*/
     private static int id;
     private static string username;
-    private static string  password_hash;
-    private static string  pass_salt;
-
-
+    private static string password_hash;
+    private static string pass_salt;
 
     /*sve ostale varijable*/
     private static OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
@@ -25,6 +24,9 @@ public class Users
     {
     }
 
+    /*
+     developer: Emilio
+     */
     public static bool login(string username, string password)
     {
 
@@ -67,5 +69,45 @@ public class Users
             conn.Close();
         }
         return login_status;
+    }
+
+    /*
+    developer: Ivan
+    */
+    public static void register(string username, string password, string email)
+    {
+        string prehashed_pass, hashed_pass, created, updated;
+
+        try
+        {
+            pass_salt = FormsAuthentication.HashPasswordForStoringInConfigFile(System.DateTime.Now.ToString(), "SHA1").ToLower();
+            prehashed_pass = password + pass_salt;
+            hashed_pass = FormsAuthentication.HashPasswordForStoringInConfigFile(prehashed_pass, "SHA1").ToLower();
+
+            created = System.DateTime.Now.Date.ToShortDateString();
+            updated = System.DateTime.Now.Date.ToShortDateString();
+
+            command.CommandText = "INSERT INTO users ([username], [password_hash], [pass_salt], [email], [created_at], [updated_at]) VALUES (@username, @password_hash, @pass_salt, @email, @created_at, @updated_at)";
+            command.Parameters.AddWithValue("@username", username);
+            command.Parameters.AddWithValue("@password_hash", hashed_pass);
+            command.Parameters.AddWithValue("@pass_salt", pass_salt);
+            command.Parameters.AddWithValue("@email", email);
+            command.Parameters.AddWithValue("@created_at", created);
+            command.Parameters.AddWithValue("@updated_at", updated);
+            command.Connection = conn;
+
+            conn.Open();
+            command.ExecuteNonQuery();
+
+            //ne znam jel ti ovo treba il ne, uglavnom, ne dela ako se izvrsi
+            //FormsAuthentication.SetAuthCookie(username, true);
+            //FormsAuthentication.RedirectFromLoginPage(username, true);
+        }
+        catch {}
+        finally
+        {
+            command.Parameters.Clear();
+            conn.Close();
+        }
     }
 }
