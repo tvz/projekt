@@ -56,7 +56,7 @@
     
     <h1>Najnoviji projekti</h1>
     
-    <div runat="server" id="projekti">
+    <div runat="server" id="projekti_novi">
     <%--prikaz tri projekta u ravnini--%>
     
     <%--prvi projekt u ravnini--%>
@@ -100,7 +100,7 @@
     
     <h1>Projekti pred istekom vremena za donaciju</h1>
     
-    <div id="projekti">
+    <div runat="server" id="projekti_stari">
     <%--prikaz tri projekta u ravnini--%>
     
     <%--prvi projekt u ravnini--%>

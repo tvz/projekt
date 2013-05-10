@@ -14,6 +14,7 @@ public class Projects
     public string description;
     public float goal;
     public string image_path;
+    public DateTime expiration_date;
 
     /*sve ostale varijable*/
     private static OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
@@ -34,7 +35,7 @@ public class Projects
     {
         command.Connection = conn;
         //command.CommandText = "SELECT ID,name,description,goal FROM projects";
-        command.CommandText = "SELECT projects.ID,projects.name, projects.description, projects.goal,projects.image_path, users.username FROM (projects INNER JOIN users ON projects.user_id = users.ID) GROUP BY projects.ID, projects.name, projects.description, projects.goal, projects.image_path, users.username";
+        command.CommandText = "SELECT projects.ID,projects.name, projects.description, projects.goal, projects.expiration_date, projects.image_path, users.username FROM (projects INNER JOIN users ON projects.user_id = users.ID) GROUP BY projects.ID, projects.name, projects.description, projects.goal,projects.expiration_date, projects.image_path, users.username";
 
         List<Projects> projects_list = new List<Projects>();
         try
@@ -49,9 +50,9 @@ public class Projects
                 project.name = reader.GetValue(++i).ToString();
                 project.description = reader.GetValue(++i).ToString();
                 project.goal = Convert.ToSingle(reader.GetValue(++i));
+                project.expiration_date = Convert.ToDateTime(reader.GetValue(++i));
                 project.image_path = reader.GetValue(++i).ToString();
                 project.project_owner_username = reader.GetValue(++i).ToString();
-                
                 projects_list.Add(project);
             }
 
