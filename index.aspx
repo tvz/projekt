@@ -57,9 +57,9 @@
     <h1>Najnoviji projekti</h1>
     
     <div runat="server" id="projekti_novi">
-    <%--prikaz tri projekta u ravnini--%>
+    <!--prikaz tri projekta u ravnini-->
     
-    <%--prvi projekt u ravnini--%>
+    <!--prvi projekt u ravnini-->
     <div id="proj">
     <h2>Ime prvog projekta!</h2>
     <h4>PROSTOR ZA SLIKU</h4>
@@ -71,7 +71,7 @@
     <asp:Button ID="Button1" runat="server" Text="DONIRAJ!" CssClass="gumb" />
     </div>
     
-    <%--drugi projekt u ravnini--%>
+    <!--drugi projekt u ravnini-->
     <div id="proj">
     <h2>Ime drugog projekta!</h2>
     <h4>PROSTOR ZA SLIKU</h4>
@@ -84,7 +84,7 @@
     </div>
     
    
-    <%--treci projekt u ravnini--%>
+    <!--treci projekt u ravnini-->
     <div id="proj">
     <h2>Ime trećeg projekta!</h2>
     <h4>PROSTOR ZA SLIKU</h4>
@@ -101,9 +101,9 @@
     <h1>Projekti pred istekom vremena za donaciju</h1>
     
     <div runat="server" id="projekti_stari">
-    <%--prikaz tri projekta u ravnini--%>
+    <!--prikaz tri projekta u ravnini-->
     
-    <%--prvi projekt u ravnini--%>
+    <!--prvi projekt u ravnini-->
     <div id="proj">
     <h2>Ime prvog projekta!</h2>
     <h4>PROSTOR ZA SLIKU</h4>
@@ -115,7 +115,7 @@
     <asp:Button ID="Button4" runat="server" Text="DONIRAJ!" CssClass="gumb" />
     </div>
     
-    <%--drugi projekt u ravnini--%>
+    <!--drugi projekt u ravnini-->
     <div id="proj">
     <h2>Ime drugog projekta!</h2>
     <h4>PROSTOR ZA SLIKU</h4>
@@ -128,7 +128,7 @@
     </div>
     
    
-    <%--treci projekt u ravnini--%>
+    <!--treci projekt u ravnini-->
     <div id="proj">
     <h2>Ime trećeg projekta!</h2>
     <h4>PROSTOR ZA SLIKU</h4>
