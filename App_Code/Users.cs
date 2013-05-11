@@ -75,11 +75,16 @@ public class Users
     */
     public static string register(string username, string password, string email)
     {
-        string prehashed_pass, hashed_pass, created, updated, info="";
+        string prehashed_pass, hashed_pass, created, updated, info = "";
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
         OleDbCommand command = new OleDbCommand();
+        OleDbCommand command_confirm = new OleDbCommand();
         OleDbDataReader reader = null;
-        bool userExists=false;
+        System.Random rnd = new System.Random();
+        bool userExists = false;
+        int confirm_number = rnd.Next(1000, 10000);
+        int user_id;
+
         command.CommandText = "SELECT username FROM users";
         command.Connection = conn;
         conn.Open();
@@ -113,22 +118,39 @@ public class Users
                 command.Parameters.AddWithValue("@email", email);
                 command.Parameters.AddWithValue("@created_at", created);
                 command.Parameters.AddWithValue("@updated_at", updated);
-                command.Connection = conn;
 
+                command.Connection = conn;
                 conn.Open();
                 command.ExecuteNonQuery();
-                info = "Your account has been successfully created.1";
+                conn.Close();
+
+                command.CommandText = "SELECT ID FROM users WHERE username=@username";
+                command.Connection = conn;
+                conn.Open();
+                user_id = System.Int32.Parse(command.ExecuteScalar().ToString());
+                conn.Close();
+
+                command_confirm.CommandText = "INSERT INTO confirmation VALUES(@user_id, @confirm_number)";
+                command_confirm.Parameters.AddWithValue("@user_id", user_id);
+                command_confirm.Parameters.AddWithValue("@confirm_number", confirm_number);
+
+                command_confirm.Connection = conn;
+                conn.Open();
+                command_confirm.ExecuteNonQuery();
+                conn.Close();
+
+                info = "Registracija je uspješno obavljena.1";
             }
-            catch { }
+            catch {}
             finally
             {
                 command.Parameters.Clear();
+                conn.Close();
             }
         }
         else
-            info = "Your account has not been successfully created. Please try again.0";
-      
-        conn.Close();   
+            info = "Registracije je neuspješna. Molimo pokušajte ponovno.0";
+
         return info;
     }
 }
