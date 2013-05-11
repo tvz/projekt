@@ -6,6 +6,7 @@ using System.Data.OleDb;
 using System.Configuration;
 using System.Web.Security;
 using System.Collections;
+using System.Net.Mail;
 public class Users
 {
 
@@ -75,15 +76,19 @@ public class Users
     */
     public static string register(string username, string password, string email)
     {
-        string prehashed_pass, hashed_pass, created, updated, info = "";
+        string prehashed_pass, hashed_pass, created, updated, info = "", link;
+        bool userExists = false;
+        int user_id;
+        System.Random rnd = new System.Random();
+        //char[] array;
+        long confirm_number = rnd.Next(1000000, 1000000000);
+
+        //MailMessage msg = new MailMessage();
+        //SmtpClient smtp = new SmtpClient("");
+            
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
         OleDbCommand command = new OleDbCommand();
-        OleDbCommand command_confirm = new OleDbCommand();
         OleDbDataReader reader = null;
-        System.Random rnd = new System.Random();
-        bool userExists = false;
-        int confirm_number = rnd.Next(1000, 10000);
-        int user_id;
 
         command.CommandText = "SELECT username FROM users";
         command.Connection = conn;
@@ -123,23 +128,31 @@ public class Users
                 conn.Open();
                 command.ExecuteNonQuery();
                 conn.Close();
+                command.Parameters.Clear();
 
                 command.CommandText = "SELECT ID FROM users WHERE username=@username";
+                command.Parameters.AddWithValue("@username", username);
                 command.Connection = conn;
                 conn.Open();
                 user_id = System.Int32.Parse(command.ExecuteScalar().ToString());
                 conn.Close();
+                command.Parameters.Clear();
 
-                command_confirm.CommandText = "INSERT INTO confirmation VALUES(@user_id, @confirm_number)";
-                command_confirm.Parameters.AddWithValue("@user_id", user_id);
-                command_confirm.Parameters.AddWithValue("@confirm_number", confirm_number);
-
-                command_confirm.Connection = conn;
+                command.CommandText = "INSERT INTO confirmation VALUES(@user_id, @confirm_number)";
+                command.Parameters.AddWithValue("@user_id", user_id);
+                command.Parameters.AddWithValue("@confirm_number", confirm_number);
+                command.Connection = conn;
                 conn.Open();
-                command_confirm.ExecuteNonQuery();
+                command.ExecuteNonQuery();
                 conn.Close();
 
-                info = "Registracija je uspješno obavljena.1";
+                /*link = "www.xxxxx.hr/xxxxx.aspx?confirmID="+confirm_number;
+                msg.Subject = "Potvrda registracije";
+                msg.Body = ""+link;
+                msg.To.Add(email);
+                smtp.Send(msg);*/
+
+                info = "Registracija je uspješno obavljena.\nMolimo provjerite pretinac e-mail pošte i potvrdite registraciju.1";
             }
             catch {}
             finally
@@ -152,5 +165,32 @@ public class Users
             info = "Registracije je neuspješna. Molimo pokušajte ponovno.0";
 
         return info;
+    }
+
+    /*
+     * developer: Ivan
+     * description: metoda prima confirm_number preuzet iz url-a (obradjeno na stranici na koju ce url voditi)
+     * na temelju te varijable aktivira korisnika
+     */
+    public static void activaction(long confirm_url)
+    {
+        OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
+        OleDbCommand command = new OleDbCommand();
+        int id;
+
+        command.Connection = conn;
+        command.CommandText = "SELECT user_ID FROM confirmation WHERE confirm_number=@confirm_number";
+        command.Parameters.AddWithValue("@confirm_number", confirm_url);
+        conn.Open();
+        id = System.Int32.Parse(command.ExecuteScalar().ToString());
+        conn.Close();
+        command.Parameters.Clear();
+
+        command.CommandText = "UPDATE status SET Field1='' WHERE ID=@id";
+        command.Parameters.AddWithValue("@id", id);
+        conn.Open();
+        command.ExecuteNonQuery();
+        conn.Close();
+        command.Parameters.Clear();
     }
 }
