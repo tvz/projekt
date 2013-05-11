@@ -119,11 +119,6 @@ public class Users
                 conn.Open();
                 command.ExecuteNonQuery();
                 info = "Your account has been successfully created.1";
-                /*ne znam jel ti ovo treba il ne, uglavnom, ne dela ako se izvrsi*/
-                //FormsAuthentication.SetAuthCookie(username, true);
-                //FormsAuthentication.RedirectFromLoginPage(username, true);
-                //
-                //To se izvrši tek nakon što se korisnik ulogira, ne kod registracije, slobodno obriši! Emilio
             }
             catch { }
             finally
