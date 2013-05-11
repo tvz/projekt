@@ -27,6 +27,13 @@ public class Projects
     }
 
     /*developer: Emilio
+     description: metoda kreira novi projekt i sprema u bazu.*/
+    public Projects Create()
+    {
+        return new Projects();
+    }
+
+    /*developer: Emilio
      descripion: metoda dohvaca sve projekte i vraca listu projekata*/
     public static List<Projects> fetch_all()
     {
