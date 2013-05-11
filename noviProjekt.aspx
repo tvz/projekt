@@ -28,6 +28,8 @@ $( "#datepicker" ).datepicker();
         <asp:Label ID="Label4" runat="server" Text="Datum isteka projekta"></asp:Label>
         <asp:TextBox ID="datepicker" runat="server"></asp:TextBox>
     
+        <asp:Button ID="Button1" runat="server" Text="Spremi" onclick="Button1_Click" />
+    
     </div>
     </form>
 </body>

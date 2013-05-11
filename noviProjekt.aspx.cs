@@ -11,4 +11,11 @@ public partial class noviProjekt : System.Web.UI.Page
     {
 
     }
+
+    /*developer: Emilio
+     description: metoda sprema novi projekt*/
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+
+    }
 }
