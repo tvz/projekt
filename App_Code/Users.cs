@@ -146,6 +146,8 @@ public class Users
                 command.ExecuteNonQuery();
                 conn.Close();
 
+                //trebamo se dogovorit oko maila i stranice na koju ce link usmjeravati
+                //pretpostavljam da cemo imat user stranicu, cisto je logicki, pa bu link vjerojatno na nju
                 /*link = "www.xxxxx.hr/xxxxx.aspx?confirmID="+confirm_number;
                 msg.Subject = "Potvrda registracije";
                 msg.Body = ""+link;
@@ -178,19 +180,27 @@ public class Users
         OleDbCommand command = new OleDbCommand();
         int id;
 
-        command.Connection = conn;
-        command.CommandText = "SELECT user_ID FROM confirmation WHERE confirm_number=@confirm_number";
-        command.Parameters.AddWithValue("@confirm_number", confirm_url);
-        conn.Open();
-        id = System.Int32.Parse(command.ExecuteScalar().ToString());
-        conn.Close();
-        command.Parameters.Clear();
+        try
+        {
+            command.Connection = conn;
+            command.CommandText = "SELECT user_ID FROM confirmation WHERE confirm_number=@confirm_number";
+            command.Parameters.AddWithValue("@confirm_number", confirm_url);
+            conn.Open();
+            id = System.Int32.Parse(command.ExecuteScalar().ToString());
+            conn.Close();
+            command.Parameters.Clear();
 
-        command.CommandText = "UPDATE status SET Field1='' WHERE ID=@id";
-        command.Parameters.AddWithValue("@id", id);
-        conn.Open();
-        command.ExecuteNonQuery();
-        conn.Close();
-        command.Parameters.Clear();
+            //naravno, field1 il kak ce se vec zvat ce imat odredjen atribut
+            command.CommandText = "UPDATE status SET Field1='' WHERE ID=@id";
+            command.Parameters.AddWithValue("@id", id);
+            conn.Open();
+            command.ExecuteNonQuery();
+        }
+        catch{}
+        finally
+        {
+            conn.Close();
+            command.Parameters.Clear();
+        }
     }
 }
