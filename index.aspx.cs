@@ -33,7 +33,7 @@ public partial class index : System.Web.UI.Page
         {
             if (DateTime.Now.AddDays(7) >= project.expiration_date)
             {
-                html_old_projects += "<div id='proj'>"
+                html_old_projects += "<div class='proj'>"
                 + "<h2>" + project.name + "</h2>"
                 + "<img src=" + project.image_path + " alt=" + project.name + "> "
                 + "<h3><b>AUTOR PROJEKTA:</b> " + project.project_owner_username + "</h3>"
@@ -45,7 +45,7 @@ public partial class index : System.Web.UI.Page
             }
             else
             {
-                html_new_projects += "<div id='proj'>"
+                html_new_projects += "<div class='proj'>"
             + "<h2>" + project.name + "</h2>"
             + "<img src=" + project.image_path + " alt=" + project.name + "> "
             + "<h3><b>AUTOR PROJEKTA:</b> " + project.project_owner_username + "</h3>"
