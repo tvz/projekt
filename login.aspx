@@ -21,7 +21,7 @@
     </div>
     <div id="nav_login">
         <asp:HyperLink ID="RegLink" Font-Underline="False" runat="server" 
-            NavigateUrl="~/register.aspx" CssClass="LogLink"><span>Registracija</span></asp:HyperLink>
+            NavigateUrl="~/login.aspx" CssClass="LogLink"><span>Registracija</span></asp:HyperLink>
         <asp:HyperLink ID="LogInLink" Font-Underline="False" runat="server" CssClass="LogLink" 
             NavigateUrl="~/login.aspx">Prijava</asp:HyperLink>
     </div>
