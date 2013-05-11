@@ -1,0 +1,220 @@
+body {
+	margin: 0 auto; 
+	padding: 2%;
+	background: #b2cecf;
+	max-width: 1110px;
+}
+
+#logo
+{
+    font-family: 'Chango', cursive;
+    font-size: 40pt;
+    color: #282828;
+    float:left;
+    text-transform: uppercase;
+}
+
+/* Ragistracija - prijava*/
+#nav_login
+{
+    float: right;
+    padding-top: 3.2%;
+    margin:0;
+}
+
+A.LogLink
+{
+    font-family: Corbel;
+    font-size: 17px;
+    font-weight:bold;
+    color: #282828;
+ }
+
+A.LogLink:hover
+{
+   color:#d02552
+}
+
+
+span
+{
+    border-right: 1px solid #282828;
+    padding-right:10px;
+    margin-right:10px;
+}
+
+/*glavna navigacija*/
+#navigacija
+{
+    float: right;
+    text-transform: uppercase;
+    padding-top:5%;
+    width: 755px;
+}
+
+A.NavLink
+{
+    font-family: Corbel;
+    font-size: 22px;
+    font-weight:bold;
+    color: #282828;
+    padding-left:5%;
+ }
+
+A.NavLink:hover
+{
+   color:#d02552
+}
+
+A.NavLink:active
+{
+   color:#d02552
+}
+
+/*---------------------*/
+hr
+{
+  
+  height: 1px;
+  background-color: #fff;
+  color: #fff;
+  border: none;  
+}
+
+.prva_lin
+{
+   margin-top:110px;
+}
+
+.druga_lin
+{
+    margin-top:530px; 
+}
+
+/*--------------------*/
+
+h1
+{
+    text-transform: uppercase;
+    padding-top:2%;
+    padding-bottom:3%;
+    font-family: Corbel;
+    font-size: 25px;
+    font-weight:bold;
+    color: #d02552;
+    text-align: center;
+}
+
+/*projekti*/
+#proj
+{
+   background-color: rgba(255,255,255,0.45);
+   width: 345px;
+   border-radius: 10px; 
+   float:left;
+   margin-right: 37px;
+   margin-bottom:4%;
+}
+
+div#proj:last-child
+{
+    margin-right:0;
+}
+
+h2
+{
+    
+    padding-top:2%;
+    padding-bottom:3%;
+    font-family: Corbel;
+    font-size: 18px;
+    font-weight:bold;
+    color: #d02552;
+    text-align: center;
+}
+
+h3
+{
+    padding-left:5%;
+    padding-right:5%;
+    font-family: Corbel;
+    font-size: 15px;
+    color:#000;
+    vertical-align: top;
+    font-weight:normal;
+}
+
+h4
+{
+    padding-top:12%;
+    padding-bottom:12%;
+    text-align: center;
+}
+
+.gumb
+{
+    border-radius: 10px;
+    background-color:#d02552;
+    color:#fff;
+    float: right;
+    padding-top: 4%;
+    padding-bottom: 4%;
+    padding-left: 8%;
+    padding-right: 8%;
+    margin: 5%;
+    font-family: Corbel;
+}
+/*login*/
+#login
+{
+  margin-left:20px;
+} 
+/*login pozadina*/
+.pozadina
+{
+    background-color: rgba(255,255,255,0.45);
+     border-radius: 10px; 
+}
+
+.labele
+{   
+    color:#000;
+    font-family: Corbel;
+    font-size: 18px;
+    font-style:bold;
+    
+}
+.textbox
+{
+    border-color:#d02552;
+    border-style:solid;
+    border-radius:3px;
+    color:#000;
+    border-width:1px;
+    
+}
+.prijava
+{
+    font-family: Corbel;
+    font-size: 20px;
+    font-weight:bold;
+    color: #d02552;
+    text-align: center;
+}
+.gumb2
+{
+    border-radius: 10px;
+    background-color:#d02552;
+    color:#fff;
+    float: right;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin: 5%;
+    font-family: Corbel;
+}
+.zapamtiMe
+{
+   padding-left:68px;
+}
