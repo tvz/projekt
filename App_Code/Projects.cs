@@ -17,9 +17,6 @@ public class Projects
     public DateTime expiration_date;
 
     /*sve ostale varijable*/
-    private static OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
-    private static OleDbCommand command = new OleDbCommand();
-    private static OleDbDataReader reader;
     public string project_owner_username;
 
     public Projects()
@@ -33,8 +30,10 @@ public class Projects
      descripion: metoda dohvaca sve projekte i vraca listu projekata*/
     public static List<Projects> fetch_all()
     {
+        OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
+        OleDbCommand command = new OleDbCommand();
+        OleDbDataReader reader = null;
         command.Connection = conn;
-        //command.CommandText = "SELECT ID,name,description,goal FROM projects";
         command.CommandText = "SELECT projects.ID,projects.name, projects.description, projects.goal, projects.expiration_date, projects.image_path, users.username FROM (projects INNER JOIN users ON projects.user_id = users.ID) GROUP BY projects.ID, projects.name, projects.description, projects.goal,projects.expiration_date, projects.image_path, users.username";
 
         List<Projects> projects_list = new List<Projects>();
@@ -44,15 +43,15 @@ public class Projects
             reader = command.ExecuteReader();
             while (reader.Read())
             {
-                int i = -1;
+                int column = -1;
                 Projects project = new Projects();
-                project.id = Convert.ToInt32(reader.GetValue(++i));
-                project.name = reader.GetValue(++i).ToString();
-                project.description = reader.GetValue(++i).ToString();
-                project.goal = Convert.ToSingle(reader.GetValue(++i));
-                project.expiration_date = Convert.ToDateTime(reader.GetValue(++i));
-                project.image_path = reader.GetValue(++i).ToString();
-                project.project_owner_username = reader.GetValue(++i).ToString();
+                project.id = Convert.ToInt32(reader.GetValue(++column));
+                project.name = reader.GetValue(++column).ToString();
+                project.description = reader.GetValue(++column).ToString();
+                project.goal = Convert.ToSingle(reader.GetValue(++column));
+                project.expiration_date = Convert.ToDateTime(reader.GetValue(++column));
+                project.image_path = reader.GetValue(++column).ToString();
+                project.project_owner_username = reader.GetValue(++column).ToString();
                 projects_list.Add(project);
             }
 
@@ -62,8 +61,8 @@ public class Projects
         }
         finally
         {
-            //command.Dispose();
-            //reader.Close();
+            command.Dispose();
+            reader.Close();
             conn.Close();
         }
         return projects_list;

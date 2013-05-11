@@ -16,9 +16,7 @@ public class Users
     private static string pass_salt;
 
     /*sve ostale varijable*/
-    private static OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
-    private static OleDbCommand command = new OleDbCommand();
-    private static OleDbDataReader reader;
+    
 
     public Users()
     {
@@ -27,8 +25,11 @@ public class Users
     /*
      developer: Emilio
      */
-    public static bool login(string username, string password)
+    public static bool Login(string username, string password)
     {
+        OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
+        OleDbCommand command = new OleDbCommand();
+        OleDbDataReader reader = null;
 
         string prehashed_password;
         string password_hash2;
@@ -63,8 +64,7 @@ public class Users
         }
         finally
         {
-            //command.Dispose();
-            command.Parameters.Clear();
+            command.Dispose();
             reader.Close();
             conn.Close();
         }
@@ -76,6 +76,10 @@ public class Users
     */
     public static void register(string username, string password, string email)
     {
+        OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
+        OleDbCommand command = new OleDbCommand();
+        OleDbDataReader reader = null;
+
         string prehashed_pass, hashed_pass, created, updated;
         bool userExists=false;
         command.CommandText = "SELECT username FROM users";
@@ -120,6 +124,8 @@ public class Users
                 /*ne znam jel ti ovo treba il ne, uglavnom, ne dela ako se izvrsi*/
                 //FormsAuthentication.SetAuthCookie(username, true);
                 //FormsAuthentication.RedirectFromLoginPage(username, true);
+                //
+                //To se izvrši tek nakon što se korisnik ulogira, ne kod registracije, slobodno obriši! Emilio
             }
             catch { }
             finally
