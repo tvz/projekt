@@ -15,7 +15,7 @@
     <div class="log-reg">
     
         <asp:Login ID="Login1" runat="server" DestinationPageUrl="~/index.aspx" 
-            onauthenticate="Login1_Authenticate" BorderColor="White" CssClass="pozadina"
+            onauthenticate="Login1_Authenticate" BorderColor="White" 
             FailureText="Žao nam je, Vaša prijava nije bila uspješna. Molimo pokušajte ponovo." 
             Height="297px" LoginButtonText="PRIJAVA" Width="485px" Font-Size="15px" 
             PasswordLabelText="Lozinka:" 
