@@ -22,7 +22,7 @@ public partial class _Default : System.Web.UI.Page
      */
     protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
     {
-        bool status = Users.login(Login1.UserName, Login1.Password);
+        bool status = Users.Login(Login1.UserName, Login1.Password);
         if (status)
             e.Authenticated = true;
     }

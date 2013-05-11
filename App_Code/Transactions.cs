@@ -14,9 +14,7 @@ public class Transactions
     float payment_gross;
 
     /*sve ostale varijable*/
-    private static OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
-    private static OleDbCommand command = new OleDbCommand();
-    private static OleDbDataReader reader;
+    
 
     public Transactions()
     {
@@ -29,6 +27,10 @@ public class Transactions
      description: Metoda dohvaca sumu donacija za odredeni projekt*/
     public static float PaymentGrossSum(int project_id)
     {
+        OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
+        OleDbCommand command = new OleDbCommand();
+        OleDbDataReader reader = null;
+
         command.Connection = conn;
         command.CommandText = "SELECT SUM(payment_gross)as gross_sum FROM transactions WHERE project_id = @project_id";
         command.Parameters.AddWithValue("@project_id", project_id);
@@ -48,8 +50,7 @@ public class Transactions
         }
         finally
         {
-            //command.Dispose();
-            command.Parameters.Clear();
+            command.Dispose();
             reader.Close();
             conn.Close();
         }
