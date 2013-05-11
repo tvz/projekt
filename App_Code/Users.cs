@@ -80,11 +80,7 @@ public class Users
         bool userExists = false;
         int user_id;
         System.Random rnd = new System.Random();
-        //char[] array;
-        long confirm_number = rnd.Next(1000000, 1000000000);
-
-        //MailMessage msg = new MailMessage();
-        //SmtpClient smtp = new SmtpClient("");
+        int confirm_number = rnd.Next(1000000, 10000000);
             
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
         OleDbCommand command = new OleDbCommand();
@@ -104,7 +100,7 @@ public class Users
         reader.Close();
         conn.Close();
 
-        //ako nema istog username u bazi
+        //ako nema istog korisnickog imena u bazi
         if (!userExists)
         {
             try
@@ -146,13 +142,7 @@ public class Users
                 command.ExecuteNonQuery();
                 conn.Close();
 
-                //trebamo se dogovorit oko maila i stranice na koju ce link usmjeravati
-                //pretpostavljam da cemo imat user stranicu, cisto je logicki, pa bu link vjerojatno na nju
-                /*link = "www.xxxxx.hr/xxxxx.aspx?confirmID="+confirm_number;
-                msg.Subject = "Potvrda registracije";
-                msg.Body = ""+link;
-                msg.To.Add(email);
-                smtp.Send(msg);*/
+                sendMail("www.xxxxx.hr/xxxxx.aspx?confirmID="+confirm_number, email);
 
                 info = "Registracija je uspješno obavljena.\nMolimo provjerite pretinac e-mail pošte i potvrdite registraciju.1";
             }
@@ -174,7 +164,7 @@ public class Users
      * description: metoda prima confirm_number preuzet iz url-a (obradjeno na stranici na koju ce url voditi)
      * na temelju te varijable aktivira korisnika
      */
-    public static void activaction(long confirm_url)
+    public static void activaction(int confirm_url)
     {
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
         OleDbCommand command = new OleDbCommand();
@@ -202,5 +192,26 @@ public class Users
             conn.Close();
             command.Parameters.Clear();
         }
+    }
+
+    /*developer: Ivan
+     * description: metoda salje mail korisniku s linkom za aktivaciju racuna
+     */
+    private static void sendMail(string link, string email)
+    {
+        MailMessage msg = new MailMessage();
+        //kad se odlucimo za mail, onda ce SmtpClient konstruktor imat ispravan atribut
+        SmtpClient smtp = new SmtpClient("");
+        
+        try
+        {       
+            //trebamo se dogovorit oko maila i stranice na koju ce link usmjeravati
+            //pretpostavljam da cemo imat user stranicu, cisto je logicki, pa bu link vjerojatno na nju
+            msg.Subject = "Potvrda registracije";
+            msg.Body = ""+link;
+            msg.To.Add(email);
+            smtp.Send(msg);
+        }
+        catch { }
     }
 }

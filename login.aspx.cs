@@ -40,13 +40,13 @@ public partial class login : System.Web.UI.Page
 
         if (info.Substring(info.Length - 1, 1) == "0")
         {
-            CreateUserWizard1.ContinueDestinationPageUrl = "~/login.aspx";
-            CreateUserWizard1.ContinueButtonText = "Try again";
+            CreateUserWizard1.ContinueDestinationPageUrl = "~/login.aspx?param1=123456";
+            CreateUserWizard1.ContinueButtonText = "Pokušaj ponovno";
         }
         else
         {
             CreateUserWizard1.ContinueDestinationPageUrl = "~/index.aspx";
-            CreateUserWizard1.ContinueButtonText = "Continue";
+            CreateUserWizard1.ContinueButtonText = "Nastavi";
         }
     }
 }
