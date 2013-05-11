@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true"  CodeFile="login.aspx.cs" Inherits="Default" %>
+<%@ Page Language="C#" AutoEventWireup="true"  CodeFile="login.aspx.cs" Inherits="_Default" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -6,7 +6,7 @@
 <head runat="server">
     <title>Untitled Page</title>
      <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <link href='http://fonts.googleapis.com/css?family=Chango&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Chango&subset=latin,latin-ext' rel='stylesheet' type='text/css' />
     <style type="text/css">
         #form1
         {
@@ -79,8 +79,8 @@
         </asp:Login>
     </div>
     <asp:CreateUserWizard ID="CreateUserWizard1" runat="server" Answer="a" 
-        Question="b" ContinueDestinationPageUrl="~/index.aspx" 
-        oncreateduser="CreateUserWizard1_CreatedUser">
+        Question="b" 
+        oncreateduser="CreateUserWizard1_CreatedUser" ContinueButtonText="">
         <WizardSteps>
             <asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server">
                 <ContentTemplate>

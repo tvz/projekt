@@ -73,30 +73,28 @@ public class Users
     /*
     developer: Ivan
     */
-    public static void register(string username, string password, string email)
+    public static string register(string username, string password, string email)
     {
+        string prehashed_pass, hashed_pass, created, updated, info="";
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
         OleDbCommand command = new OleDbCommand();
         OleDbDataReader reader = null;
-
-        string prehashed_pass, hashed_pass, created, updated;
         bool userExists=false;
         command.CommandText = "SELECT username FROM users";
         command.Connection = conn;
         conn.Open();
         reader = command.ExecuteReader();
 
-        /*provjerava ako zahtjevani username vec postoji,
-          mislim da je jasno kaj se dalje dogadja
-         * na formi trenutno javlja da je registracija uspjela (u biti nije)
-           kad se napravi custom forma, problem ce bit rijesen
-         */
         while (reader.Read())
         {
-            if (reader.GetValue(0).ToString().Equals(username))
+            string temp = reader.GetValue(0).ToString();
+            if (temp == username)
                 userExists = true;
         }
+        reader.Close();
+        conn.Close();
 
+        //ako nema istog username u bazi
         if (!userExists)
         {
             try
@@ -119,19 +117,18 @@ public class Users
 
                 conn.Open();
                 command.ExecuteNonQuery();
-
-                /*ne znam jel ti ovo treba il ne, uglavnom, ne dela ako se izvrsi*/
-                //FormsAuthentication.SetAuthCookie(username, true);
-                //FormsAuthentication.RedirectFromLoginPage(username, true);
-                //
-                //To se izvrši tek nakon što se korisnik ulogira, ne kod registracije, slobodno obriši! Emilio
+                info = "Your account has been successfully created.1";
             }
             catch { }
             finally
             {
-                command.Parameters.Clear();           
-            }    
+                command.Parameters.Clear();
+            }
         }
-        conn.Close();
+        else
+            info = "Your account has not been successfully created. Please try again.0";
+      
+        conn.Close();   
+        return info;
     }
 }
