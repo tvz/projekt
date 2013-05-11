@@ -1,55 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true"  CodeFile="login.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" CodeFile="login.aspx.cs" Inherits="login" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Untitled Page</title>
-     <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <link href='http://fonts.googleapis.com/css?family=Chango&subset=latin,latin-ext' rel='stylesheet' type='text/css' />
-    <style type="text/css">
-        #form1
-        {
-            height: 1952px;
-        }
-    </style>
-</head>
-<body>
-    <form id="form1" runat="server">
-     <div id="logo">
-    Logo
-    </div>
-    <div id="nav_login">
-        <asp:HyperLink ID="RegLink" Font-Underline="False" runat="server" 
-            NavigateUrl="~/login.aspx" CssClass="LogLink"><span>Registracija</span></asp:HyperLink>
-        <asp:HyperLink ID="LogInLink" Font-Underline="False" runat="server" CssClass="LogLink" 
-            NavigateUrl="~/login.aspx">Prijava</asp:HyperLink>
-    </div>
-    
-    
-    
-    
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    
-<!--testiranje promjene sa comit-->  
-    
-    
-    <div id="navigacija">
-        <asp:HyperLink ID="IndexLink" Font-Underline="False" runat="server" 
-            NavigateUrl="~/index.aspx" CssClass="NavLink">Početna</asp:HyperLink>
-        <asp:HyperLink ID="NoviProjLink" Font-Underline="False" runat="server" 
-            CssClass="NavLink" NavigateUrl="~/noviProjekt.aspx">Započni projekt</asp:HyperLink>
-        <asp:HyperLink ID="PregledProjLink" Font-Underline="False" runat="server" 
-            CssClass="NavLink" NavigateUrl="~/pregledProjekata.aspx">Pregled projekata</asp:HyperLink>
-        <asp:HyperLink ID="OnamaLink" Font-Underline="False" runat="server" 
-            CssClass="NavLink" NavigateUrl="~/Onama.aspx">O nama</asp:HyperLink>
-</div>
-       <hr class="prva_lin" />
-    <br />
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<br />
     <br />
 
     
@@ -58,7 +12,8 @@
     
     
        <!--login -->
-    <div id="login">
+    <div class="log-reg">
+    
         <asp:Login ID="Login1" runat="server" DestinationPageUrl="~/index.aspx" 
             onauthenticate="Login1_Authenticate" BorderColor="White" CssClass="pozadina"
             FailureText="Žao nam je, Vaša prijava nije bila uspješna. Molimo pokušajte ponovo." 
@@ -77,7 +32,11 @@
             <FailureTextStyle Font-Names="Corbel" Font-Size="15px" ForeColor="#D02552" />
             <TitleTextStyle CssClass="prijava" />
         </asp:Login>
+    
     </div>
+    
+    <!--registracija -->
+    <div class="log-reg">
     <asp:CreateUserWizard ID="CreateUserWizard1" runat="server" Answer="a" 
         Question="b" 
         oncreateduser="CreateUserWizard1_CreatedUser" ContinueButtonText="">
@@ -181,6 +140,5 @@
         </WizardSteps>
     </asp:CreateUserWizard>
     </div>
-    </form>
-</body>
-</html>
+</asp:Content>
+

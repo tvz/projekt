@@ -10,7 +10,7 @@
     <!--prikaz tri projekta u ravnini-->
     
     <!--prvi projekt u ravnini-->
-    <div id="proj">
+    <div class="proj">
     <h2>Ime prvog projekta!</h2>
     <h4>PROSTOR ZA SLIKU</h4>
     <h3><b>AUTOR PROJEKTA:</b> Ime Ime</h3>
@@ -22,7 +22,7 @@
     </div>
     
     <!--drugi projekt u ravnini-->
-    <div id="proj">
+    <div class="proj">
     <h2>Ime drugog projekta!</h2>
     <h4>PROSTOR ZA SLIKU</h4>
     <h3><b>AUTOR PROJEKTA:</b> Ime Ime</h3>
@@ -35,7 +35,7 @@
     
    
     <!--treci projekt u ravnini-->
-    <div id="proj">
+    <div class="proj">
     <h2>Ime trećeg projekta!</h2>
     <h4>PROSTOR ZA SLIKU</h4>
     <h3><b>AUTOR PROJEKTA:</b> Ime Ime</h3>
@@ -54,7 +54,7 @@
     <!--prikaz tri projekta u ravnini-->
     
     <!--prvi projekt u ravnini-->
-    <div id="proj">
+    <div class="proj">
     <h2>Ime prvog projekta!</h2>
     <h4>PROSTOR ZA SLIKU</h4>
     <h3><b>AUTOR PROJEKTA:</b> Ime Ime</h3>
@@ -66,7 +66,7 @@
     </div>
     
     <!--drugi projekt u ravnini-->
-    <div id="proj">
+    <div class="proj">
     <h2>Ime drugog projekta!</h2>
     <h4>PROSTOR ZA SLIKU</h4>
     <h3><b>AUTOR PROJEKTA:</b> Ime Ime</h3>
@@ -79,7 +79,7 @@
     
    
     <!--treci projekt u ravnini-->
-    <div id="proj">
+    <div class="proj">
     <h2>Ime trećeg projekta!</h2>
     <h4>PROSTOR ZA SLIKU</h4>
     <h3><b>AUTOR PROJEKTA:</b> Ime Ime</h3>
