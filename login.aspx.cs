@@ -32,7 +32,20 @@ public partial class _Default : System.Web.UI.Page
      */
     protected void CreateUserWizard1_CreatedUser(object sender, EventArgs e)
     {
-        Users.register(CreateUserWizard1.UserName,
+        string info;
+        info = Users.register(CreateUserWizard1.UserName,
             CreateUserWizard1.Password, CreateUserWizard1.Email);
+        CreateUserWizard1.CompleteSuccessText = ""+info.Substring(0, info.Length-1);
+
+        if (info.Substring(info.Length - 1, 1) == "0")
+        {
+            CreateUserWizard1.ContinueDestinationPageUrl = "~/login.aspx";
+            CreateUserWizard1.ContinueButtonText = "Try again";
+        }
+        else
+        {
+            CreateUserWizard1.ContinueDestinationPageUrl = "~/index.aspx";
+            CreateUserWizard1.ContinueButtonText = "Continue";
+        }
     }
 }
