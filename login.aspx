@@ -5,14 +5,79 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Untitled Page</title>
+     <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href='http://fonts.googleapis.com/css?family=Chango&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+        #form1
+        {
+            height: 1952px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
+     <div id="logo">
+    Logo
+    </div>
+    <div id="nav_login">
+        <asp:HyperLink ID="RegLink" Font-Underline="False" runat="server" 
+            NavigateUrl="~/login.aspx" CssClass="LogLink"><span>Registracija</span></asp:HyperLink>
+        <asp:HyperLink ID="LogInLink" Font-Underline="False" runat="server" CssClass="LogLink" 
+            NavigateUrl="~/login.aspx">Prijava</asp:HyperLink>
+    </div>
+    
+    
+    
+    
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    
+<!--testiranje promjene sa comit-->  
+    
+    
+    <div id="navigacija">
+        <asp:HyperLink ID="IndexLink" Font-Underline="False" runat="server" 
+            NavigateUrl="~/index.aspx" CssClass="NavLink">Početna</asp:HyperLink>
+        <asp:HyperLink ID="NoviProjLink" Font-Underline="False" runat="server" 
+            CssClass="NavLink" NavigateUrl="~/noviProjekt.aspx">Započni projekt</asp:HyperLink>
+        <asp:HyperLink ID="PregledProjLink" Font-Underline="False" runat="server" 
+            CssClass="NavLink" NavigateUrl="~/pregledProjekata.aspx">Pregled projekata</asp:HyperLink>
+        <asp:HyperLink ID="OnamaLink" Font-Underline="False" runat="server" 
+            CssClass="NavLink" NavigateUrl="~/Onama.aspx">O nama</asp:HyperLink>
+</div>
+       <hr class="prva_lin" />
+    <br />
+    <br />
+
+    
     <div>
     
+    
+    
+       <!--login -->
+    <div id="login">
         <asp:Login ID="Login1" runat="server" DestinationPageUrl="~/index.aspx" 
-            onauthenticate="Login1_Authenticate">
+            onauthenticate="Login1_Authenticate" BorderColor="White" CssClass="pozadina"
+            FailureText="Žao nam je, Vaša prijava nije bila uspješna. Molimo pokušajte ponovo." 
+            Height="297px" LoginButtonText="PRIJAVA" Width="485px" Font-Size="15px" 
+            PasswordLabelText="Lozinka:" 
+            PasswordRequiredErrorMessage="Trebate unjeti lozinku." 
+            RememberMeText="Zapamti me na ovom računalu." TitleText="Prijava" 
+            UserNameLabelText="Korisničko ime:" 
+            UserNameRequiredErrorMessage="Trebate unjeti korisničko ime.">
+            <CheckBoxStyle Font-Names="Corbel" Font-Size="15px" ForeColor="#000000" 
+                CssClass="zapamtiMe" />
+            <TextBoxStyle BorderColor="#D02552" CssClass="textbox" />
+            <LoginButtonStyle Font-Names="Corbel" CssClass="gumb2" Font-Size="15px" />
+            <ValidatorTextStyle ForeColor="#D02552" />
+            <LabelStyle Font-Names="Corbel" CssClass="labele" />
+            <FailureTextStyle Font-Names="Corbel" Font-Size="15px" ForeColor="#D02552" />
+            <TitleTextStyle CssClass="prijava" />
         </asp:Login>
+    </div>
     <asp:CreateUserWizard ID="CreateUserWizard1" runat="server" Answer="a" 
         Question="b" ContinueDestinationPageUrl="~/index.aspx" 
         oncreateduser="CreateUserWizard1_CreatedUser">

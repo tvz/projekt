@@ -164,4 +164,57 @@ h4
     margin: 5%;
     font-family: Corbel;
 }
+/*login*/
+#login
+{
+  margin-left:20px;
+} 
+/*login pozadina*/
+.pozadina
+{
+    background-color: rgba(255,255,255,0.45);
+     border-radius: 10px; 
+}
 
+.labele
+{   
+    color:#000;
+    font-family: Corbel;
+    font-size: 18px;
+    font-style:bold;
+    
+}
+.textbox
+{
+    border-color:#d02552;
+    border-style:solid;
+    border-radius:3px;
+    color:#000;
+    border-width:1px;
+    
+}
+.prijava
+{
+    font-family: Corbel;
+    font-size: 20px;
+    font-weight:bold;
+    color: #d02552;
+    text-align: center;
+}
+.gumb2
+{
+    border-radius: 10px;
+    background-color:#d02552;
+    color:#fff;
+    float: right;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin: 5%;
+    font-family: Corbel;
+}
+.zapamtiMe
+{
+   padding-left:68px;
+}
