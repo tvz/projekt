@@ -29,7 +29,7 @@ public class Users
     {
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
         OleDbCommand command = new OleDbCommand();
-        OleDbDataReader reader = null;
+        OleDbDataReader reader;
 
         string prehashed_password;
         string password_hash2;
@@ -65,7 +65,6 @@ public class Users
         finally
         {
             command.Dispose();
-            reader.Close();
             conn.Close();
         }
         return login_status;

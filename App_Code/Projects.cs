@@ -14,7 +14,12 @@ public class Projects
     public string description;
     public float goal;
     public string image_path;
+    public string video_path;
     public DateTime expiration_date;
+    public DateTime created_at;
+    public DateTime updated_at;
+    public int user_id;
+
 
     /*sve ostale varijable*/
     public string project_owner_username;
@@ -25,12 +30,42 @@ public class Projects
         // TODO: Add constructor logic here
         //
     }
+    public Projects(string name, string description, float goal, DateTime expiration_date, string image_path, string video_path, int user_id)
+    {
+        this.name = name;
+        this.description = description;
+        this.goal = goal;
+        this.expiration_date = expiration_date;
+        this.image_path = image_path;
+        this.video_path = video_path;
+        this.user_id = user_id;
+    }
 
     /*developer: Emilio
      description: metoda kreira novi projekt i sprema u bazu.*/
-    public Projects Create()
-    {
-        return new Projects();
+    public static bool Create(string name, string description, float goal, DateTime expiration_date, string image_path, string video_path, int user_id)
+    {   
+        bool created = false;
+        OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
+        OleDbCommand command = new OleDbCommand();
+        DateTime created_at = DateTime.Now; 
+        DateTime updated_at = DateTime.Now; 
+        command.CommandText = "INSERT INTO projects ([name], [description], [goal], [expiration_date], [created_at], [updated_at], [image_path], [video_path], [user_id]) VALUES (@name, @description, @goal, @expiration_date, @created_at, @updated_at, @image_path, @video_path, @user_id)";
+        command.Parameters.AddWithValue("@name", name);
+        command.Parameters.AddWithValue("@description", description);
+        command.Parameters.AddWithValue("@goal", goal);
+        command.Parameters.AddWithValue("@expiration_date", expiration_date);
+        command.Parameters.AddWithValue("@created_at", created_at);
+        command.Parameters.AddWithValue("@updated_at", updated_at);
+        command.Parameters.AddWithValue("@image_path", image_path);
+        command.Parameters.AddWithValue("@video_path", video_path);
+        command.Parameters.AddWithValue("@video_path", user_id);
+        command.Connection = conn;
+        conn.Open();
+        if (command.ExecuteNonQuery() == 1)
+            created = true;
+        conn.Close();
+        return created;
     }
 
     /*developer: Emilio
@@ -39,7 +74,7 @@ public class Projects
     {
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
         OleDbCommand command = new OleDbCommand();
-        OleDbDataReader reader = null;
+        OleDbDataReader reader;
         command.Connection = conn;
         command.CommandText = "SELECT projects.ID,projects.name, projects.description, projects.goal, projects.expiration_date, projects.image_path, users.username FROM (projects INNER JOIN users ON projects.user_id = users.ID) GROUP BY projects.ID, projects.name, projects.description, projects.goal,projects.expiration_date, projects.image_path, users.username";
 
@@ -69,7 +104,6 @@ public class Projects
         finally
         {
             command.Dispose();
-            reader.Close();
             conn.Close();
         }
         return projects_list;

@@ -51,7 +51,6 @@ public class Transactions
         finally
         {
             command.Dispose();
-            reader.Close();
             conn.Close();
         }
         return gross_sum;
