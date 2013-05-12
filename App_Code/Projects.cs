@@ -54,17 +54,32 @@ public class Projects
         command.Parameters.AddWithValue("@name", name);
         command.Parameters.AddWithValue("@description", description);
         command.Parameters.AddWithValue("@goal", goal);
-        command.Parameters.AddWithValue("@expiration_date", expiration_date);
-        command.Parameters.AddWithValue("@created_at", created_at);
-        command.Parameters.AddWithValue("@updated_at", updated_at);
+        command.Parameters.AddWithValue("@expiration_date", expiration_date.ToShortDateString());
+        command.Parameters.AddWithValue("@created_at", created_at.ToShortDateString());
+        command.Parameters.AddWithValue("@updated_at", updated_at.ToShortDateString());
         command.Parameters.AddWithValue("@image_path", image_path);
         command.Parameters.AddWithValue("@video_path", video_path);
-        command.Parameters.AddWithValue("@video_path", user_id);
+        command.Parameters.AddWithValue("@user_id", user_id);
         command.Connection = conn;
-        conn.Open();
-        if (command.ExecuteNonQuery() == 1)
-            created = true;
-        conn.Close();
+        try
+        {
+            conn.Open();
+            if (command.ExecuteNonQuery() == 1)
+                created = true;
+            else
+            {
+                /*nisam siguran da li treba rollback ako se unosi samo jedan red ali nek tu bude za svaki slucaj*/
+                command.Transaction.Rollback();
+            }
+        }
+        catch
+        {
+        }
+        finally
+        {
+            command.Dispose();
+            conn.Close();
+        }
         return created;
     }
 

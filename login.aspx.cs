@@ -24,7 +24,11 @@ public partial class _Default : System.Web.UI.Page
     {
         bool status = Users.Login(Login1.UserName, Login1.Password);
         if (status)
+        {
             e.Authenticated = true;
+            FormsAuthentication.SetAuthCookie(Login1.UserName, true);
+            FormsAuthentication.RedirectFromLoginPage(Login1.UserName, true);
+        }
     }
 
     /* developer: Ivan

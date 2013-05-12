@@ -53,8 +53,7 @@ public class Users
                 if (password_hash == password_hash2)
                 {
                     login_status = true;
-                    FormsAuthentication.SetAuthCookie(username, true);
-                    FormsAuthentication.RedirectFromLoginPage(username, true);
+                    
                 }
             }
         }
