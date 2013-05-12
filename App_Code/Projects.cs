@@ -83,6 +83,13 @@ public class Projects
         return created;
     }
 
+    /*developer:Emilio
+     description: metoda dohvaca jedan project iz baze*/
+    public static Projects FetchProject(int project_id)
+    {
+        return;
+    }
+
     /*developer: Emilio
      descripion: metoda dohvaca sve projekte i vraca listu projekata*/
     public static List<Projects> fetch_all()
