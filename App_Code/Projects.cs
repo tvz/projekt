@@ -9,7 +9,7 @@ using System;
 public class Projects
 {
     /*varijable koje predstavljaju atribute u bazi*/
-    int id;
+    public int id;
     public string name;
     public string description;
     public float goal;
