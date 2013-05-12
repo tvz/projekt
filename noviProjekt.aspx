@@ -40,9 +40,10 @@
         &nbsp;tu jos treba ubaciti validacije na sva polja i prilagoditi ih. Unos projekta
         trenutno radi. Linkove za css ovog datepickera imate na <a href="http://www.asp.net/ajaxlibrary/CDNjQueryUI1910.ashx">
             http://www.asp.net/ajaxlibrary/CDNjQueryUI1910.ashx</a> pa stavite koji najbolje
-        pase za web. Trenutno se sve dodaje na ID korisnika 1 jer jos nemamo userpage. Kreirajte
+        pase za web. Oni su trenutno uljuceni kao vanjski resurs. Ako ih zelite editirat, a mislim da ce trebat malo smanjit velicinu, preuzmite ih sa ovog gore linka.
+        Trenutno se sve dodaje na ID korisnika 1 jer jos nemamo userpage. Kreirajte
         bar jednog korisnika sa ID1 da mu se mogu pridjeliti projekti ili promijenite id
-        u funkciji na korisnika kojeg vec imate.</div>
+        u funkciji na korisnika kojeg vec imate.
     </form>
     </div>
 </asp:Content>

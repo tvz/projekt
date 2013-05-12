@@ -11,6 +11,7 @@ public partial class noviProjekt : System.Web.UI.Page
         {
             Response.Redirect("index.aspx");
         }*/
+        //(FindControl("TextBox_expiration_date") as TextBox).ID;
     }
 
     /*developer: Emilio

@@ -12,7 +12,7 @@
  <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/jquery-ui.min.js"></script>
  <script type="text/javascript">
 $(function() {
-$( "#TextBox_expiration_date" ).datepicker({ dateFormat: "dd.mm.yy" });
+$( "#ctl00_ContentPlaceHolder1_TextBox_expiration_date").datepicker({ dateFormat: "dd.mm.yy" });
 });
 </script>
     <style type="text/css">
