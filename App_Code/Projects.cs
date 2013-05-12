@@ -87,7 +87,45 @@ public class Projects
      description: metoda dohvaca jedan project iz baze*/
     public static Projects FetchProject(int project_id)
     {
-        return;
+        OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
+        OleDbCommand command = new OleDbCommand();
+        OleDbDataReader reader;
+
+        command.Connection = conn;
+        command.CommandText = "SELECT * FROM projects WHERE ID = @project_id";
+        command.Parameters.AddWithValue("@project_id", project_id);
+
+        Projects project = new Projects();
+        try
+        {
+            conn.Open();
+            reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                int column = -1;
+                
+                project.id = Convert.ToInt32(reader.GetValue(++column));
+                project.name = reader.GetValue(++column).ToString();
+                project.description = reader.GetValue(++column).ToString();
+                project.goal = Convert.ToSingle(reader.GetValue(++column));
+                project.expiration_date = Convert.ToDateTime(reader.GetValue(++column));
+                project.created_at = Convert.ToDateTime(reader.GetValue(++column));
+                project.updated_at = Convert.ToDateTime(reader.GetValue(++column));
+                project.image_path = reader.GetValue(++column).ToString();
+                project.video_path = reader.GetValue(++column);
+                project.user_id = reader.GetValue(++column);
+            }
+
+        }
+        catch
+        {
+        }
+        finally
+        {
+            command.Dispose();
+            conn.Close();
+        }
+        return project;
     }
 
     /*developer: Emilio
