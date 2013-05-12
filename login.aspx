@@ -39,7 +39,10 @@
         oncreateduser="CreateUserWizard1_CreatedUser" ContinueButtonText="" 
             CancelButtonText="Odustani" 
             CompleteSuccessText="Vaš korisnički račun je uspješno napravljen" 
-            CreateUserButtonText="KREIRAJ" Height="455px" Width="423px">
+            CreateUserButtonText="KREIRAJ" Height="455px" Width="423px"       
+            DuplicateEmailErrorMessage="Već postoji korisnički račun koji koristi unesenu e-mail adresu." 
+            DuplicateUserNameErrorMessage="Molimo unesite drugo korisničko ime." 
+            InvalidEmailErrorMessage="Molimo unesite ispravnu e-mail adresu.">
         <CompleteSuccessTextStyle CssClass="zapamtiMe" Font-Size="15px" 
             ForeColor="#D02552" />
         <ContinueButtonStyle CssClass="gumb2" />

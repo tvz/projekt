@@ -11,4 +11,12 @@ public partial class pregledProjekata : System.Web.UI.Page
     {
 
     }
+
+    /*developer: Ivan
+     * description: metoda pretrazuje te prikazuje projekte s trazenim atributima
+     */
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+
+    }
 }
