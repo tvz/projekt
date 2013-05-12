@@ -41,7 +41,7 @@ public partial class index : System.Web.UI.Page
             button.ID = project.id.ToString();
             button.ServerClick += new EventHandler(MakeDonation);
             html = "<h2>" + project.name + "</h2>"
-                + "<img src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> "
+                + "<img  src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> "
                 + "<h3><b>AUTOR PROJEKTA:</b> " + project.project_owner_username + "</h3>"
                 + "<h3><b>OPIS PROJEKTA:</b> " + project.description + " </h3>"
                 + "<h3><b>SAKUPLJENO:</b> " + project.DonationSum() + " Kunića " + "(" + project.DonationsPercent() + "%)" + "</h3>"
