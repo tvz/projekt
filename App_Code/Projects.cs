@@ -135,4 +135,11 @@ public class Projects
     {
         return (Transactions.PaymentGrossSum(this.id) / this.goal) * 100;
     }
+
+    /*developer: Ivan
+     * description: metoda pretrazuje projekte i vraca listu projekata    
+    public static List<Projects> searchProjects(object searchParameter)
+    {
+
+    }*/
 }
