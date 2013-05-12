@@ -1,5 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="noviProjekt.aspx.cs" Inherits="noviProjekt" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" CodeFile="noviProjekt.aspx.cs" Inherits="noviProjekt" %>
 
+<<<<<<< HEAD
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -7,6 +8,11 @@
     <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/themes/flick/jquery-ui.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>  
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/jquery-ui.min.js"></script>
+=======
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<link href="css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet" type="text/css" />
+     <script type= "text/javascript" src="js/jquery-ui-1.10.3.custom.js"></script>
+>>>>>>> a8edca6853aacacb7bab364d9f34f2029d29c98e
      
      <script type="text/javascript">
 $(function() {
@@ -15,6 +21,7 @@ $( "#TextBox_expiration_date" ).datepicker({ dateFormat: "dd.mm.yy" });
 </script>
 
     <title></title>
+<<<<<<< HEAD
 </head>
 <body>
     <form id="form1" runat="server">
@@ -25,6 +32,12 @@ $( "#TextBox_expiration_date" ).datepicker({ dateFormat: "dd.mm.yy" });
         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
             ControlToValidate="TextBox_name" ErrorMessage="RequiredFieldValidator"></asp:RequiredFieldValidator>
             <br />
+=======
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<asp:Label ID="Label1" runat="server" Text="Ime"></asp:Label>
+        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+>>>>>>> a8edca6853aacacb7bab364d9f34f2029d29c98e
         <asp:Label ID="Label2" runat="server" Text="Opis"></asp:Label>
         <asp:TextBox ID="TextBox_description" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
@@ -52,6 +65,7 @@ $( "#TextBox_expiration_date" ).datepicker({ dateFormat: "dd.mm.yy" });
         <asp:TextBox ID="TextBox_video_path" runat="server"></asp:TextBox>
         <br />
         <asp:Button ID="Button1" runat="server" Text="Spremi" onclick="Button1_Click" />
+<<<<<<< HEAD
         <br />
     
     &nbsp;tu jos treba ubaciti validacije na sva polja i prilagoditi ih. Unos projekta trenutno 
@@ -64,3 +78,7 @@ $( "#TextBox_expiration_date" ).datepicker({ dateFormat: "dd.mm.yy" });
     </form>
 </body>
 </html>
+=======
+</asp:Content>
+
+>>>>>>> a8edca6853aacacb7bab364d9f34f2029d29c98e

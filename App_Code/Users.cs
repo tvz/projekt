@@ -6,6 +6,7 @@ using System.Data.OleDb;
 using System.Configuration;
 using System.Web.Security;
 using System.Collections;
+using System.Net.Mail;
 public class Users
 {
 
@@ -74,11 +75,16 @@ public class Users
     */
     public static string register(string username, string password, string email)
     {
-        string prehashed_pass, hashed_pass, created, updated, info="";
+        string prehashed_pass, hashed_pass, created, updated, info = "", link;
+        bool userExists = false;
+        int user_id;
+        System.Random rnd = new System.Random();
+        int confirm_number = rnd.Next(1000000, 10000000);
+            
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
         OleDbCommand command = new OleDbCommand();
         OleDbDataReader reader = null;
-        bool userExists=false;
+
         command.CommandText = "SELECT username FROM users";
         command.Connection = conn;
         conn.Open();
@@ -93,7 +99,7 @@ public class Users
         reader.Close();
         conn.Close();
 
-        //ako nema istog username u bazi
+        //ako nema istog korisnickog imena u bazi
         if (!userExists)
         {
             try
@@ -112,22 +118,99 @@ public class Users
                 command.Parameters.AddWithValue("@email", email);
                 command.Parameters.AddWithValue("@created_at", created);
                 command.Parameters.AddWithValue("@updated_at", updated);
-                command.Connection = conn;
 
+                command.Connection = conn;
                 conn.Open();
                 command.ExecuteNonQuery();
-                info = "Your account has been successfully created.1";
+                conn.Close();
+                command.Parameters.Clear();
+
+                command.CommandText = "SELECT ID FROM users WHERE username=@username";
+                command.Parameters.AddWithValue("@username", username);
+                command.Connection = conn;
+                conn.Open();
+                user_id = System.Int32.Parse(command.ExecuteScalar().ToString());
+                conn.Close();
+                command.Parameters.Clear();
+
+                command.CommandText = "INSERT INTO confirmation VALUES(@user_id, @confirm_number)";
+                command.Parameters.AddWithValue("@user_id", user_id);
+                command.Parameters.AddWithValue("@confirm_number", confirm_number);
+                command.Connection = conn;
+                conn.Open();
+                command.ExecuteNonQuery();
+                conn.Close();
+
+                sendMail("www.xxxxx.hr/xxxxx.aspx?confirmID="+confirm_number, email);
+
+                info = "Registracija je uspješno obavljena.\nMolimo provjerite pretinac e-mail pošte i potvrdite registraciju.1";
             }
-            catch { }
+            catch {}
             finally
             {
                 command.Parameters.Clear();
+                conn.Close();
             }
         }
         else
-            info = "Your account has not been successfully created. Please try again.0";
-      
-        conn.Close();   
+            info = "Registracije je neuspješna. Molimo pokušajte ponovno.0";
+
         return info;
+    }
+
+    /*
+     * developer: Ivan
+     * description: metoda prima confirm_number preuzet iz url-a (obradjeno na stranici na koju ce url voditi)
+     * na temelju te varijable aktivira korisnika
+     */
+    public static void activaction(int confirm_url)
+    {
+        OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
+        OleDbCommand command = new OleDbCommand();
+        int id;
+
+        try
+        {
+            command.Connection = conn;
+            command.CommandText = "SELECT user_ID FROM confirmation WHERE confirm_number=@confirm_number";
+            command.Parameters.AddWithValue("@confirm_number", confirm_url);
+            conn.Open();
+            id = System.Int32.Parse(command.ExecuteScalar().ToString());
+            conn.Close();
+            command.Parameters.Clear();
+
+            //naravno, field1 il kak ce se vec zvat ce imat odredjen atribut
+            command.CommandText = "UPDATE status SET Field1='' WHERE ID=@id";
+            command.Parameters.AddWithValue("@id", id);
+            conn.Open();
+            command.ExecuteNonQuery();
+        }
+        catch{}
+        finally
+        {
+            conn.Close();
+            command.Parameters.Clear();
+        }
+    }
+
+    /*developer: Ivan
+     * description: metoda salje mail korisniku s linkom za aktivaciju racuna
+     */
+    private static void sendMail(string link, string email)
+    {
+        MailMessage msg = new MailMessage();
+        //kad se odlucimo za mail, onda ce SmtpClient konstruktor imat ispravan atribut
+        SmtpClient smtp = new SmtpClient("");
+        
+        try
+        {       
+            //trebamo se dogovorit oko maila i stranice na koju ce link usmjeravati
+            //pretpostavljam da cemo imat user stranicu, cisto je logicki, pa bu link vjerojatno na nju
+            msg.Subject = "Potvrda registracije";
+            msg.Body = ""+link;
+            msg.To.Add(email);
+            smtp.Send(msg);
+        }
+        catch { }
     }
 }
