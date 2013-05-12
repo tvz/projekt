@@ -1,19 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" CodeFile="login.aspx.cs" Inherits="login" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 <br />
     <br />
 
     
-    <div>
     
     
     
        <!--login -->
     <div class="log-reg">
-    
+        <form id="form1" runat="server">
         <asp:Login ID="Login1" runat="server" DestinationPageUrl="~/index.aspx" 
             onauthenticate="Login1_Authenticate" BorderColor="White" 
             FailureText="Žao nam je, Vaša prijava nije bila uspješna. Molimo pokušajte ponovo." 
@@ -154,6 +151,7 @@
             </asp:CompleteWizardStep>
         </WizardSteps>
     </asp:CreateUserWizard>
+    </form>
     </div>
 </asp:Content>
 

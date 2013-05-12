@@ -40,7 +40,7 @@ public partial class index : System.Web.UI.Page
                 + "<h3><b>OPIS PROJEKTA:</b> " + project.description + " </h3>"
                 + "<h3><b>SAKUPLJENO:</b> " + project.DonationSum() + " Kunića " + "(" + project.DonationsPercent() + "%)" + "</h3>"
                 + "<h3><b>DO KRAJA:</b> " + (project.expiration_date - DateTime.Now).Days + "Dana" + "</h3>"
-                + "<input type='submit' name='Button4' value='DONIRAJ!' class='gumb' />"
+                + "<input type='submit' name='Button1' value='DONIRAJ!' class='gumb' />"
                 + "</div>";
             }
             else
@@ -52,10 +52,12 @@ public partial class index : System.Web.UI.Page
             + "<h3><b>OPIS PROJEKTA:</b> " + project.description + " </h3>"
             + "<h3><b>SAKUPLJENO:</b> " + project.DonationSum() + " Kunića " + "(" + project.DonationsPercent() + "%)" + "</h3>"
             + "<h3><b>DO KRAJA:</b> " + (project.expiration_date - DateTime.Now).Days + "Dana" + "</h3>"
-            + "<input type='submit' name='Button4' value='DONIRAJ!' class='gumb' />"
+            + "<input type='submit' name='Button1' value='DONIRAJ!' class='gumb' />"
             + "</div>";
             }
         }
+
+
         projekti_novi.InnerHtml = html_new_projects;
         projekti_stari.InnerHtml = html_old_projects;
     }
