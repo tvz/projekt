@@ -8,7 +8,7 @@
     <asp:TextBox ID="TextBoxName" runat="server"></asp:TextBox><br />
     <asp:Label ID="LabelGoal" runat="server" Text="Vrijednost projekta"></asp:Label>
     <asp:TextBox ID="TextBoxGoal" runat="server"></asp:TextBox>
-    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="RegularExpressionValidator"
+    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Moguće je unijeti samo brojeve."
             ValidationExpression="[0-9]+" ControlToValidate="TextBoxGoal"></asp:RegularExpressionValidator><br />
     <asp:Label ID="LabelCreatedAt" runat="server" Text="Datum početka projekta"></asp:Label>
     <asp:TextBox ID="TextBoxCreatedAt" runat="server"></asp:TextBox><br />
