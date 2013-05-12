@@ -19,11 +19,13 @@ public partial class pregledProjekata : System.Web.UI.Page
     }
 
     /*developer: Ivan
-     * description: metoda pretrazuje te prikazuje projekte s trazenim atributima
+     * description: metoda salje parametre za pretrazivanje searchProjects metodi
+     * te nazad dobiva listu projekata koji zadovoljavaju trazene parametre
      */
     protected void ButtonSearch_Click(object sender, EventArgs e)
     {
-        
+        List<Projects> list = Projects.searchProjects(TextBoxName.Text, TextBoxGoal.Text, 
+            TextBoxCreatedAt.Text, TextBoxExpirationDate.Text);
     }
 
 }
