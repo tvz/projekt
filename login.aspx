@@ -36,7 +36,6 @@
     <!--registracija -->
     <div class="log-reg">
     <asp:CreateUserWizard ID="CreateUserWizard1" runat="server" Answer="a" 
-        Question="b" 
         oncreateduser="CreateUserWizard1_CreatedUser" ContinueButtonText="" 
             CancelButtonText="Odustani" 
             CompleteSuccessText="Vaš korisnički račun je uspješno napravljen" 
@@ -47,12 +46,19 @@
             InvalidAnswerErrorMessage="Molimo unesite drugo sigurnosno pitanje." 
             InvalidPasswordErrorMessage="Minimalna duljina lozinke je: {0}.Ne-alfanumeričkih znakova potrebno: {1}." 
             InvalidQuestionErrorMessage="Unesite drugo sigurnosno pitanje" 
-            UnknownErrorMessage="Korisnički račun nije kreiran. Molimo pokušajte ponovo.">
+            
+            UnknownErrorMessage="Korisnički račun nije kreiran. Molimo pokušajte ponovo." 
+            CssClass="poruka" FinishCompleteButtonText="Završi" 
+            FinishPreviousButtonText="Natrag" StartNextButtonText="Dalje">
+        <FinishCompleteButtonStyle CssClass="gumb2" />
         <CompleteSuccessTextStyle CssClass="zapamtiMe" Font-Size="15px" 
             ForeColor="#D02552" />
         <ContinueButtonStyle CssClass="gumb2" />
+        <HeaderStyle CssClass="poruka" />
         <CreateUserButtonStyle CssClass="gumb2" />
         <TitleTextStyle CssClass="labele" />
+        <FinishPreviousButtonStyle CssClass="gumb2" />
+        <StartNextButtonStyle CssClass="gumb2" />
         <CancelButtonStyle CssClass="gumb2" />
         <WizardSteps>
             <asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server">
