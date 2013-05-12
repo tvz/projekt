@@ -88,7 +88,7 @@ hr
 
 .druga_lin
 {
-    margin-top:530px; 
+    margin-top:630px; 
 }
 
 /*--------------------*/
@@ -96,8 +96,8 @@ hr
 h1
 {
     text-transform: uppercase;
-    padding-top:2%;
-    padding-bottom:3%;
+    padding-top:3%;
+    padding-bottom:4%;
     font-family: Corbel;
     font-size: 25px;
     font-weight:bold;
@@ -163,6 +163,13 @@ h4
     padding-right: 8%;
     margin: 5%;
     font-family: Corbel;
+}
+
+img
+{
+    height: 200px;
+    width:312px;
+    padding-left: 5%;
 }
 
 /*login/reg*/
