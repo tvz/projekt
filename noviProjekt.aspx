@@ -1,17 +1,17 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true"
     CodeFile="noviProjekt.aspx.cs" Inherits="noviProjekt" %>
 
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
     <div>
     <form id="form1" runat="server">
     
-        <asp:Label ID="Label1" runat="server" Text="Ime"></asp:Label>
+        <asp:Label ID="Label_ime" runat="server" Text="Ime"></asp:Label>
         <asp:TextBox ID="TextBox_name" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TextBox_name"
             ErrorMessage="RequiredFieldValidator"></asp:RequiredFieldValidator>
         <br />
-        <asp:Label ID="Label_ime" runat="server" Text="Ime"></asp:Label>
-        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
         <asp:Label ID="Label_opis" runat="server" Text="Opis"></asp:Label>
         <asp:TextBox ID="TextBox_description" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TextBox_description"
@@ -22,7 +22,7 @@
         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TextBox_goal"
             ErrorMessage="RequiredFieldValidator"></asp:RequiredFieldValidator>
         <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="RegularExpressionValidator"
-            ValidationExpression="{0-9}*" ControlToValidate="TextBox_goal"></asp:RegularExpressionValidator>
+            ValidationExpression="[0-9]+" ControlToValidate="TextBox_goal"></asp:RegularExpressionValidator>
         <br />
         <asp:Label ID="Label4" runat="server" Text="Datum isteka projekta"></asp:Label>
         <asp:TextBox ID="TextBox_expiration_date" runat="server"></asp:TextBox>

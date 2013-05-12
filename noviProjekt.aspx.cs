@@ -11,8 +11,9 @@ public partial class noviProjekt : System.Web.UI.Page
         {
             Response.Redirect("index.aspx");
         }*/
-        //(FindControl("TextBox_expiration_date") as TextBox).ID;
-    }
+        string script = "$(document).ready(function(){$('#" + TextBox_expiration_date.ClientID + "'" + ").datepicker({ dateFormat: 'dd.mm.yy' });});";
+        ClientScript.RegisterClientScriptBlock(this.GetType(), "ShowDatepicker", script, true);
+     }
 
     /*developer: Emilio
      description: metoda sprema novi projekt*/
