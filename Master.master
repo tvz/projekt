@@ -7,6 +7,14 @@
     <title>crowdfunding platforma</title>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link href='http://fonts.googleapis.com/css?family=Chango&subset=latin,latin-ext' rel='stylesheet' type='text/css'/>
+    <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/themes/flick/jquery-ui.css" rel="stylesheet" type="text/css" />
+ <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>  
+ <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/jquery-ui.min.js"></script>
+ <script type="text/javascript">
+$(function() {
+$( "#TextBox_expiration_date" ).datepicker({ dateFormat: "dd.mm.yy" });
+});
+</script>
     <style type="text/css">
         #form1
         {
@@ -17,9 +25,8 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form id="form1" runat="server">
-    <div>
-        <div id="logo">
+   
+    <div id="logo">
     Logo
     </div>
     <div id="nav_login">
@@ -57,7 +64,5 @@
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>
-    </div>
-    </form>
 </body>
 </html>
