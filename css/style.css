@@ -185,7 +185,7 @@ h4
     font-family: Corbel;
     font-size: 18px;
     font-style:bold;
-    
+  
 }
 .textbox
 {
@@ -224,3 +224,26 @@ h4
 }
 
 
+.poruka
+{
+    font-family: Corbel;
+    font-size: 15px;
+    color: #d02552;
+}
+.tablica
+{
+    padding-top:10px;
+    padding-bottom:10px;
+    margin-left:50px;
+    margin-top:0px;
+   
+}
+.reg
+{
+     font-family: Corbel;
+    font-size: 20px;
+    font-weight:bold;
+    color: #d02552;
+    text-align: center;
+    padding-bottom:10px;
+}
