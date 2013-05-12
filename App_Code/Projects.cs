@@ -112,8 +112,8 @@ public class Projects
                 project.created_at = Convert.ToDateTime(reader.GetValue(++column));
                 project.updated_at = Convert.ToDateTime(reader.GetValue(++column));
                 project.image_path = reader.GetValue(++column).ToString();
-                project.video_path = reader.GetValue(++column);
-                project.user_id = reader.GetValue(++column);
+                project.video_path = reader.GetValue(++column).ToString();
+                project.user_id = Convert.ToInt32(reader.GetValue(++column));
             }
 
         }

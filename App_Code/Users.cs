@@ -2,25 +2,79 @@
 ///
 /// Klasa Users predstavlja users entitet u bazi podataka
 /// </summary>
-using System.Data.OleDb;
+/// 
+using System;
 using System.Configuration;
-using System.Web.Security;
-using System.Collections;
+using System.Data.OleDb;
 using System.Net.Mail;
+using System.Web.Security;
+
 public class Users
 {
 
     /*varijable koje predstavljaju atribute u bazi*/
-    private static int id;
-    private static string username;
-    private static string password_hash;
-    private static string pass_salt;
+    public  int id;
+    public string username;
+    public string password_hash;
+    public string pass_salt;
+    public DateTime created_at;
+    public DateTime updated_at;
+    public int role_id;
+    public string paypal_id;
+    public string email;
+    public int status_id;
+
 
     /*sve ostale varijable*/
     
 
     public Users()
     {
+    }
+
+    /*
+     developer: Emilio*/
+    public static Users FetchUser(int user_id)
+    {
+        OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
+        OleDbCommand command = new OleDbCommand();
+        OleDbDataReader reader;
+
+        command.Connection = conn;
+        command.CommandText = "SELECT * FROM users WHERE ID = @user_id";
+        command.Parameters.AddWithValue("@user_id", user_id);
+
+        Users user = new Users();
+        try
+        {
+            conn.Open();
+            reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                int column = -1;
+
+                user.id = Convert.ToInt32(reader.GetValue(++column));
+                user.username = reader.GetValue(++column).ToString();
+                user.password_hash = reader.GetValue(++column).ToString();
+                user.pass_salt = reader.GetValue(++column).ToString();
+                user.created_at = Convert.ToDateTime(reader.GetValue(++column));
+                user.updated_at = Convert.ToDateTime(reader.GetValue(++column));
+                user.role_id = Convert.ToInt32(reader.GetValue(++column));
+                user.paypal_id = reader.GetValue(++column).ToString();
+                user.email = reader.GetValue(++column).ToString();
+                user.status_id = Convert.ToInt32(reader.GetValue(++column));
+            }
+
+        }
+        catch
+        {
+        }
+        finally
+        {
+            command.Dispose();
+            conn.Close();
+        }
+        return user;
     }
 
     /*
@@ -33,7 +87,9 @@ public class Users
         OleDbDataReader reader;
 
         string prehashed_password;
-        string password_hash2;
+        string password_hash;
+        string userPassword_hash;
+        string userPass_salt;
         bool login_status = false;
 
         command.Connection = conn;
@@ -47,11 +103,11 @@ public class Users
             if (reader.Read())
             {
 
-                pass_salt = reader.GetValue(1).ToString();
-                password_hash = reader.GetValue(0).ToString();
-                prehashed_password = password + pass_salt;
-                password_hash2 = FormsAuthentication.HashPasswordForStoringInConfigFile(prehashed_password, "SHA1").ToLower();
-                if (password_hash == password_hash2)
+                userPass_salt = reader.GetValue(1).ToString();
+                userPassword_hash = reader.GetValue(0).ToString();
+                prehashed_password = password + userPass_salt;
+                password_hash = FormsAuthentication.HashPasswordForStoringInConfigFile(prehashed_password, "SHA1").ToLower();
+                if (password_hash == userPassword_hash)
                 {
                     login_status = true;
                     
@@ -75,7 +131,7 @@ public class Users
     */
     public static string register(string username, string password, string email)
     {
-        string prehashed_pass, hashed_pass, created, updated, info = "", link;
+        string prehashed_pass, hashed_pass,pass_salt, created, updated, info = "", link;
         bool userExists = false;
         int user_id;
         System.Random rnd = new System.Random();

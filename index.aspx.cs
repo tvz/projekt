@@ -66,7 +66,20 @@ public partial class index : System.Web.UI.Page
      description: metoda salje donaciju preko paypala*/
     private void MakeDonation (object sender, EventArgs e)
     {
+        /*Uz svaki dinamicki kreirani button vezan je id projekta.
+         * Bolje bi bilo da se salju request parametri sa id projekta, ali jednostavnije je bilo implementirati ovako.
+         * Planiram to promijenit u buducnosti.*/
         HtmlButton button = (HtmlButton)sender;
-        return;
+        Projects projekt = Projects.FetchProject(Convert.ToInt32(button.ID));
+        Users user = Users.FetchUser(projekt.user_id);
+        string paypalParams ="cmd=_donations"
+                             + "&business=tvz@tvz.tvz"//trenutno hardkodirana vrijednost
+                             + "&lc=US"
+                             + "&item_name=" + projekt.name
+                             + "&amount=10"//trenutno hardkodirana vrijednost
+                             + "&currency_code=EUR"
+                             + "&no_note=0"
+                             + "&return="+ HttpContext.Current.Request.Url;
+        Response.Redirect("https://www.sandbox.paypal.com/cgi-bin/webscr?"+paypalParams);
     }
 }
