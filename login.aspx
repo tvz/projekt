@@ -19,7 +19,8 @@
             PasswordRequiredErrorMessage="Trebate unijeti lozinku." 
             RememberMeText="Zapamti me na ovom računalu." TitleText="Prijava" 
             UserNameLabelText="Korisničko ime:" 
-            UserNameRequiredErrorMessage="Trebate unijeti korisničko ime.">
+            UserNameRequiredErrorMessage="Trebate unijeti korisničko ime." 
+            BorderStyle="None">
             <CheckBoxStyle Font-Names="Corbel" Font-Size="15px" ForeColor="#000000" 
                 CssClass="zapamtiMe" />
             <TextBoxStyle BorderColor="#D02552" CssClass="textbox" />
@@ -80,7 +81,7 @@
                                 <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" 
                                     ControlToValidate="UserName" ErrorMessage="Korisničko ime je obavezno." 
                                     ToolTip="User Name is required." ValidationGroup="CreateUserWizard1" 
-                                    ForeColor="#D02552">*</asp:RequiredFieldValidator>
+                                    ForeColor="#D02552" BorderStyle="None">*</asp:RequiredFieldValidator>
                             </td>
                         </tr>
                         <tr>
@@ -94,7 +95,7 @@
                                 <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" 
                                     ControlToValidate="Password" ErrorMessage="Lozinka je obavezna." 
                                     ToolTip="Password is required." ValidationGroup="CreateUserWizard1" 
-                                    ForeColor="#D02552">*</asp:RequiredFieldValidator>
+                                    ForeColor="#D02552" BorderStyle="None">*</asp:RequiredFieldValidator>
                             </td>
                         </tr>
                         <tr>
@@ -109,7 +110,7 @@
                                     ControlToValidate="ConfirmPassword" 
                                     ErrorMessage="Potvrda lozinke je obavezna." 
                                     ToolTip="Confirm Password is required." 
-                                    ValidationGroup="CreateUserWizard1" ForeColor="#D02552">*</asp:RequiredFieldValidator>
+                                    ValidationGroup="CreateUserWizard1" ForeColor="#D02552" BorderStyle="None">*</asp:RequiredFieldValidator>
                             </td>
                         </tr>
                         <tr>
@@ -122,7 +123,7 @@
                                 <asp:RequiredFieldValidator ID="EmailRequired" runat="server" 
                                     ControlToValidate="Email" ErrorMessage="E-mail je obavezan." 
                                     ToolTip="E-mail is required." ValidationGroup="CreateUserWizard1" 
-                                    ForeColor="#D02552">*</asp:RequiredFieldValidator>
+                                    ForeColor="#D02552" BorderStyle="None">*</asp:RequiredFieldValidator>
                             </td>
                         </tr>
                         <tr>
@@ -135,7 +136,7 @@
                                 <asp:RequiredFieldValidator ID="QuestionRequired" runat="server" 
                                     ControlToValidate="Question" ErrorMessage="Sigurnosno pitanje je obavezno." 
                                     ToolTip="Security question is required." 
-                                    ValidationGroup="CreateUserWizard1" ForeColor="#D02552">*</asp:RequiredFieldValidator>
+                                    ValidationGroup="CreateUserWizard1" ForeColor="#D02552" BorderStyle="None">*</asp:RequiredFieldValidator>
                             </td>
                         </tr>
                         <tr>
@@ -148,7 +149,7 @@
                                 <asp:RequiredFieldValidator ID="AnswerRequired" runat="server" 
                                     ControlToValidate="Answer" ErrorMessage="Sigurnosni odgovor je obavezan." 
                                     ToolTip="Security answer is required." ValidationGroup="CreateUserWizard1" 
-                                    ForeColor="#D02552">*</asp:RequiredFieldValidator>
+                                    ForeColor="#D02552" BorderStyle="None">*</asp:RequiredFieldValidator>
                             </td>
                         </tr>
                         <tr>
@@ -157,7 +158,8 @@
                                     ControlToCompare="Password" ControlToValidate="ConfirmPassword" 
                                     Display="Dynamic" 
                                     ErrorMessage="Lozinka i potvrda lozinke se moraju poklapati" 
-                                    ValidationGroup="CreateUserWizard1" CssClass="poruka" ForeColor=""></asp:CompareValidator>
+                                    ValidationGroup="CreateUserWizard1" CssClass="poruka" ForeColor="" 
+                                    BorderStyle="None"></asp:CompareValidator>
                             </td>
                         </tr>
                         <tr>
