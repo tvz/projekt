@@ -15,7 +15,9 @@
     <asp:Label ID="LabelExpirationDate" runat="server" Text="Datum isteka projekta"></asp:Label>
     <asp:TextBox ID="TextBoxExpirationDate" runat="server"></asp:TextBox><br />
     <asp:Button ID="ButtonSearch" runat="server" onclick="ButtonSearch_Click" 
-        Text="Pretraži" />
+        Text="Pretraži" /> <br />
+    <div runat="server" id="projekti_search">
+    </div>
     </form>
 </asp:Content>
 

@@ -186,7 +186,40 @@ public class Projects
      */   
     public static List<Projects> searchProjects(params object[] searchParameters)
     {
-        List<Projects> list = new List<Projects>();
-        return list;
+        List<Projects> search_list = new List<Projects>();
+        
+        OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
+        OleDbCommand command = new OleDbCommand();
+        OleDbDataReader reader;
+
+        command.Connection = conn;
+
+
+        try 
+        {
+            conn.Open();
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                int column = -1;
+                Projects project = new Projects();
+                project.id = Convert.ToInt32(reader.GetValue(++column));
+                project.name = reader.GetValue(++column).ToString();
+                project.description = reader.GetValue(++column).ToString();
+                project.goal = Convert.ToSingle(reader.GetValue(++column));
+                project.expiration_date = Convert.ToDateTime(reader.GetValue(++column));
+                project.image_path = reader.GetValue(++column).ToString();
+                project.project_owner_username = reader.GetValue(++column).ToString();
+                search_list.Add(project);
+            }
+        }
+        catch { }
+        finally 
+        {
+            command.Dispose();
+            conn.Close();
+        }
+       
+        return search_list;
     }
 }
