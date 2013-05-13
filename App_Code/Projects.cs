@@ -192,6 +192,9 @@ public class Projects
         OleDbCommand command = new OleDbCommand();
         OleDbDataReader reader;
         string shortDate;
+        float goal;
+
+        float.TryParse(searchParameters[1].ToString(), out goal);
         DateTime date = (DateTime)searchParameters[2];
         shortDate = date.ToShortDateString();
 
@@ -202,7 +205,7 @@ public class Projects
         "GROUP BY projects.ID, projects.name, projects.description, projects.goal,"+
         "projects.expiration_date, projects.image_path, users.username";
         command.Parameters.AddWithValue("@name", searchParameters[0].ToString());
-        command.Parameters.AddWithValue("@goal", searchParameters[1].ToString());
+        command.Parameters.AddWithValue("@goal", goal);
         command.Parameters.AddWithValue("@expirationDate", shortDate);
         command.Connection = conn;
 

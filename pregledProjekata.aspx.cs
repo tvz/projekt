@@ -21,6 +21,12 @@ public partial class pregledProjekata : System.Web.UI.Page
         ClientScript.RegisterClientScriptBlock(this.GetType(), "ShowExpirationDatepicker", scriptExpiration, true);
     }
 
+    protected void Page_Init(object sender, EventArgs e)
+    {
+        this.RadioButtonDESC.Checked = true;
+        this.DropDownList1.SelectedIndex = 0;
+    }
+
     /*developer: Ivan
      * description: metoda salje parametre za pretrazivanje searchProjects metodi
      * te nazad dobiva listu projekata koji zadovoljavaju trazene parametre
@@ -29,13 +35,13 @@ public partial class pregledProjekata : System.Web.UI.Page
     protected void ButtonSearch_Click(object sender, EventArgs e)
     {
         DateTime expirationDate;
-   
+
         DateTime.TryParseExact(TextBoxExpirationDate.Text, "dd/MM/yyyy", null, DateTimeStyles.None, out expirationDate);
         
         List<Projects> search_list = Projects.searchProjects(TextBoxName.Text, TextBoxGoal.Text, expirationDate);
 
         string html = null;
-        projekti_search.InnerHtml="";
+        projekti_search.InnerHtml = "";
 
         foreach (Projects project in search_list)
         {
@@ -60,6 +66,7 @@ public partial class pregledProjekata : System.Web.UI.Page
         }
     }
 
+
     /*developer: Emilio
      description: metoda salje donaciju preko paypala
      */
@@ -82,4 +89,5 @@ public partial class pregledProjekata : System.Web.UI.Page
         Response.Redirect("https://www.sandbox.paypal.com/cgi-bin/webscr?" + paypalParams);
     }
 
+    
 }
