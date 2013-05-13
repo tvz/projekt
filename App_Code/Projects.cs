@@ -191,9 +191,20 @@ public class Projects
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
         OleDbCommand command = new OleDbCommand();
         OleDbDataReader reader;
+        string shortDate;
+        DateTime date = (DateTime)searchParameters[2];
+        shortDate = date.ToShortDateString();
 
+        command.CommandText ="SELECT projects.ID,projects.name, projects.description, projects.goal,"+ 
+        "projects.expiration_date, projects.image_path, users.username FROM"+
+        "(projects INNER JOIN users ON projects.user_id = users.ID) WHERE projects.name LIKE '%[@name]%'"+
+        " OR projects.goal LIKE '[@goal]%' OR projects.expiration_date == '[@expirationDate]'"+
+        "GROUP BY projects.ID, projects.name, projects.description, projects.goal,"+
+        "projects.expiration_date, projects.image_path, users.username";
+        command.Parameters.AddWithValue("@name", searchParameters[0].ToString());
+        command.Parameters.AddWithValue("@goal", searchParameters[1].ToString());
+        command.Parameters.AddWithValue("@expirationDate", shortDate);
         command.Connection = conn;
-
 
         try 
         {

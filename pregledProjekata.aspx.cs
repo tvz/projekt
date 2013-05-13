@@ -19,29 +19,23 @@ public partial class pregledProjekata : System.Web.UI.Page
     {
         string scriptExpiration = "$(document).ready(function(){$('#" + TextBoxExpirationDate.ClientID + "'" + ").datepicker({ dateFormat: 'dd.mm.yy' });});";
         ClientScript.RegisterClientScriptBlock(this.GetType(), "ShowExpirationDatepicker", scriptExpiration, true);
-        string scriptCreatedAt = "$(document).ready(function(){$('#" + TextBoxCreatedAt.ClientID + "'" + ").datepicker({ dateFormat: 'dd.mm.yy' });});";
-        ClientScript.RegisterClientScriptBlock(this.GetType(), "ShowCreatedAtDatepicker", scriptCreatedAt, true);
     }
 
     /*developer: Ivan
      * description: metoda salje parametre za pretrazivanje searchProjects metodi
      * te nazad dobiva listu projekata koji zadovoljavaju trazene parametre
+     * generiranje sadrzaja c/p sa index.aspx.cs iz metode ListProjects
      */
     protected void ButtonSearch_Click(object sender, EventArgs e)
     {
-        DateTime createdAtDate;
         DateTime expirationDate;
-
-        DateTime.TryParseExact(TextBoxCreatedAt.Text, "dd/MM/yy", null, DateTimeStyles.None, out createdAtDate);
+   
         DateTime.TryParseExact(TextBoxExpirationDate.Text, "dd/MM/yyyy", null, DateTimeStyles.None, out expirationDate);
         
-        List<Projects> search_list = Projects.searchProjects(TextBoxName.Text, TextBoxGoal.Text, 
-            createdAtDate, expirationDate);
+        List<Projects> search_list = Projects.searchProjects(TextBoxName.Text, TextBoxGoal.Text, expirationDate);
 
         string html = null;
-
         projekti_search.InnerHtml="";
-
 
         foreach (Projects project in search_list)
         {
