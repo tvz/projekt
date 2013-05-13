@@ -19,6 +19,8 @@ public partial class index : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         ListProjects();
+        //if(Request.Params.Keys.Get())
+        //int v = Request.Params.Count;
     }
 
     /*developer: Emilio
@@ -63,7 +65,8 @@ public partial class index : System.Web.UI.Page
         }
     }
     /*developer: Emilio
-     description: metoda salje donaciju preko paypala*/
+     description: metoda salje donaciju preko paypala
+     metoda ce se u buducnosti izmijeniti i bolje strukturirati, sad sluzi samo kao test.*/
     private void MakeDonation (object sender, EventArgs e)
     {
         /*Uz svaki dinamicki kreirani button vezan je id projekta.
@@ -72,14 +75,22 @@ public partial class index : System.Web.UI.Page
         HtmlButton button = (HtmlButton)sender;
         Projects projekt = Projects.FetchProject(Convert.ToInt32(button.ID));
         Users user = Users.FetchUser(projekt.user_id);
-        string paypalParams ="cmd=_donations"
+        /*uuid je rand string koji saljemo paypalu kao parametar i koji nam on vraca u potvrdi transakcije. 
+         * Time osiguravamo autenticnost potvrde transakcije.*/
+        string uuid = FormsAuthentication.HashPasswordForStoringInConfigFile(DateTime.Now.Ticks.ToString(), "SHA1").ToLower(); //zamijenit sa generatorom random stringa
+
+        string paypalParams = "cmd=_donations"
                              + "&business=tvz@tvz.tvz"//trenutno hardkodirana vrijednost
                              + "&lc=US"
                              + "&item_name=" + projekt.name
+                             + "&item_number=" + projekt.id
+                             + "&custom=" + uuid
                              + "&amount=10"//trenutno hardkodirana vrijednost
                              + "&currency_code=EUR"
                              + "&no_note=0"
-                             + "&return="+ HttpContext.Current.Request.Url;
+                             + "&return="+ HttpContext.Current.Request.Url
+                             + "&rm=2"; //trenutno koristim return page za dohvat svih vrijabli, poslje cu preko ipn-a
+
         Response.Redirect("https://www.sandbox.paypal.com/cgi-bin/webscr?"+paypalParams);
     }
 }
