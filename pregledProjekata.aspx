@@ -15,15 +15,18 @@
     <asp:Button ID="ButtonSearch" runat="server" onclick="ButtonSearch_Click" 
         Text="Pretraži" /> <br />
     <asp:Label ID="Label1" runat="server" Text="Sortiraj"></asp:Label>
-    <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True">
+    <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" 
+        onselectedindexchanged="DropDownList1_SelectedIndexChanged">
         <asp:ListItem Value="name">Naziv</asp:ListItem>
         <asp:ListItem Value="goal">Vrijednost</asp:ListItem>
         <asp:ListItem Value="expirationDate">Datum isteka</asp:ListItem>
     </asp:DropDownList>
     <asp:RadioButton ID="RadioButtonDESC" runat="server" AutoPostBack="True" 
-        GroupName="sorting" Text="Silazno" />
+        GroupName="sorting" Text="Silazno" 
+        oncheckedchanged="DropDownList1_SelectedIndexChanged" />
     <asp:RadioButton ID="RadioButtonASC" runat="server" AutoPostBack="True" 
-        GroupName="sorting" Text="Uzlazno" />
+        GroupName="sorting" Text="Uzlazno" 
+        oncheckedchanged="DropDownList1_SelectedIndexChanged" />
     <div runat="server" id="projekti_search">
     </div>
     </form>

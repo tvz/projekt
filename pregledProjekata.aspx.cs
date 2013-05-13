@@ -15,6 +15,9 @@ using System.Globalization;
 
 public partial class pregledProjekata : System.Web.UI.Page
 {
+    List<Projects> search_list;
+    List<Projects> sorted_list;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         string scriptExpiration = "$(document).ready(function(){$('#" + TextBoxExpirationDate.ClientID + "'" + ").datepicker({ dateFormat: 'dd.mm.yy' });});";
@@ -29,21 +32,54 @@ public partial class pregledProjekata : System.Web.UI.Page
 
     /*developer: Ivan
      * description: metoda salje parametre za pretrazivanje searchProjects metodi
-     * te nazad dobiva listu projekata koji zadovoljavaju trazene parametre
-     * generiranje sadrzaja c/p sa index.aspx.cs iz metode ListProjects
+     * u klasi Projects te nazad dobiva listu projekata
      */
     protected void ButtonSearch_Click(object sender, EventArgs e)
     {
         DateTime expirationDate;
-
         DateTime.TryParseExact(TextBoxExpirationDate.Text, "dd/MM/yyyy", null, DateTimeStyles.None, out expirationDate);
         
-        List<Projects> search_list = Projects.searchProjects(TextBoxName.Text, TextBoxGoal.Text, expirationDate);
+        search_list = Projects.searchProjects(TextBoxName.Text, TextBoxGoal.Text, expirationDate);
 
+        showProjects(search_list);   
+    }
+
+    /*developer: Ivan
+     * description: metoda sortira listu
+     */
+    protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (RadioButtonDESC.Checked == true)
+        {
+            if (DropDownList1.SelectedIndex == 0)
+                sorted_list = search_list.OrderByDescending(o => o.name).ToList();
+            else if (DropDownList1.SelectedIndex == 1)
+                sorted_list = search_list.OrderByDescending(o => o.goal).ToList();
+            else if (DropDownList1.SelectedIndex == 2)
+                sorted_list = search_list.OrderByDescending(o => o.expiration_date).ToList();
+        }
+        else if (RadioButtonASC.Checked == true)
+        {
+            if (DropDownList1.SelectedIndex == 0)
+                sorted_list = search_list.OrderBy(o => o.name).ToList();
+            else if (DropDownList1.SelectedIndex == 1)
+                sorted_list = search_list.OrderBy(o => o.goal).ToList();
+            else if (DropDownList1.SelectedIndex == 2)
+                sorted_list = search_list.OrderBy(o => o.expiration_date).ToList();
+        }
+        
+        showProjects(sorted_list);
+    }
+
+    /*developer: Ivan
+     * description: metoda prikazuje projekte iz liste
+     */
+    private void showProjects(List<Projects> list)
+    {
         string html = null;
         projekti_search.InnerHtml = "";
 
-        foreach (Projects project in search_list)
+        foreach (Projects project in list)
         {
             HtmlButton button = new HtmlButton();
             button.Attributes.Add("class", "gumb");
@@ -66,7 +102,6 @@ public partial class pregledProjekata : System.Web.UI.Page
         }
     }
 
-
     /*developer: Emilio
      description: metoda salje donaciju preko paypala
      */
@@ -88,6 +123,4 @@ public partial class pregledProjekata : System.Web.UI.Page
                              + "&return=" + HttpContext.Current.Request.Url;
         Response.Redirect("https://www.sandbox.paypal.com/cgi-bin/webscr?" + paypalParams);
     }
-
-    
 }
