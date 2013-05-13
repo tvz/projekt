@@ -182,9 +182,11 @@ public class Projects
     }
 
     /*developer: Ivan
-     * description: metoda pretrazuje projekte i vraca listu projekata    
-    public static List<Projects> searchProjects(object searchParameter)
+     * description: metoda pretrazuje projekte i vraca listu projekata
+     */   
+    public static List<Projects> searchProjects(params object[] searchParameters)
     {
-
-    }*/
+        List<Projects> list = new List<Projects>();
+        return list;
+    }
 }
