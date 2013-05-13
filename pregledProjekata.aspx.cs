@@ -15,8 +15,8 @@ using System.Globalization;
 
 public partial class pregledProjekata : System.Web.UI.Page
 {
-    List<Projects> search_list;
-    List<Projects> sorted_list;
+    List<Projects> search_list = new List<Projects>();
+    List<Projects> sorted_list = new List<Projects>();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -26,7 +26,7 @@ public partial class pregledProjekata : System.Web.UI.Page
 
     protected void Page_Init(object sender, EventArgs e)
     {
-        this.RadioButtonDESC.Checked = true;
+        //this.RadioButtonDESC.Checked = true;
         this.DropDownList1.SelectedIndex = 0;
     }
 
@@ -49,26 +49,7 @@ public partial class pregledProjekata : System.Web.UI.Page
      */
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (RadioButtonDESC.Checked == true)
-        {
-            if (DropDownList1.SelectedIndex == 0)
-                sorted_list = search_list.OrderByDescending(o => o.name).ToList();
-            else if (DropDownList1.SelectedIndex == 1)
-                sorted_list = search_list.OrderByDescending(o => o.goal).ToList();
-            else if (DropDownList1.SelectedIndex == 2)
-                sorted_list = search_list.OrderByDescending(o => o.expiration_date).ToList();
-        }
-        else if (RadioButtonASC.Checked == true)
-        {
-            if (DropDownList1.SelectedIndex == 0)
-                sorted_list = search_list.OrderBy(o => o.name).ToList();
-            else if (DropDownList1.SelectedIndex == 1)
-                sorted_list = search_list.OrderBy(o => o.goal).ToList();
-            else if (DropDownList1.SelectedIndex == 2)
-                sorted_list = search_list.OrderBy(o => o.expiration_date).ToList();
-        }
         
-        showProjects(sorted_list);
     }
 
     /*developer: Ivan

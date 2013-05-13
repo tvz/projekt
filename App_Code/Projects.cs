@@ -187,53 +187,7 @@ public class Projects
     public static List<Projects> searchProjects(params object[] searchParameters)
     {
         List<Projects> search_list = new List<Projects>();
-        
-        OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
-        OleDbCommand command = new OleDbCommand();
-        OleDbDataReader reader;
-        string shortDate;
-        float goal;
-
-        float.TryParse(searchParameters[1].ToString(), out goal);
-        DateTime date = (DateTime)searchParameters[2];
-        shortDate = date.ToShortDateString();
-
-        command.CommandText ="SELECT projects.ID,projects.name, projects.description, projects.goal,"+ 
-        "projects.expiration_date, projects.image_path, users.username FROM"+
-        "(projects INNER JOIN users ON projects.user_id = users.ID) WHERE projects.name LIKE '%[@name]%'"+
-        " OR projects.goal LIKE '[@goal]%' OR projects.expiration_date == '[@expirationDate]'"+
-        "GROUP BY projects.ID, projects.name, projects.description, projects.goal,"+
-        "projects.expiration_date, projects.image_path, users.username";
-        command.Parameters.AddWithValue("@name", searchParameters[0].ToString());
-        command.Parameters.AddWithValue("@goal", goal);
-        command.Parameters.AddWithValue("@expirationDate", shortDate);
-        command.Connection = conn;
-
-        try 
-        {
-            conn.Open();
-            reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                int column = -1;
-                Projects project = new Projects();
-                project.id = Convert.ToInt32(reader.GetValue(++column));
-                project.name = reader.GetValue(++column).ToString();
-                project.description = reader.GetValue(++column).ToString();
-                project.goal = Convert.ToSingle(reader.GetValue(++column));
-                project.expiration_date = Convert.ToDateTime(reader.GetValue(++column));
-                project.image_path = reader.GetValue(++column).ToString();
-                project.project_owner_username = reader.GetValue(++column).ToString();
-                search_list.Add(project);
-            }
-        }
-        catch { }
-        finally 
-        {
-            command.Dispose();
-            conn.Close();
-        }
-       
+   
         return search_list;
     }
 }
