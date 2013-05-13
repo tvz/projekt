@@ -5,21 +5,21 @@
     <br />
 
     
-    
+    <form id="form1" runat="server">
     
     
        <!--login -->
     <div class="log-reg">
-        <form id="form1" runat="server">
+        
         <asp:Login ID="Login1" runat="server" DestinationPageUrl="~/index.aspx" 
             onauthenticate="Login1_Authenticate" BorderColor="White" 
             FailureText="Žao nam je, Vaša prijava nije bila uspješna. Molimo pokušajte ponovo." 
             Height="297px" LoginButtonText="PRIJAVA" Width="485px" Font-Size="15px" 
             PasswordLabelText="Lozinka:" 
-            PasswordRequiredErrorMessage="Trebate unjeti lozinku." 
+            PasswordRequiredErrorMessage="Trebate unijeti lozinku." 
             RememberMeText="Zapamti me na ovom računalu." TitleText="Prijava" 
             UserNameLabelText="Korisničko ime:" 
-            UserNameRequiredErrorMessage="Trebate unjeti korisničko ime.">
+            UserNameRequiredErrorMessage="Trebate unijeti korisničko ime.">
             <CheckBoxStyle Font-Names="Corbel" Font-Size="15px" ForeColor="#000000" 
                 CssClass="zapamtiMe" />
             <TextBoxStyle BorderColor="#D02552" CssClass="textbox" />
@@ -35,7 +35,7 @@
     
     <!--registracija -->
     <div class="log-reg">
-    <asp:CreateUserWizard ID="CreateUserWizard1" runat="server" Answer="a" 
+    <asp:CreateUserWizard ID="CreateUserWizard1" runat="server" 
         oncreateduser="CreateUserWizard1_CreatedUser" ContinueButtonText="" 
             CancelButtonText="Odustani" 
             CompleteSuccessText="Vaš korisnički račun je uspješno napravljen" 
@@ -50,7 +50,7 @@
             UnknownErrorMessage="Korisnički račun nije kreiran. Molimo pokušajte ponovo." 
             CssClass="poruka" FinishCompleteButtonText="Završi" 
             FinishPreviousButtonText="Natrag" StartNextButtonText="Dalje">
-        <FinishCompleteButtonStyle CssClass="gumb2" />
+        <FinishCompleteButtonStyle CssClass="gumb" />
         <CompleteSuccessTextStyle CssClass="zapamtiMe" Font-Size="15px" 
             ForeColor="#D02552" />
         <ContinueButtonStyle CssClass="gumb2" />
@@ -161,7 +161,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td align="center" colspan="2" style="color:Red;" class="tablica" height="5px">
+                            <td align="center" colspan="2" style="color:#D02552;" class="tablica" height="5px">
                                 <asp:Literal ID="ErrorMessage" runat="server" EnableViewState="False"></asp:Literal>
                             </td>
                         </tr>

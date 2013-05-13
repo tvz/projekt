@@ -23,6 +23,16 @@ public class Transactions
         //
     }
 
+    /*developer: Emilio
+     description: upisuje nepotvrdenu transakciju u bazu*/
+    public static void Prefill()
+    { }
+    /*developer:Emilio
+     description: nakon sto paypal vrati potvrdu transakcije popunimo transakciju sa ostalim podacima i oznacimo ju kao potvrdenu*/
+    public static void Postfill()
+    {
+    }
+
     /*developer:Emilio
      description: Metoda dohvaca sumu donacija za odredeni projekt*/
     public static float PaymentGrossSum(int project_id)
