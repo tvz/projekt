@@ -16,10 +16,10 @@
             FailureText="Žao nam je, Vaša prijava nije bila uspješna. Molimo pokušajte ponovo." 
             Height="297px" LoginButtonText="PRIJAVA" Width="485px" Font-Size="15px" 
             PasswordLabelText="Lozinka:" 
-            PasswordRequiredErrorMessage="Trebate unjeti lozinku." 
+            PasswordRequiredErrorMessage="Trebate unijeti lozinku." 
             RememberMeText="Zapamti me na ovom računalu." TitleText="Prijava" 
             UserNameLabelText="Korisničko ime:" 
-            UserNameRequiredErrorMessage="Trebate unjeti korisničko ime.">
+            UserNameRequiredErrorMessage="Trebate unijeti korisničko ime.">
             <CheckBoxStyle Font-Names="Corbel" Font-Size="15px" ForeColor="#000000" 
                 CssClass="zapamtiMe" />
             <TextBoxStyle BorderColor="#D02552" CssClass="textbox" />
