@@ -4,18 +4,28 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <form id="form1" runat="server">
-    <asp:Label ID="LabelName" runat="server" Text="Ime projekta"></asp:Label>
-    <asp:TextBox ID="TextBoxName" runat="server"></asp:TextBox><br />
-    <asp:Label ID="LabelGoal" runat="server" Text="Vrijednost projekta"></asp:Label>
-    <asp:TextBox ID="TextBoxGoal" runat="server"></asp:TextBox>
+    
+    <div id="noviProj">
+    <asp:Label ID="LabelName" runat="server" Text="Ime projekta" CssClass="labele"></asp:Label>
+    <asp:TextBox ID="TextBoxName" runat="server" CssClass="textbox"></asp:TextBox><br />
+    <br />
+    <asp:Label ID="LabelGoal" runat="server" Text="Vrijednost projekta" 
+            CssClass="labele"></asp:Label>
+    <asp:TextBox ID="TextBoxGoal" runat="server" CssClass="textbox"></asp:TextBox>
     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Moguće je unijeti samo brojeve."
-            ValidationExpression="[0-9]+" ControlToValidate="TextBoxGoal"></asp:RegularExpressionValidator><br />
-    <asp:Label ID="LabelCreatedAt" runat="server" Text="Datum početka projekta"></asp:Label>
-    <asp:TextBox ID="TextBoxCreatedAt" runat="server"></asp:TextBox><br />
-    <asp:Label ID="LabelExpirationDate" runat="server" Text="Datum isteka projekta"></asp:Label>
-    <asp:TextBox ID="TextBoxExpirationDate" runat="server"></asp:TextBox><br />
+            ValidationExpression="[0-9]+" ControlToValidate="TextBoxGoal" 
+            CssClass="poruka" Font-Names="Corbel" Font-Size="15px" ForeColor="#D02552" 
+            Height="15px"></asp:RegularExpressionValidator><br />
+            <br />
+    <asp:Label ID="LabelCreatedAt" runat="server" Text="Datum početka projekta" 
+            CssClass="labele"></asp:Label>
+    <asp:TextBox ID="TextBoxCreatedAt" runat="server" CssClass="textbox"></asp:TextBox><br /> <br />
+    <asp:Label ID="LabelExpirationDate" runat="server" Text="Datum isteka projekta" 
+            CssClass="labele"></asp:Label>
+    <asp:TextBox ID="TextBoxExpirationDate" runat="server" CssClass="textbox"></asp:TextBox><br /><br />
     <asp:Button ID="ButtonSearch" runat="server" onclick="ButtonSearch_Click" 
-        Text="Pretraži" />
+        Text="Pretraži" CssClass="gumb2" />
+   </div>
     </form>
 </asp:Content>
 
