@@ -24,12 +24,6 @@ public partial class pregledProjekata : System.Web.UI.Page
         ClientScript.RegisterClientScriptBlock(this.GetType(), "ShowExpirationDatepicker", scriptExpiration, true);
     }
 
-    protected void Page_Init(object sender, EventArgs e)
-    {
-        //this.RadioButtonDESC.Checked = true;
-        this.DropDownList1.SelectedIndex = 0;
-    }
-
     /*developer: Ivan
      * description: metoda salje parametre za pretrazivanje searchProjects metodi
      * u klasi Projects te nazad dobiva listu projekata
