@@ -32,7 +32,7 @@ A.LogLink
 
 A.LogLink:hover
 {
-   color:#d02552
+   color:#d02552;
 }
 
 
@@ -68,7 +68,7 @@ A.NavLink:hover
 
 A.NavLink:active
 {
-   color:#d02552
+   color:#d02552;
 }
 
 /*---------------------*/
