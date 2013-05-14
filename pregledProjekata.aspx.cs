@@ -29,7 +29,7 @@ public partial class pregledProjekata : System.Web.UI.Page
     protected void Page_Init(object sender, EventArgs e)
     {
         this.DropDownListSort.SelectedIndex = 0;
-        this.RadioButtonASC.Checked = true;
+        this.RadioButtonDESC.Checked = true;
     }
 
     protected void DropDownListSort_SelectedIndexChanged(object sender, EventArgs e)
@@ -115,8 +115,10 @@ public partial class pregledProjekata : System.Web.UI.Page
                 + "<img  src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> "
                 + "<h3><b>AUTOR PROJEKTA:</b> " + project.project_owner_username + "</h3>"
                 + "<h3><b>OPIS PROJEKTA:</b> " + project.description + " </h3>"
+                + "<h3><b>POTREBNO:</b> " + project.goal + " Kunića" + " </h3>"
                 + "<h3><b>SAKUPLJENO:</b> " + project.DonationSum() + " Kunića " + "(" + project.DonationsPercent() + "%)" + "</h3>"
-                + "<h3><b>DO KRAJA:</b> " + (project.expiration_date - DateTime.Now).Days + "Dana" + "</h3>";
+                + "<h3><b>ZAPOČETO:</b> " +project.created_at.ToShortDateString()+"</h3>"
+                + "<h3><b>DO KRAJA:</b> " + (project.expiration_date - DateTime.Now).Days + " dana" + "</h3>";
 
             HtmlGenericControl div = new HtmlGenericControl("div");
             div.Attributes.Add("class", "proj");

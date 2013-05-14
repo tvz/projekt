@@ -24,6 +24,7 @@
     <asp:TextBox ID="TextBoxExpirationDate" runat="server" CssClass="textbox"></asp:TextBox><br /><br />
     <asp:Button ID="ButtonSearch" runat="server" onclick="ButtonSearch_Click" 
         Text="Pretraži" CssClass="gumb2" />
+        <asp:Label ID="Label2" runat="server" Text="Sortiraj"  CssClass="labele"></asp:Label><br />
         <asp:DropDownList ID="DropDownListSort" runat="server" AutoPostBack="True" 
             Enabled="False" onselectedindexchanged="DropDownListSort_SelectedIndexChanged">
             <asp:ListItem Value="name">Naziv</asp:ListItem>

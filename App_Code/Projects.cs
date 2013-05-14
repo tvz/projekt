@@ -184,10 +184,67 @@ public class Projects
     /*developer: Ivan
      * description: metoda pretrazuje projekte i vraca listu projekata
      */   
-    public static List<Projects> searchProjects(params object[] searchParameters)
+    public static List<Projects> searchProjects(params string[] searchParameters)
     {
         List<Projects> search_list = new List<Projects>();
-        
+        OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
+        OleDbCommand command = new OleDbCommand();
+        OleDbDataReader reader;
+        DateTime createdAtDate, expirationDate;
+        string projectName = searchParameters[0];
+        string goal = searchParameters[1];
+        createdAtDate = Convert.ToDateTime(searchParameters[2]);
+        expirationDate = Convert.ToDateTime(searchParameters[3]);
+
+        //moglo je i urednije, al jbg :)
+        //doradit cu metodu da ima pravu funkcionalnost (zasad samo trazi projekte koji zadovoljavaju 
+        //najmanje jedan kriterij)
+        command.CommandText = "SELECT projects.ID,projects.name,projects.description,projects.goal," +
+        "projects.created_at,projects.expiration_date,projects.image_path,users.username FROM" +
+        "(projects INNER JOIN users ON projects.user_id = users.ID) WHERE [projects.name]=@name" +
+        " OR [projects.goal]=@goal OR projects.created_at=@created" +
+        " OR projects.expiration_date=@expiration OR ([projects.name]=@name AND [projects.goal]=@goal)" +
+        " OR ([projects.name]=@name AND [projects.goal]=@goal AND projects.created_at=@created)" +
+        " OR ([projects.name]=@name AND [projects.goal]=@goal AND projects.created_at=@created AND" +
+        " projects.expiration_date=@expiration) OR ([projects.name]=@name AND projects.created_at=@created)"+
+        " OR ([projects.name]=@name AND projects.expiration_date=@expiration)"+
+        " OR ([projects.name]=@name AND projects.created_at=@created AND projects.expiration_date=@expiration)"+
+        " OR ([projects.name]=@name AND [projects.goal]=@goal AND projects.created_at=@created)"+
+        " OR ([projects.goal]=@goal AND projects.created_at=@created) OR ([projects.goal]=@goal AND"+
+        " projects.expiration_date=@expiration) OR ([projects.goal]=@goal AND"+
+        " projects.created_at=@created AND projects.expiration_date=@expiration) OR"+
+        " (projects.created_at=@created AND projects.expiration_date=@expiration)";
+        command.Parameters.AddWithValue("@name", projectName);
+        command.Parameters.AddWithValue("@goal", goal);
+        command.Parameters.AddWithValue("@created", createdAtDate);
+        command.Parameters.AddWithValue("@expiration", expirationDate);
+
+        command.Connection = conn;
+        try
+        {
+            conn.Open();
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                int column = -1;
+                Projects project = new Projects();
+                project.id = Convert.ToInt32(reader.GetValue(++column));
+                project.name = reader.GetValue(++column).ToString();
+                project.description = reader.GetValue(++column).ToString();
+                project.goal = Convert.ToSingle(reader.GetValue(++column));
+                project.created_at = Convert.ToDateTime(reader.GetValue(++column));
+                project.expiration_date = Convert.ToDateTime(reader.GetValue(++column));
+                project.image_path = reader.GetValue(++column).ToString();
+                project.project_owner_username = reader.GetValue(++column).ToString();
+                search_list.Add(project);
+            }
+        }
+        catch (System.Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message + "\n" + ex.StackTrace); }
+        finally
+        {
+            command.Dispose();
+            conn.Close();
+        }
         return search_list;
     }
 }
