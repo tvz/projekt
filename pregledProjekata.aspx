@@ -5,8 +5,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <form id="form1" runat="server">
     <div id="noviProj">
-    <asp:Label ID="LabelName" runat="server" Text="Ime projekta" CssClass="labele"></asp:Label>
-    <asp:TextBox ID="TextBoxName" runat="server" CssClass="textbox"></asp:TextBox><br />
+    <asp:Label ID="LabelProjectName" runat="server" Text="Ime projekta" CssClass="labele"></asp:Label>
+    <asp:TextBox ID="TextBoxProjectName" runat="server" CssClass="textbox"></asp:TextBox><br />
     <br />
     <asp:Label ID="LabelGoal" runat="server" Text="Vrijednost projekta" 
             CssClass="labele"></asp:Label>
@@ -25,16 +25,18 @@
     <asp:Button ID="ButtonSearch" runat="server" onclick="ButtonSearch_Click" 
         Text="Pretraži" CssClass="gumb2" />
         <asp:DropDownList ID="DropDownListSort" runat="server" AutoPostBack="True" 
-            onselectedindexchanged="DropDownListSort_SelectedIndexChanged">
+            Enabled="False" onselectedindexchanged="DropDownListSort_SelectedIndexChanged">
             <asp:ListItem Value="name">Naziv</asp:ListItem>
             <asp:ListItem Value="goal">Vrijednost</asp:ListItem>
             <asp:ListItem Value="createdAt">Datum početka projekta</asp:ListItem>
             <asp:ListItem Value="expirationDate">Datum isteka projekta</asp:ListItem>
         </asp:DropDownList>
         <asp:RadioButton ID="RadioButtonDESC" runat="server" GroupName="sortDirection" 
-            Text="Silazno" AutoPostBack="True" />
+            Text="Silazno" AutoPostBack="True" Enabled="False" 
+            oncheckedchanged="DropDownListSort_SelectedIndexChanged" />
         <asp:RadioButton ID="RadioButtonASC" runat="server" GroupName="sortDirection" 
-            Text="Uzlazno" AutoPostBack="True" />
+            Text="Uzlazno" AutoPostBack="True" Enabled="False" 
+            oncheckedchanged="DropDownListSort_SelectedIndexChanged" />
    </div>
        <div runat="server" id="projekti_search">
     </div>

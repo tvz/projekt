@@ -15,13 +15,28 @@ using System.Globalization;
 
 public partial class pregledProjekata : System.Web.UI.Page
 {
-    List<Projects> search_list = new List<Projects>();
-    List<Projects> sorted_list = new List<Projects>();
+    protected List<Projects> search_list = new List<Projects>();
+    protected List<Projects> sorted_list = new List<Projects>();
 
     protected void Page_Load(object sender, EventArgs e)
     {
         string scriptExpiration = "$(document).ready(function(){$('#" + TextBoxExpirationDate.ClientID + "'" + ").datepicker({ dateFormat: 'dd.mm.yy' });});";
         ClientScript.RegisterClientScriptBlock(this.GetType(), "ShowExpirationDatepicker", scriptExpiration, true);
+        string scriptCreatedAt = "$(document).ready(function(){$('#" + TextBoxCreatedAt.ClientID + "'" + ").datepicker({ dateFormat: 'dd.mm.yy' });});";
+        ClientScript.RegisterClientScriptBlock(this.GetType(), "ShowCreatedAtpicker", scriptCreatedAt, true);
+    }
+
+    protected void Page_Init(object sender, EventArgs e)
+    {
+        this.DropDownListSort.SelectedIndex = 0;
+        this.RadioButtonASC.Checked = true;
+    }
+
+    protected void DropDownListSort_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        search_list = (List<Projects>)Session["list_projects"];
+        Sort(sorted_list);
+        showProjects(sorted_list);
     }
 
     /*developer: Ivan
@@ -30,20 +45,55 @@ public partial class pregledProjekata : System.Web.UI.Page
      */
     protected void ButtonSearch_Click(object sender, EventArgs e)
     {
-        DateTime expirationDate;
+        DateTime createdAtDate, expirationDate;
         DateTime.TryParseExact(TextBoxExpirationDate.Text, "dd/MM/yyyy", null, DateTimeStyles.None, out expirationDate);
-        
-        search_list = Projects.searchProjects(TextBoxName.Text,"name", TextBoxGoal.Text, "goal", expirationDate, "date");
+        DateTime.TryParseExact(TextBoxCreatedAt.Text, "dd/MM/yyyy", null, DateTimeStyles.None, out createdAtDate);
+        string createdAt, expiration;
+        createdAt = createdAtDate.ToShortDateString();
+        expiration = expirationDate.ToShortDateString();
 
-        showProjects(search_list);   
+        search_list = Projects.searchProjects(TextBoxProjectName.Text, TextBoxGoal.Text, createdAt, expiration);
+
+        showProjects(search_list);
+
+        if (search_list.Count > 0)
+        {
+            DropDownListSort.Enabled = true;
+            RadioButtonASC.Enabled = true;
+            RadioButtonDESC.Enabled = true;
+        }
+
+        Session["list_projects"] = search_list;
     }
-
+    
     /*developer: Ivan
-     * description: metoda sortira listu
+     * description: metoda sortira listu projekata
      */
-    protected void DropDownListSort_SelectedIndexChanged(object sender, EventArgs e)
+    private List<Projects> Sort(List<Projects> list)
     {
-        
+        if (RadioButtonASC.Checked == true)
+        {
+            if (DropDownListSort.SelectedIndex == 0)
+                sorted_list = search_list.OrderBy(o => o.name).ToList();
+            else if (DropDownListSort.SelectedIndex == 1)
+                sorted_list = search_list.OrderBy(o => o.goal).ToList();
+            else if (DropDownListSort.SelectedIndex == 2)
+                sorted_list = search_list.OrderBy(o => o.created_at).ToList();
+            else if (DropDownListSort.SelectedIndex == 3)
+                sorted_list = search_list.OrderBy(o => o.expiration_date).ToList();
+        }
+        else if (RadioButtonDESC.Checked == true)
+        {
+            if (DropDownListSort.SelectedIndex == 0)
+                sorted_list = search_list.OrderByDescending(o => o.name).ToList();
+            else if (DropDownListSort.SelectedIndex == 1)
+                sorted_list = search_list.OrderByDescending(o => o.goal).ToList();
+            else if (DropDownListSort.SelectedIndex == 2)
+                sorted_list = search_list.OrderByDescending(o => o.created_at).ToList();
+            else if (DropDownListSort.SelectedIndex == 3)
+                sorted_list = search_list.OrderByDescending(o => o.expiration_date).ToList();
+        }
+        return sorted_list;
     }
 
     /*developer: Ivan
