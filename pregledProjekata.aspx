@@ -4,9 +4,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <form id="form1" runat="server">
-    <div runat="server" id="projekti_search">
-    </div>
-    
     <div id="noviProj">
     <asp:Label ID="LabelName" runat="server" Text="Ime projekta" CssClass="labele"></asp:Label>
     <asp:TextBox ID="TextBoxName" runat="server" CssClass="textbox"></asp:TextBox><br />
@@ -27,7 +24,21 @@
     <asp:TextBox ID="TextBoxExpirationDate" runat="server" CssClass="textbox"></asp:TextBox><br /><br />
     <asp:Button ID="ButtonSearch" runat="server" onclick="ButtonSearch_Click" 
         Text="Pretraži" CssClass="gumb2" />
+        <asp:DropDownList ID="DropDownListSort" runat="server" AutoPostBack="True" 
+            onselectedindexchanged="DropDownListSort_SelectedIndexChanged">
+            <asp:ListItem Value="name">Naziv</asp:ListItem>
+            <asp:ListItem Value="goal">Vrijednost</asp:ListItem>
+            <asp:ListItem Value="createdAt">Datum početka projekta</asp:ListItem>
+            <asp:ListItem Value="expirationDate">Datum isteka projekta</asp:ListItem>
+        </asp:DropDownList>
+        <asp:RadioButton ID="RadioButtonDESC" runat="server" GroupName="sortDirection" 
+            Text="Silazno" AutoPostBack="True" />
+        <asp:RadioButton ID="RadioButtonASC" runat="server" GroupName="sortDirection" 
+            Text="Uzlazno" AutoPostBack="True" />
    </div>
+       <div runat="server" id="projekti_search">
+    </div>
+    
      <div runat="server" id="Div1">
     </div>
     </form>

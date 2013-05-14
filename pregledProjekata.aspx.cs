@@ -33,7 +33,7 @@ public partial class pregledProjekata : System.Web.UI.Page
         DateTime expirationDate;
         DateTime.TryParseExact(TextBoxExpirationDate.Text, "dd/MM/yyyy", null, DateTimeStyles.None, out expirationDate);
         
-        search_list = Projects.searchProjects(TextBoxName.Text, TextBoxGoal.Text, expirationDate);
+        search_list = Projects.searchProjects(TextBoxName.Text,"name", TextBoxGoal.Text, "goal", expirationDate, "date");
 
         showProjects(search_list);   
     }
@@ -41,7 +41,7 @@ public partial class pregledProjekata : System.Web.UI.Page
     /*developer: Ivan
      * description: metoda sortira listu
      */
-    protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+    protected void DropDownListSort_SelectedIndexChanged(object sender, EventArgs e)
     {
         
     }
