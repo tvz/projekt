@@ -381,10 +381,10 @@ button.ui-button::-moz-focus-inner {
 ----------------------------------*/
 .ui-widget {
 	font-family: Calibri;
-	font-size: 1em;
+	font-size: 18px;
 }
 .ui-widget .ui-widget {
-	font-size: 1em;
+	font-size: 18px;
 }
 .ui-widget input,
 .ui-widget select,
