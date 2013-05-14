@@ -197,8 +197,6 @@ public class Projects
         expirationDate = Convert.ToDateTime(searchParameters[3]);
 
         //moglo je i urednije, al jbg :)
-        //doradit cu metodu da ima pravu funkcionalnost (zasad samo trazi projekte koji zadovoljavaju 
-        //najmanje jedan kriterij)
         command.CommandText = "SELECT projects.ID,projects.name,projects.description,projects.goal," +
         "projects.created_at,projects.expiration_date,projects.image_path,users.username FROM" +
         "(projects INNER JOIN users ON projects.user_id = users.ID) WHERE [projects.name]=@name" +
