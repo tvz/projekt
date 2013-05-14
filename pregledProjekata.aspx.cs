@@ -35,7 +35,7 @@ public partial class pregledProjekata : System.Web.UI.Page
     protected void DropDownListSort_SelectedIndexChanged(object sender, EventArgs e)
     {
         search_list = (List<Projects>)Session["list_projects"];
-        Sort(sorted_list);
+        sorted_list = Sort(search_list);
         showProjects(sorted_list);
     }
 
