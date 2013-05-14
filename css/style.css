@@ -152,6 +152,15 @@ h4
     text-align: center;
 }
 
+h5
+{
+  padding-top:2%;
+    padding-bottom:3%;
+    font-family: Calibri;
+    font-size: 15px;
+    font-weight:bold;
+    color: #000;  
+}
 .gumb
 {
     border-radius: 10px;
@@ -263,7 +272,7 @@ img
 }
 
 /*Novi projekt*/
-#noviProj
+#pozadina
 {
    
    margin-top: 4%;
@@ -271,7 +280,7 @@ img
    padding: 4%;
    background-color: rgba(255,255,255,0.45);
    border-radius: 10px;  
-   height: 700px;
+   
    width: 500px;
   margin-left: 23%;
    
@@ -311,4 +320,16 @@ img
    height: 400px;
    width: 600px;
    
+}
+
+/*--------------------*/
+.textbox_suma
+{
+    border-color:#d02552;
+    border-style:solid;
+    border-radius:3px;
+    color:#d02552;
+    border-width:1px;
+    margin-left:20px
+    
 }

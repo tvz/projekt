@@ -6,7 +6,7 @@
     <form id="form1" runat="server">
     
     
-        <div id="noviProj">
+        <div id="pozadina">
         <h2>UNESITE PODATKE O SVOM PROJEKTU:</h2>
         <div class="poravnanje">
         <asp:Label ID="Label_ime" runat="server" Text="Ime projekta:" CssClass="labele" 

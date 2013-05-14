@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <form id="form1" runat="server">
-    <div id="noviProj">
+    <div id="pozadina">
     <asp:Label ID="LabelProjectName" runat="server" Text="Ime projekta" CssClass="labele"></asp:Label>
     <asp:TextBox ID="TextBoxProjectName" runat="server" CssClass="textbox"></asp:TextBox><br />
     <br />
