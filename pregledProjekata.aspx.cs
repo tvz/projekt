@@ -20,10 +20,14 @@ public partial class pregledProjekata : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        string scriptExpiration = "$(document).ready(function(){$('#" + TextBoxExpirationDate.ClientID + "'" + ").datepicker({ dateFormat: 'dd.mm.yy' });});";
-        ClientScript.RegisterClientScriptBlock(this.GetType(), "ShowExpirationDatepicker", scriptExpiration, true);
-        string scriptCreatedAt = "$(document).ready(function(){$('#" + TextBoxCreatedAt.ClientID + "'" + ").datepicker({ dateFormat: 'dd.mm.yy' });});";
-        ClientScript.RegisterClientScriptBlock(this.GetType(), "ShowCreatedAtpicker", scriptCreatedAt, true);
+        string scriptExpirationStart = "$(document).ready(function(){$('#" + TextBoxExpirationDateStart.ClientID + "'" + ").datepicker({ dateFormat: 'dd.mm.yy' });});";
+        ClientScript.RegisterClientScriptBlock(this.GetType(), "ShowExpirationDateStartpicker", scriptExpirationStart, true);
+        string scriptCreatedAtStart = "$(document).ready(function(){$('#" + TextBoxCreatedAtStart.ClientID + "'" + ").datepicker({ dateFormat: 'dd.mm.yy' });});";
+        ClientScript.RegisterClientScriptBlock(this.GetType(), "ShowCreatedAtStartpicker", scriptCreatedAtStart, true);
+        string scriptCreatedAtEnd = "$(document).ready(function(){$('#" + TextBoxCreatedAtEnd.ClientID + "'" + ").datepicker({ dateFormat: 'dd.mm.yy' });});";
+        ClientScript.RegisterClientScriptBlock(this.GetType(), "ShowCreatedAtEndpicker", scriptCreatedAtEnd, true);
+        string scriptExpirationEnd = "$(document).ready(function(){$('#" + TextBoxExpirationDateEnd.ClientID + "'" + ").datepicker({ dateFormat: 'dd.mm.yy' });});";
+        ClientScript.RegisterClientScriptBlock(this.GetType(), "ShowExpirationDateEndpicker", scriptExpirationEnd, true);
     }
 
     protected void Page_Init(object sender, EventArgs e)
@@ -45,14 +49,18 @@ public partial class pregledProjekata : System.Web.UI.Page
      */
     protected void ButtonSearch_Click(object sender, EventArgs e)
     {
-        DateTime createdAtDate, expirationDate;
-        DateTime.TryParseExact(TextBoxExpirationDate.Text, "dd/MM/yyyy", null, DateTimeStyles.None, out expirationDate);
-        DateTime.TryParseExact(TextBoxCreatedAt.Text, "dd/MM/yyyy", null, DateTimeStyles.None, out createdAtDate);
-        string createdAt, expiration;
-        createdAt = createdAtDate.ToShortDateString();
-        expiration = expirationDate.ToShortDateString();
+        DateTime createdAtDateStart, expirationDateStart, createdAtDateEnd, expirationDateEnd;
+        DateTime.TryParseExact(TextBoxExpirationDateStart.Text, "dd/MM/yyyy", null, DateTimeStyles.None, out expirationDateStart);
+        DateTime.TryParseExact(TextBoxCreatedAtStart.Text, "dd/MM/yyyy", null, DateTimeStyles.None, out createdAtDateStart);
+        DateTime.TryParseExact(TextBoxCreatedAtEnd.Text, "dd/MM/yyyy", null, DateTimeStyles.None, out createdAtDateEnd);
+        DateTime.TryParseExact(TextBoxExpirationDateEnd.Text, "dd/MM/yyyy", null, DateTimeStyles.None, out expirationDateEnd);
+        string createdAtStart, expirationStart, createdAtEnd, expirationEnd;
+        createdAtStart = createdAtDateStart.ToShortDateString();
+        createdAtEnd = createdAtDateEnd.ToShortDateString();
+        expirationStart = expirationDateStart.ToShortDateString();
+        expirationEnd = expirationDateEnd.ToShortDateString();
 
-        search_list = Projects.searchProjects(TextBoxProjectName.Text, TextBoxGoal.Text, createdAt, expiration);
+        search_list = Projects.searchProjects(TextBoxProjectName.Text, TextBoxGoal.Text, createdAtStart, createdAtEnd, expirationStart, expirationEnd);
 
         showProjects(search_list);
 
@@ -103,7 +111,10 @@ public partial class pregledProjekata : System.Web.UI.Page
     {
         string html = null;
         projekti_search.InnerHtml = "";
-
+        HtmlGenericControl div_searchNumber = new HtmlGenericControl("div");
+        div_searchNumber.InnerHtml = "Pronađeno "+list.Count+" rezultata.";
+        projekti_search.Controls.Add(div_searchNumber);
+        
         foreach (Projects project in list)
         {
             HtmlButton button = new HtmlButton();
@@ -121,12 +132,15 @@ public partial class pregledProjekata : System.Web.UI.Page
                 + "<h3><b>DO KRAJA:</b> " + (project.expiration_date - DateTime.Now).Days + " dana" + "</h3>";
 
             HtmlGenericControl div = new HtmlGenericControl("div");
+           
             div.Attributes.Add("class", "proj");
             div.InnerHtml = html;
+            
             div.Controls.Add(button);
 
+            
             projekti_search.Controls.Add(div);
-        }
+        } 
     }
 
     /*developer: Emilio

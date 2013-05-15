@@ -4,7 +4,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <form id="form1" runat="server">
-    
     <div id="pozadina">
     <h2>UNESITE PODATKE O PROJEKTU KOJI ŽELITE PREGLEDATI:</h2>
     <div class="poravnanje">
@@ -28,13 +27,15 @@
     <div class="poravnanje">
     <asp:Label ID="LabelCreatedAt" runat="server" Text="Datum početka projekta" 
             CssClass="labele" BorderStyle="None"></asp:Label> <br />
-    <asp:TextBox ID="TextBoxCreatedAt" runat="server" CssClass="textbox"></asp:TextBox><br /> <br />
+    <asp:TextBox ID="TextBoxCreatedAtStart" runat="server" CssClass="textbox"></asp:TextBox>
+    - </asp:Label><asp:TextBox ID="TextBoxCreatedAtEnd" runat="server" CssClass="textbox"></asp:TextBox><br /> <br />
     </div>
     
     <div class="poravnanje">
     <asp:Label ID="LabelExpirationDate" runat="server" Text="Datum isteka projekta" 
             CssClass="labele" BorderStyle="None"></asp:Label><br />
-    <asp:TextBox ID="TextBoxExpirationDate" runat="server" CssClass="textbox"></asp:TextBox><br /><br />
+    <asp:TextBox ID="TextBoxExpirationDateStart" runat="server" CssClass="textbox"></asp:TextBox>
+    - <asp:TextBox ID="TextBoxExpirationDateEnd" runat="server" CssClass="textbox"></asp:TextBox><br /><br />
     </div>
     
       <div class="poravnanje">
