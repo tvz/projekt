@@ -199,7 +199,7 @@ public class Projects
         expirationDateEnd = Convert.ToDateTime(searchParameters[5]);
         System.Diagnostics.Debug.WriteLine(projectName.Length);
         //moglo je i urednije, al jbg :)
-        //buduci da = funkcionira tako da na prazan ulaz vraca sve, mora se koristiti if
+        //buduci da LIKE funkcionira tako da na prazan ulaz vraca sve, mora se koristiti if
         if (projectName.Length > 0)
         {
             command.CommandText = "SELECT projects.ID,projects.name,projects.description,projects.goal," +
