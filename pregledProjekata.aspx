@@ -60,9 +60,14 @@
             oncheckedchanged="DropDownListSort_SelectedIndexChanged" 
             CssClass="labele" BorderStyle="None" />
               </div>
-        <asp:Button ID="ButtonSearch" runat="server" onclick="ButtonSearch_Click" 
-        Text="Pretraži" CssClass="gumb2" /> <br /> <br /> <br />
+              <asp:Button ID="Button1" runat="server" onclick="ButtonSearch_Click" 
+        Text="Pretraži" CssClass="gumb2" />
+        <asp:Button ID="ButtonReset" runat="server" 
+        Text="Obriši" CssClass="gumb2" onclick="ButtonReset_Click" /> <br />
+        <asp:Label ID="LabelSearchResult" runat="server" Text=""
+         CssClass="labele" BorderStyle="None"></asp:Label><br /> <br />
    </div>
+  <br />
        <div runat="server" id="projekti_search">
     </div>
     

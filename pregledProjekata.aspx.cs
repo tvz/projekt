@@ -43,6 +43,16 @@ public partial class pregledProjekata : System.Web.UI.Page
         showProjects(sorted_list);
     }
 
+    protected void ButtonReset_Click(object sender, EventArgs e)
+    {
+        this.TextBoxProjectName.Text = "";
+        this.TextBoxGoal.Text = "";
+        this.TextBoxCreatedAtStart.Text = "";
+        this.TextBoxCreatedAtEnd.Text = "";
+        this.TextBoxExpirationDateStart.Text = "";
+        this.TextBoxExpirationDateEnd.Text = "";
+    }
+
     /*developer: Ivan
      * description: metoda salje parametre za pretrazivanje searchProjects metodi
      * u klasi Projects te nazad dobiva listu projekata
@@ -111,9 +121,7 @@ public partial class pregledProjekata : System.Web.UI.Page
     {
         string html = null;
         projekti_search.InnerHtml = "";
-        HtmlGenericControl div_searchNumber = new HtmlGenericControl("div");
-        div_searchNumber.InnerHtml = "Pronađeno "+list.Count+" rezultata.";
-        projekti_search.Controls.Add(div_searchNumber);
+        this.LabelSearchResult.Text = "Pronađeno: <b>"+list.Count+"</b>";
         
         foreach (Projects project in list)
         {
@@ -129,16 +137,13 @@ public partial class pregledProjekata : System.Web.UI.Page
                 + "<h3><b>POTREBNO:</b> " + project.goal + " Kunića" + " </h3>"
                 + "<h3><b>SAKUPLJENO:</b> " + project.DonationSum() + " Kunića " + "(" + project.DonationsPercent() + "%)" + "</h3>"
                 + "<h3><b>ZAPOČETO:</b> " +project.created_at.ToShortDateString()+"</h3>"
-                + "<h3><b>DO KRAJA:</b> " + (project.expiration_date - DateTime.Now).Days + " dana" + "</h3>";
+                + "<h3 style=\"margin-bottom:-25px;\"><b>DO KRAJA:</b> " + (project.expiration_date - DateTime.Now).Days + " dana" + "</h3>";
 
-            HtmlGenericControl div = new HtmlGenericControl("div");
-           
+            HtmlGenericControl div = new HtmlGenericControl("div");           
             div.Attributes.Add("class", "proj");
             div.InnerHtml = html;
-            
             div.Controls.Add(button);
-
-            
+           
             projekti_search.Controls.Add(div);
         } 
     }
