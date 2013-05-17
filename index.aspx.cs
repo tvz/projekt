@@ -19,6 +19,7 @@ public partial class index : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         ListProjects();
+        Session["list_projects"] = null;
         //if(Request.Params.Keys.Get())
         //int v = Request.Params.Count;
     }

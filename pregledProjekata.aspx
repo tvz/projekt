@@ -5,15 +5,18 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <form id="form1" runat="server">
     <div id="pozadina">
+    <asp:HiddenField ID="HiddenField1" runat="server" Value="0" />
     <h2>UNESITE PODATKE O PROJEKTU KOJI ŽELITE PREGLEDATI:</h2>
     <div class="poravnanje">
     <asp:Label ID="LabelProjectName" runat="server" Text="Ime projekta" 
             CssClass="labele" BorderStyle="None"></asp:Label><br />
     <asp:TextBox ID="TextBoxProjectName" runat="server" CssClass="textbox"></asp:TextBox><br />
+    <asp:LinkButton ID="LinkButtonShowOptions" runat="server" 
+            onclick="LinkButtonShowOptions_Click">Prikaži dodatne opcije</asp:LinkButton>
     <br />
     </div>
     
-    <div class="poravnanje">
+    <div class="poravnanje" runat="server" id="vrijednost">
     <asp:Label ID="LabelGoal" runat="server" Text="Vrijednost projekta" 
             CssClass="labele" BorderStyle="None"></asp:Label> <br />
     <asp:TextBox ID="TextBoxGoal" runat="server" CssClass="textbox"></asp:TextBox>
@@ -24,14 +27,14 @@
             <br />
     </div>
             
-    <div class="poravnanje">
+    <div class="poravnanje" runat="server" id="pocetak">
     <asp:Label ID="LabelCreatedAt" runat="server" Text="Datum početka projekta" 
             CssClass="labele" BorderStyle="None"></asp:Label> <br />
     <asp:TextBox ID="TextBoxCreatedAtStart" runat="server" CssClass="textbox"></asp:TextBox>
-    - </asp:Label><asp:TextBox ID="TextBoxCreatedAtEnd" runat="server" CssClass="textbox"></asp:TextBox><br /> <br />
+    - <asp:TextBox ID="TextBoxCreatedAtEnd" runat="server" CssClass="textbox"></asp:TextBox><br /> <br />
     </div>
     
-    <div class="poravnanje">
+    <div class="poravnanje" runat="server" id="kraj">
     <asp:Label ID="LabelExpirationDate" runat="server" Text="Datum isteka projekta" 
             CssClass="labele" BorderStyle="None"></asp:Label><br />
     <asp:TextBox ID="TextBoxExpirationDateStart" runat="server" CssClass="textbox"></asp:TextBox>

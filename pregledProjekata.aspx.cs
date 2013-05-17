@@ -34,6 +34,9 @@ public partial class pregledProjekata : System.Web.UI.Page
     {
         this.DropDownListSort.SelectedIndex = 0;
         this.RadioButtonDESC.Checked = true;
+        vrijednost.Visible = false;
+        pocetak.Visible = false;
+        kraj.Visible = false;
     }
 
     protected void DropDownListSort_SelectedIndexChanged(object sender, EventArgs e)
@@ -41,6 +44,31 @@ public partial class pregledProjekata : System.Web.UI.Page
         search_list = (List<Projects>)Session["list_projects"];
         sorted_list = Sort(search_list);
         showProjects(sorted_list);
+    }
+
+    protected void LinkButtonShowOptions_Click(object sender, EventArgs e)
+    {
+        int count = Convert.ToInt32(HiddenField1.Value);
+        if (count % 2 == 0)
+        {
+            vrijednost.Visible = true;
+            pocetak.Visible = true;
+            kraj.Visible = true;
+            LinkButtonShowOptions.Text = "Sakrij dodatne opcije";
+        }
+        else
+        {
+            vrijednost.Visible = false;
+            pocetak.Visible = false;
+            kraj.Visible = false;
+            LinkButtonShowOptions.Text = "Prikaži dodatne opcije";
+        }
+        count++;
+        HiddenField1.Value = count.ToString();
+
+        search_list = (List<Projects>)Session["list_projects"];
+        if (search_list != null)
+            showProjects(search_list);
     }
 
     protected void ButtonReset_Click(object sender, EventArgs e)
@@ -169,4 +197,5 @@ public partial class pregledProjekata : System.Web.UI.Page
                              + "&return=" + HttpContext.Current.Request.Url;
         Response.Redirect("https://www.sandbox.paypal.com/cgi-bin/webscr?" + paypalParams);
     }
+
 }
