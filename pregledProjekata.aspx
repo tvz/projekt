@@ -6,7 +6,7 @@
     <form id="form1" runat="server">
     <div id="pozadina">
     <asp:HiddenField ID="HiddenField1" runat="server" Value="0" />
-    <h2>UNESITE PODATKE O PROJEKTU KOJI ŽELITE PREGLEDATI:</h2>
+    <h2>UNESITE PODATKE O PROJEKTIMA KOJE ŽELITE PREGLEDATI:</h2>
     <div class="poravnanje">
     <asp:Label ID="LabelProjectName" runat="server" Text="Ime projekta" 
             CssClass="labele" BorderStyle="None"></asp:Label><br />
@@ -19,12 +19,12 @@
     <div class="poravnanje" runat="server" id="vrijednost">
     <asp:Label ID="LabelGoal" runat="server" Text="Vrijednost projekta" 
             CssClass="labele" BorderStyle="None"></asp:Label> <br />
-    <asp:TextBox ID="TextBoxGoal" runat="server" CssClass="textbox"></asp:TextBox>
+    <asp:TextBox ID="TextBoxGoalStart" runat="server" CssClass="textbox"></asp:TextBox>
+    - <asp:TextBox ID="TextBoxGoalEnd" runat="server" CssClass="textbox"></asp:TextBox><br />
     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Moguće je unijeti samo brojeve."
-            ValidationExpression="[0-9]+" ControlToValidate="TextBoxGoal" 
+            ValidationExpression="[0-9]+" ControlToValidate="TextBoxGoalStart" 
             CssClass="poruka" Font-Names="Corbel" Font-Size="15px" ForeColor="#D02552" 
-            Height="15px" BorderStyle="None"></asp:RegularExpressionValidator><br />
-            <br />
+            Height="15px" BorderStyle="None" Display="Dynamic"></asp:RegularExpressionValidator><br />
     </div>
             
     <div class="poravnanje" runat="server" id="pocetak">

@@ -193,10 +193,10 @@ public class Projects
         DateTime createdAtDateStart, expirationDateStart, createdAtDateEnd, expirationDateEnd;
         string projectName = searchParameters[0];
         string goal = searchParameters[1];
-        createdAtDateStart = Convert.ToDateTime(searchParameters[2]);
-        createdAtDateEnd = Convert.ToDateTime(searchParameters[3]);
-        expirationDateStart = Convert.ToDateTime(searchParameters[4]);
-        expirationDateEnd = Convert.ToDateTime(searchParameters[5]);
+        createdAtDateStart = Convert.ToDateTime(searchParameters[3]);
+        createdAtDateEnd = Convert.ToDateTime(searchParameters[4]);
+        expirationDateStart = Convert.ToDateTime(searchParameters[5]);
+        expirationDateEnd = Convert.ToDateTime(searchParameters[6]);
         System.Diagnostics.Debug.WriteLine(projectName.Length);
         //moglo je i urednije, al jbg :)
         //buduci da LIKE funkcionira tako da na prazan ulaz vraca sve, mora se koristiti if

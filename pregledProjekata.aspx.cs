@@ -15,7 +15,7 @@ using System.Globalization;
 
 public partial class pregledProjekata : System.Web.UI.Page
 {
-    protected List<Projects> search_list = new List<Projects>();
+    protected static List<Projects> search_list = new List<Projects>();
     protected List<Projects> sorted_list = new List<Projects>();
 
     protected void Page_Load(object sender, EventArgs e)
@@ -74,11 +74,13 @@ public partial class pregledProjekata : System.Web.UI.Page
     protected void ButtonReset_Click(object sender, EventArgs e)
     {
         this.TextBoxProjectName.Text = "";
-        this.TextBoxGoal.Text = "";
+        this.TextBoxGoalStart.Text = "";
+        this.TextBoxGoalEnd.Text = "";
         this.TextBoxCreatedAtStart.Text = "";
         this.TextBoxCreatedAtEnd.Text = "";
         this.TextBoxExpirationDateStart.Text = "";
         this.TextBoxExpirationDateEnd.Text = "";
+        this.LabelSearchResult.Text = "";
     }
 
     /*developer: Ivan
@@ -98,7 +100,8 @@ public partial class pregledProjekata : System.Web.UI.Page
         expirationStart = expirationDateStart.ToShortDateString();
         expirationEnd = expirationDateEnd.ToShortDateString();
 
-        search_list = Projects.searchProjects(TextBoxProjectName.Text, TextBoxGoal.Text, createdAtStart, createdAtEnd, expirationStart, expirationEnd);
+        search_list = Projects.searchProjects(TextBoxProjectName.Text, TextBoxGoalStart.Text, TextBoxGoalEnd.Text,
+            createdAtStart, createdAtEnd, expirationStart, expirationEnd);
 
         showProjects(search_list);
 
@@ -165,10 +168,10 @@ public partial class pregledProjekata : System.Web.UI.Page
                 + "<h3><b>POTREBNO:</b> " + project.goal + " Kunića" + " </h3>"
                 + "<h3><b>SAKUPLJENO:</b> " + project.DonationSum() + " Kunića " + "(" + project.DonationsPercent() + "%)" + "</h3>"
                 + "<h3><b>ZAPOČETO:</b> " +project.created_at.ToShortDateString()+"</h3>"
-                + "<h3 style=\"margin-bottom:-25px;\"><b>DO KRAJA:</b> " + (project.expiration_date - DateTime.Now).Days + " dana" + "</h3>";
-
+                + "<h3 style=\"margin-bottom:-50px;\"><b>DO KRAJA:</b> " + (project.expiration_date - DateTime.Now).Days + " dana" + "</h3>";
+          
             HtmlGenericControl div = new HtmlGenericControl("div");           
-            div.Attributes.Add("class", "proj");
+            div.Attributes.Add("style", "background-color: rgba(255,255,255,0.45);width: 345px;border-radius: 10px;float:left;height: 550px;margin-right: 25px;margin-bottom:4%;");
             div.InnerHtml = html;
             div.Controls.Add(button);
            
