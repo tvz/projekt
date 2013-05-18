@@ -19,6 +19,7 @@ public partial class index : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         ListProjects();
+        Session["list_projects"] = null;
     }
 
     /*developer: Emilio
@@ -90,6 +91,9 @@ public partial class index : System.Web.UI.Page
                              + "&rm=2"; //trenutno koristim return page za dohvat svih vrijabli, poslje cu preko ipn-a
 
         Response.Redirect("https://www.sandbox.paypal.com/cgi-bin/webscr?"+paypalParams);*/
+        HtmlButton button = (HtmlButton)sender;
+        Session["project_id"] = button.ID;
+        Response.Redirect("iznosDonacije.aspx");
 
     }
     private void Postfill() { }

@@ -11,6 +11,7 @@ public partial class noviProjekt : System.Web.UI.Page
         {
             Response.Redirect("index.aspx");
         }*/
+        Session["list_projects"] = null;
         string script = "$(document).ready(function(){$('#" + TextBox_expiration_date.ClientID + "'" + ").datepicker({ dateFormat: 'dd.mm.yy' });});";
         ClientScript.RegisterClientScriptBlock(this.GetType(), "ShowDatepicker", script, true);
      }

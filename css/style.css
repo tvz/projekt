@@ -32,7 +32,7 @@ A.LogLink
 
 A.LogLink:hover
 {
-   color:#d02552
+   color:#d02552;
 }
 
 
@@ -68,7 +68,7 @@ A.NavLink:hover
 
 A.NavLink:active
 {
-   color:#d02552
+   color:#d02552;
 }
 
 /*---------------------*/
@@ -112,6 +112,7 @@ h1
    width: 345px;
    border-radius: 10px; 
    float:left;
+   height: 550px;
    margin-right: 37px;
    margin-bottom:4%;
 }
@@ -151,6 +152,15 @@ h4
     text-align: center;
 }
 
+h5
+{
+  padding-top:2%;
+    padding-bottom:3%;
+    font-family: Calibri;
+    font-size: 15px;
+    font-weight:bold;
+    color: #000;  
+}
 .gumb
 {
     border-radius: 10px;
@@ -227,7 +237,8 @@ img
     padding-bottom: 3%;
     padding-left: 5%;
     padding-right: 5%;
-    margin: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
     font-family: Corbel;
 }
 .zapamtiMe
@@ -261,15 +272,17 @@ img
 }
 
 /*Novi projekt*/
-#noviProj
+#pozadina
 {
-   margin-top: 5%;
-   margin-left: 20%;
+   
+   margin-top: 4%;
+   padding-top:2%;
    padding: 4%;
    background-color: rgba(255,255,255,0.45);
    border-radius: 10px;  
-   height: 400px;
-   width: 600px;
+   
+   width: 500px;
+  margin-left: 23%;
    
 }
 
@@ -283,12 +296,37 @@ img
     height: 150px;
     width: 250px;
     
+    
 }
 
-.linija
+
+
+.poravnanje
 {
-    float: right;
-    padding-right: 5%;
-    padding-top: 3%;
-    padding-bottom: 3%;
+    padding-left: 25%;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom: 5px;
+}
+
+
+/*--------------------*/
+.textbox_suma
+{
+    border-color:#d02552;
+    border-style:solid;
+    border-radius:3px;
+    color:#d02552;
+    border-width:1px;
+    margin-left:20px
+    
+}
+
+
+/*----------------*/
+
+.radioBut
+{
+    margin-bottom:2px;
+    
 }
