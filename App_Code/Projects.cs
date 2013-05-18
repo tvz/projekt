@@ -172,13 +172,13 @@ public class Projects
      descripion: metoda vraca sumu sonacija za projekt*/
     public float DonationSum()
     {
-        return Transactions.PaymentGrossSum(this.id);
+        return Transactions.PaymentAmountSum(this.id);
     }
     /*developer: Emilio
      descripion: metoda vraca postotak sakupljenih donacija u odnosu na project goal*/
     public float DonationsPercent()
     {
-        return (Transactions.PaymentGrossSum(this.id) / this.goal) * 100;
+        return (Transactions.PaymentAmountSum(this.id) / this.goal) * 100;
     }
 
     /*developer: Ivan
