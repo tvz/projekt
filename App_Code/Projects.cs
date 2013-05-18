@@ -192,12 +192,19 @@ public class Projects
         OleDbDataReader reader;
         DateTime createdAtDateStart, expirationDateStart, createdAtDateEnd, expirationDateEnd;
         string projectName = searchParameters[0];
-        string goal = searchParameters[1];
+        int goalStart=0, goalEnd=0;
+
+        if(searchParameters[1].Length>0)
+            goalStart = Convert.ToInt32(searchParameters[1]);
+        if(searchParameters[2].Length>0)
+            goalEnd = Convert.ToInt32(searchParameters[2]);
+
         createdAtDateStart = Convert.ToDateTime(searchParameters[3]);
         createdAtDateEnd = Convert.ToDateTime(searchParameters[4]);
         expirationDateStart = Convert.ToDateTime(searchParameters[5]);
         expirationDateEnd = Convert.ToDateTime(searchParameters[6]);
         System.Diagnostics.Debug.WriteLine(projectName.Length);
+
         //moglo je i urednije, al jbg :)
         //buduci da LIKE funkcionira tako da na prazan ulaz vraca sve, mora se koristiti if
         if (projectName.Length > 0)
@@ -205,20 +212,21 @@ public class Projects
             command.CommandText = "SELECT projects.ID,projects.name,projects.description,projects.goal," +
             "projects.created_at,projects.expiration_date,projects.image_path,users.username FROM" +
             "(projects INNER JOIN users ON projects.user_id = users.ID) WHERE [projects.name] LIKE @name" +
-            " OR [projects.goal]=@goal OR projects.created_at BETWEEN @createdStart AND @createdEnd" +
-            " OR projects.expiration_date BETWEEN @expirationStart AND @expirationEnd OR ([projects.name] LIKE @name AND [projects.goal]=@goal)" +
-            " OR ([projects.name] LIKE @name AND [projects.goal]=@goal AND projects.created_at BETWEEN @createdStart AND @createdEnd)" +
-            " OR ([projects.name] LIKE @name AND [projects.goal]=@goal AND projects.created_at BETWEEN @createdStart AND @createdEnd AND" +
+            " OR [projects.goal] BETWEEN @goalStart AND @goalEnd OR projects.created_at BETWEEN @createdStart AND @createdEnd" +
+            " OR projects.expiration_date BETWEEN @expirationStart AND @expirationEnd OR ([projects.name] LIKE @name AND [projects.goal] BETWEEN @goalStart AND @goalEnd)" +
+            " OR ([projects.name] LIKE @name AND [projects.goal] BETWEEN @goalStart AND @goalEnd AND projects.created_at BETWEEN @createdStart AND @createdEnd)" +
+            " OR ([projects.name] LIKE @name AND [projects.goal] BETWEEN @goalStart AND @goalEnd AND projects.created_at BETWEEN @createdStart AND @createdEnd AND" +
             " projects.expiration_date BETWEEN @expirationStart AND @expirationEnd) OR ([projects.name] LIKE @name AND projects.created_at BETWEEN @createdStart AND @createdEnd)" +
             " OR ([projects.name] LIKE @name AND projects.expiration_date BETWEEN @expirationStart AND @expirationEnd)" +
             " OR ([projects.name] LIKE @name AND projects.created_at BETWEEN @createdStart AND @createdEnd AND projects.expiration_date BETWEEN @expirationStart AND @expirationEnd)" +
-            " OR ([projects.name] LIKE @name AND [projects.goal]=@goal AND projects.created_at BETWEEN @createdStart AND @createdEnd)" +
-            " OR ([projects.goal]=@goal AND projects.created_at BETWEEN @createdStart AND @createdEnd) OR ([projects.goal]=@goal AND" +
-            " projects.expiration_date BETWEEN @expirationStart AND @expirationEnd) OR ([projects.goal]=@goal AND" +
+            " OR ([projects.name] LIKE @name AND [projects.goal] BETWEEN @goalStart AND @goalEnd AND projects.created_at BETWEEN @createdStart AND @createdEnd)" +
+            " OR ([projects.goal] BETWEEN @goalStart AND @goalEnd AND projects.created_at BETWEEN @createdStart AND @createdEnd) OR ([projects.goal] BETWEEN @goalStart AND @goalEnd AND" +
+            " projects.expiration_date BETWEEN @expirationStart AND @expirationEnd) OR ([projects.goal] BETWEEN @goalStart AND @goalEnd AND" +
             " projects.created_at BETWEEN @createdStart AND @createdEnd AND projects.expiration_date BETWEEN @expirationStart AND @expirationEnd) OR" +
             " (projects.created_at BETWEEN @createdStart AND @createdEnd AND projects.expiration_date BETWEEN @expirationStart AND @expirationEnd)";
             command.Parameters.AddWithValue("@name", "%"+projectName+"%");
-            command.Parameters.AddWithValue("@goal", goal);
+            command.Parameters.AddWithValue("@goalStart", goalStart);
+            command.Parameters.AddWithValue("goalEnd", goalEnd);
             command.Parameters.AddWithValue("@createdStart", createdAtDateStart);
             command.Parameters.AddWithValue("@createdEnd", createdAtDateEnd);
             command.Parameters.AddWithValue("@expirationStart", expirationDateStart);
@@ -229,20 +237,21 @@ public class Projects
             command.CommandText = "SELECT projects.ID,projects.name,projects.description,projects.goal," +
             "projects.created_at,projects.expiration_date,projects.image_path,users.username FROM" +
             "(projects INNER JOIN users ON projects.user_id = users.ID) WHERE [projects.name] = @name" +
-            " OR [projects.goal]=@goal OR projects.created_at BETWEEN @createdStart AND @createdEnd" +
-            " OR projects.expiration_date BETWEEN @expirationStart AND @expirationEnd OR ([projects.name] = @name AND [projects.goal]=@goal)" +
-            " OR ([projects.name] = @name AND [projects.goal]=@goal AND projects.created_at BETWEEN @createdStart AND @createdEnd)" +
-            " OR ([projects.name] = @name AND [projects.goal]=@goal AND projects.created_at BETWEEN @createdStart AND @createdEnd AND" +
+            " OR [projects.goal] BETWEEN @goalStart AND @goalEnd OR projects.created_at BETWEEN @createdStart AND @createdEnd" +
+            " OR projects.expiration_date BETWEEN @expirationStart AND @expirationEnd OR ([projects.name] = @name AND [projects.goal] BETWEEN @goalStart AND @goalEnd)" +
+            " OR ([projects.name] = @name AND [projects.goal] BETWEEN @goalStart AND @goalEnd AND projects.created_at BETWEEN @createdStart AND @createdEnd)" +
+            " OR ([projects.name] = @name AND [projects.goal] BETWEEN @goalStart AND @goalEnd AND projects.created_at BETWEEN @createdStart AND @createdEnd AND" +
             " projects.expiration_date BETWEEN @expirationStart AND @expirationEnd) OR ([projects.name] = @name AND projects.created_at BETWEEN @createdStart AND @createdEnd)" +
             " OR ([projects.name] = @name AND projects.expiration_date BETWEEN @expirationStart AND @expirationEnd)" +
             " OR ([projects.name] = @name AND projects.created_at BETWEEN @createdStart AND @createdEnd AND projects.expiration_date BETWEEN @expirationStart AND @expirationEnd)" +
-            " OR ([projects.name] = @name AND [projects.goal]=@goal AND projects.created_at BETWEEN @createdStart AND @createdEnd)" +
-            " OR ([projects.goal]=@goal AND projects.created_at BETWEEN @createdStart AND @createdEnd) OR ([projects.goal]=@goal AND" +
-            " projects.expiration_date BETWEEN @expirationStart AND @expirationEnd) OR ([projects.goal]=@goal AND" +
+            " OR ([projects.name] = @name AND [projects.goal] BETWEEN @goalStart AND @goalEnd AND projects.created_at BETWEEN @createdStart AND @createdEnd)" +
+            " OR ([projects.goal] BETWEEN @goalStart AND @goalEnd AND projects.created_at BETWEEN @createdStart AND @createdEnd) OR ([projects.goal] BETWEEN @goalStart AND @goalEnd AND" +
+            " projects.expiration_date BETWEEN @expirationStart AND @expirationEnd) OR ([projects.goal] BETWEEN @goalStart AND @goalEnd AND" +
             " projects.created_at BETWEEN @createdStart AND @createdEnd AND projects.expiration_date BETWEEN @expirationStart AND @expirationEnd) OR" +
             " (projects.created_at BETWEEN @createdStart AND @createdEnd AND projects.expiration_date BETWEEN @expirationStart AND @expirationEnd)";
             command.Parameters.AddWithValue("@name", projectName);
-            command.Parameters.AddWithValue("@goal", goal);
+            command.Parameters.AddWithValue("@goal", goalStart);
+            command.Parameters.AddWithValue("goalEnd", goalEnd);
             command.Parameters.AddWithValue("@createdStart", createdAtDateStart);
             command.Parameters.AddWithValue("@createdEnd", createdAtDateEnd);
             command.Parameters.AddWithValue("@expirationStart", expirationDateStart);
