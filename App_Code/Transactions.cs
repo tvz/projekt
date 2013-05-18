@@ -63,30 +63,25 @@ public class Transactions
     }
     /*developer:Emilio
      description: nakon sto paypal vrati potvrdu transakcije popunimo transakciju sa ostalim podacima i oznacimo ju kao potvrdenu*/
-    public static bool Postfill(string memo,
-                                string preapproval_key,
+    public static bool Postfill(string preapproval_key,
+                                string memo,
                                 string preapproval_approved, 
                                 DateTime preapproval_starting_date,
-                                DateTime preapproval_ending_date,
-                                string pay_status, 
-                                string pay_sender_email, 
-                                string pay_receiver_email, 
-                                string pay_key)
+                                DateTime preapproval_ending_date, 
+                                string sender_email)
     {
         bool created = false;
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
         OleDbCommand command = new OleDbCommand();
         DateTime updated_at = DateTime.Now;
 
-        command.CommandText = "UPDATE transactions SET updated_at= @updated_at, memo = @memo, preaproval_key = @preaproval_key, pay_status = @pay_status, pay_sender_email = @pay_sender_email, pay_receiver_email = @pay_receiver_email, status= @status, payer_email= @payer_email, pay_key = @pay_key)";
+        command.CommandText = "UPDATE transactions SET updated_at= @updated_at, memo = @memo, preapproval_approved=@approved, sender_email=@sender_email WHERE preapproval_key=@preapproval_key";
         
         command.Parameters.AddWithValue("@updated_at", updated_at.ToShortDateString());
         command.Parameters.AddWithValue("@memo", memo);
         command.Parameters.AddWithValue("@preaproval_key", preapproval_key);
-        command.Parameters.AddWithValue("@pay_status", pay_status);
-        command.Parameters.AddWithValue("@pay_sender_email", pay_sender_email);
-        command.Parameters.AddWithValue("@pay_receiver_email", pay_receiver_email);
-        command.Parameters.AddWithValue("@pay_key", pay_key);
+        command.Parameters.AddWithValue("@preapproval_approved", preapproval_approved);
+        command.Parameters.AddWithValue("@sender_email", sender_email);
         command.Connection = conn;
         try
         {

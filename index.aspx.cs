@@ -70,27 +70,7 @@ public partial class index : System.Web.UI.Page
     {
         /*Uz svaki dinamicki kreirani button vezan je id projekta.
          * Bolje bi bilo da se salju request parametri sa id projekta, ali jednostavnije je bilo implementirati ovako.
-         * Planiram to promijenit u buducnosti.
-        HtmlButton button = (HtmlButton)sender;
-        Projects projekt = Projects.FetchProject(Convert.ToInt32(button.ID));
-        Users user = Users.FetchUser(projekt.user_id);
-        uuid je rand string koji saljemo paypalu kao parametar i koji nam on vraca u potvrdi transakcije. 
-          Time osiguravamo autenticnost potvrde transakcije.
-        //string uuid = FormsAuthentication.HashPasswordForStoringInConfigFile(DateTime.Now.Ticks.ToString(), "SHA1").ToLower(); //zamijenit sa generatorom random stringa
-
-        string paypalParams = "cmd=_donations"
-                             + "&business=tvz@tvz.tvz"//trenutno hardkodirana vrijednost
-                             + "&lc=US"
-                             + "&item_name=" + projekt.name
-                             + "&item_number=" + projekt.id
-                             + "&custom=" + uuid
-                             + "&amount=10"//trenutno hardkodirana vrijednost
-                             + "&currency_code=EUR"
-                             + "&no_note=0"
-                             + "&return="+ HttpContext.Current.Request.Url
-                             + "&rm=2"; //trenutno koristim return page za dohvat svih vrijabli, poslje cu preko ipn-a
-
-        Response.Redirect("https://www.sandbox.paypal.com/cgi-bin/webscr?"+paypalParams);*/
+         * Planiram to promijenit u buducnosti.*/
         HtmlButton button = (HtmlButton)sender;
         Session["project_id"] = button.ID;
         Response.Redirect("iznosDonacije.aspx");

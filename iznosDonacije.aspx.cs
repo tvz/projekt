@@ -15,6 +15,8 @@ public partial class iznosDonacije : System.Web.UI.Page
         h1_ime_projekta.InnerText = project.name;
     }
   
+    /*developer: Emilio
+     description: Metoda dohvaca preapproval key za donaciju i preusmjerava donatora na paypal website da potvrdi donaciju*/
     protected void Button1_Click1(object sender, EventArgs e)
     {
         Projects project = Projects.FetchProject(Convert.ToInt32(Session["project_id"]));
