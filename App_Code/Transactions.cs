@@ -82,12 +82,10 @@ public class Transactions
         
         command.Parameters.AddWithValue("@updated_at", updated_at.ToShortDateString());
         command.Parameters.AddWithValue("@memo", memo);
-        command.Parameters.AddWithValue("@preaproval_key", preaproval_key);
+        command.Parameters.AddWithValue("@preaproval_key", preapproval_key);
         command.Parameters.AddWithValue("@pay_status", pay_status);
         command.Parameters.AddWithValue("@pay_sender_email", pay_sender_email);
         command.Parameters.AddWithValue("@pay_receiver_email", pay_receiver_email);
-        command.Parameters.AddWithValue("@status", status);
-        command.Parameters.AddWithValue("@payer_email", payer_email);
         command.Parameters.AddWithValue("@pay_key", pay_key);
         command.Connection = conn;
         try
