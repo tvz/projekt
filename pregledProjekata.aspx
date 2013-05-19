@@ -5,18 +5,16 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <form id="form1" runat="server">
     <div id="pozadina">
-    <asp:HiddenField ID="HiddenField1" runat="server" Value="0" />
     <h2>UNESITE PODATKE O PROJEKTIMA KOJE ŽELITE PREGLEDATI:</h2>
     <div class="poravnanje">
     <asp:Label ID="LabelProjectName" runat="server" Text="Ime projekta" 
             CssClass="labele" BorderStyle="None"></asp:Label><br />
     <asp:TextBox ID="TextBoxProjectName" runat="server" CssClass="textbox"></asp:TextBox><br />
-    <asp:LinkButton ID="LinkButtonShowOptions" runat="server" 
-            onclick="LinkButtonShowOptions_Click">Prikaži dodatne opcije</asp:LinkButton>
+    <a id="prikazi_opcije" href="">Prikaži dodatne opcije</a>
     <br />
     </div>
     
-    <div class="poravnanje" runat="server" id="vrijednost">
+    <div class="poravnanjeHide" runat="server" id="vrijednost">
     <asp:Label ID="LabelGoal" runat="server" Text="Vrijednost projekta" 
             CssClass="labele" BorderStyle="None"></asp:Label> <br />
     <asp:TextBox ID="TextBoxGoalStart" runat="server" CssClass="textbox"></asp:TextBox>
@@ -27,21 +25,21 @@
             Height="15px" BorderStyle="None" Display="Dynamic"></asp:RegularExpressionValidator><br />
     </div>
             
-    <div class="poravnanje" runat="server" id="pocetak">
+    <div class="poravnanjeHide" runat="server" id="pocetak">
     <asp:Label ID="LabelCreatedAt" runat="server" Text="Datum početka projekta" 
             CssClass="labele" BorderStyle="None"></asp:Label> <br />
     <asp:TextBox ID="TextBoxCreatedAtStart" runat="server" CssClass="textbox"></asp:TextBox>
     - <asp:TextBox ID="TextBoxCreatedAtEnd" runat="server" CssClass="textbox"></asp:TextBox><br /> <br />
     </div>
     
-    <div class="poravnanje" runat="server" id="kraj">
+    <div class="poravnanjeHide" runat="server" id="kraj">
     <asp:Label ID="LabelExpirationDate" runat="server" Text="Datum isteka projekta" 
             CssClass="labele" BorderStyle="None"></asp:Label><br />
     <asp:TextBox ID="TextBoxExpirationDateStart" runat="server" CssClass="textbox"></asp:TextBox>
     - <asp:TextBox ID="TextBoxExpirationDateEnd" runat="server" CssClass="textbox"></asp:TextBox><br /><br />
     </div>
     
-      <div class="poravnanje">
+      <div class="poravnanjeHide" runat="server" id="sortiranje">
         <asp:Label ID="Label2" runat="server" Text="Sortiraj"  CssClass="labele" 
               BorderStyle="None"></asp:Label><br />
         <asp:DropDownList ID="DropDownListSort" runat="server" AutoPostBack="True" 
@@ -62,8 +60,8 @@
             Text="Uzlazno" AutoPostBack="True" Enabled="False" 
             oncheckedchanged="DropDownListSort_SelectedIndexChanged" 
             CssClass="labele" BorderStyle="None" />
-              </div>
-              <asp:Button ID="Button1" runat="server" onclick="ButtonSearch_Click" 
+       </div>
+              <asp:Button ID="ButtonSearch" runat="server" onclick="ButtonSearch_Click" 
         Text="Pretraži" CssClass="gumb2" />
         <asp:Button ID="ButtonReset" runat="server" 
         Text="Obriši" CssClass="gumb2" onclick="ButtonReset_Click" /> <br />

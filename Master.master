@@ -15,6 +15,20 @@
 	<script type="text/javascript"  src="js/jquery-1.9.1.js"></script>
 	<script type="text/javascript"  src="js/jquery-ui-1.10.3.custom.js"></script>
 	<script>
+	    (document).ready(function () {
+	        $("#prikazi_opcije").click(function () {
+	            $(".poravnanjeHide").slideToggle("slow");
+
+	            if ($("#prikazi_opcije").text() == 'Prikaži dodatne opcije') {
+	                $("#prikazi_opcije").text("Sakrij dodatne opcije");
+	            }
+	            else {
+	                $("#prikazi_opcije").text("Prikaži dodatne opcije");
+	            }
+	            return false;
+	        });
+	    });
+
 	    $(function() {
 
 	        $("#button").button();
