@@ -136,7 +136,7 @@ public class Projects
         OleDbCommand command = new OleDbCommand();
         OleDbDataReader reader;
         command.Connection = conn;
-        command.CommandText = "SELECT projects.ID,projects.name, projects.description, projects.goal, projects.expiration_date, projects.image_path, users.username FROM (projects INNER JOIN users ON projects.user_id = users.ID) GROUP BY projects.ID, projects.name, projects.description, projects.goal,projects.expiration_date, projects.image_path, users.username";
+        command.CommandText = "SELECT projects.ID,projects.name, projects.description, projects.goal, projects.expiration_date, projects.image_path, projects.video_path, users.username FROM (projects INNER JOIN users ON projects.user_id = users.ID) GROUP BY projects.ID, projects.name, projects.description, projects.goal,projects.expiration_date, projects.image_path, projects.video_path, users.username";
 
         List<Projects> projects_list = new List<Projects>();
         try
@@ -153,6 +153,7 @@ public class Projects
                 project.goal = Convert.ToSingle(reader.GetValue(++column));
                 project.expiration_date = Convert.ToDateTime(reader.GetValue(++column));
                 project.image_path = reader.GetValue(++column).ToString();
+                project.video_path = reader.GetValue(++column).ToString();
                 project.project_owner_username = reader.GetValue(++column).ToString();
                 projects_list.Add(project);
             }

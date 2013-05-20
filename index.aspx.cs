@@ -41,12 +41,20 @@ public partial class index : System.Web.UI.Page
             button.InnerText = "DONIRAJ";
             button.ID = project.id.ToString();
             button.ServerClick += new EventHandler(MakeDonation);
-            html = "<h2>" + project.name + "</h2>"
-                + "<img  src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> "
-                + "<h3><b>AUTOR PROJEKTA:</b> " + project.project_owner_username + "</h3>"
-                + "<h3><b>OPIS PROJEKTA:</b> " + project.description + " </h3>"
-                + "<h3><b>SAKUPLJENO:</b> " + project.DonationSum() + " Kunića " + "(" + project.DonationsPercent() + "%)" + "</h3>"
-                + "<h3><b>DO KRAJA:</b> " + (project.expiration_date - DateTime.Now).Days + "Dana" + "</h3>";
+            if (project.video_path != null)
+            {
+                html = "<h2>" + project.name + "</h2>"
+                    + "<iframe width='320' height='180' src='"+project.video_path +"'frameborder='0' allowfullscreen></iframe>";
+            }
+            else
+            {
+                html = "<h2>" + project.name + "</h2>"
+                    + "<img  src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> ";
+            }
+            html+="<h3><b>AUTOR PROJEKTA:</b> " + project.project_owner_username + "</h3>"
+            + "<h3><b>OPIS PROJEKTA:</b> " + project.description + " </h3>"
+            + "<h3><b>SAKUPLJENO:</b> " + project.DonationSum() + " Kunića " + "(" + project.DonationsPercent() + "%)" + "</h3>"
+            + "<h3><b>DO KRAJA:</b> " + (project.expiration_date - DateTime.Now).Days + "Dana" + "</h3>";
 
             HtmlGenericControl div = new HtmlGenericControl("div");
             div.Attributes.Add("class", "proj");
@@ -66,7 +74,7 @@ public partial class index : System.Web.UI.Page
     /*developer: Emilio
      description: metoda salje donaciju preko paypala
      metoda ce se u buducnosti izmijeniti i bolje strukturirati, sad sluzi samo kao test.*/
-    private void MakeDonation (object sender, EventArgs e)
+    private void MakeDonation(object sender, EventArgs e)
     {
         /*Uz svaki dinamicki kreirani button vezan je id projekta.
          * Bolje bi bilo da se salju request parametri sa id projekta, ali jednostavnije je bilo implementirati ovako.

@@ -45,7 +45,6 @@ public class IPN : IHttpHandler {
         {
             NameValueCollection args = HttpUtility.ParseQueryString(strResponse_copy);
             string approved = args["approved"];
-            string preapproval_key = args["preapproval_key"];
             if (approved.Equals("true"))
             {
                 /*upisivanje u bazu se vrsi u zasebnom threadu. Postoji mogucnost da ipn handler propusti ipn poruku ukoliko se vise donacija 

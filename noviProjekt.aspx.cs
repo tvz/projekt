@@ -23,12 +23,14 @@ public partial class noviProjekt : System.Web.UI.Page
         DateTime expiration_date;
         DateTime.TryParseExact(TextBox_expiration_date.Text, "dd/MM/yyyy", null, DateTimeStyles.None, out expiration_date);
         /*id korisnika je trenutno hardkodiran ali kad rijesimo userpage onda cu to promijeniti*/
+        string video_path = TextBox_video_path.Text.Replace("watch?v=", "embed/");
+
         bool created = Projects.Create(TextBox_name.Text,
                          TextBox_description.Text,
                          Convert.ToSingle(TextBox_goal.Text),
                          expiration_date,
                          TextBox_image_path.Text,
-                         TextBox_video_path.Text, 1);
+                         video_path, 1);
         if(created)
             Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "Info", "alert('Uspješno ste kreirali novi projekt!');", true);
         else
