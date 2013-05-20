@@ -41,12 +41,12 @@ public partial class index : System.Web.UI.Page
             button.InnerText = "DONIRAJ";
             button.ID = project.id.ToString();
             button.ServerClick += new EventHandler(MakeDonation);
-            if (project.video_path != null)
+            if (project.video_path.Length > 0)
             {
                 html = "<h2>" + project.name + "</h2>"
                     + "<iframe width='320' height='180' src='"+project.video_path +"'frameborder='0' allowfullscreen></iframe>";
             }
-            else
+            else 
             {
                 html = "<h2>" + project.name + "</h2>"
                     + "<img  src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> ";
