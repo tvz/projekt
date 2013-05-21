@@ -5,6 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <form id="form1" runat="server">
     <div id="pozadina">
+    <asp:HiddenField ID="HiddenField1" runat="server" Value="1" />  
     <h2>UNESITE PODATKE O PROJEKTIMA KOJE ŽELITE PREGLEDATI:</h2>
     <div class="poravnanje">
     <asp:Label ID="LabelProjectName" runat="server" Text="Ime projekta" 
