@@ -7,11 +7,10 @@ body {
 
 #logo
 {
-    font-family: 'Chango', cursive;
-    font-size: 40pt;
-    color: #282828;
+    height: 70px;
+    width: 300px;
     float:left;
-    text-transform: uppercase;
+    
 }
 
 /* Ragistracija - prijava*/
@@ -46,6 +45,7 @@ span
 /*glavna navigacija*/
 #navigacija
 {
+    margin-top: 12%;
     float: right;
     text-transform: uppercase;
     width: 755px;
@@ -82,12 +82,12 @@ hr
 
 .prva_lin
 {
-   margin-top:30px;
+   margin-top:200px;
 }
 
 .druga_lin
 {
-    margin-top:630px; 
+    margin-top:690px; 
 }
 
 /*--------------------*/
@@ -135,6 +135,7 @@ h2
 
 h3
 {
+    max-width: 430px;
     padding-left:5%;
     padding-right:5%;
     font-family: Calibri;

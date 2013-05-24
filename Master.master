@@ -81,8 +81,11 @@
 </head>
 <body>
    
+    
+   
     <div id="logo">
-    Logo
+   <asp:Image ID="Image1" runat="server" ImageUrl="~/img/logo.png" Height="133px" 
+            Width="434px" />
     </div>
     <div id="nav_login">  
         <asp:HyperLink ID="RegLink" Font-Underline="False" runat="server" 
@@ -92,6 +95,7 @@
     </div>
     
     <br />
+    
     <br />
     <br />
     <br />
@@ -113,5 +117,6 @@
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>
+  
 </body>
 </html>
