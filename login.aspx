@@ -149,7 +149,7 @@
                                 <asp:RequiredFieldValidator ID="AnswerRequired" runat="server" 
                                     ControlToValidate="Answer" ErrorMessage="Sigurnosni odgovor je obavezan." 
                                     ToolTip="Security answer is required." ValidationGroup="CreateUserWizard1" 
-                                    ForeColor="#D02552" BorderStyle="None">*</asp:RequiredFieldValidator>
+                                    ForeColor="#D02552" BorderStyle="None" Width="16px">*</asp:RequiredFieldValidator>
                             </td>
                         </tr>
                         <tr>

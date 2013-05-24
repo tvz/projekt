@@ -39,7 +39,8 @@ public partial class login : System.Web.UI.Page
     {
         string info;
         info = Users.register(CreateUserWizard1.UserName,
-            CreateUserWizard1.Password, CreateUserWizard1.Email);
+            CreateUserWizard1.Password, CreateUserWizard1.Question, 
+            CreateUserWizard1.Answer ,CreateUserWizard1.Email);
         CreateUserWizard1.CompleteSuccessText = "" + info.Substring(0, info.Length - 1);
 
         if (info.Substring(info.Length - 1, 1) == "0")

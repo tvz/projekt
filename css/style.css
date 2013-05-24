@@ -48,7 +48,6 @@ span
 {
     float: right;
     text-transform: uppercase;
-    padding-top:5%;
     width: 755px;
 }
 
@@ -83,7 +82,7 @@ hr
 
 .prva_lin
 {
-   margin-top:110px;
+   margin-top:30px;
 }
 
 .druga_lin

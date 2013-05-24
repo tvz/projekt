@@ -20,7 +20,6 @@ public class Projects
     public DateTime updated_at;
     public int user_id;
 
-
     /*sve ostale varijable*/
     public string project_owner_username;
 
@@ -30,6 +29,7 @@ public class Projects
         // TODO: Add constructor logic here
         //
     }
+
     public Projects(string name, string description, float goal, DateTime expiration_date, string image_path, string video_path, int user_id)
     {
         this.name = name;

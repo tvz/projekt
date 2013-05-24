@@ -10,7 +10,7 @@
     <link href='http://fonts.googleapis.com/css?family=Chango&subset=latin,latin-ext' rel='stylesheet' type='text/css'/>
     
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>  
-
+    <link rel="icon" type="image/png" href="css/custom-theme/images/zicalica_favicon.png">
     <link href="css/custom-theme/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
 	<script type="text/javascript"  src="js/jquery-1.9.1.js"></script>
 	<script type="text/javascript"  src="js/jquery-ui-1.10.3.custom.js"></script>
@@ -84,25 +84,19 @@
     <div id="logo">
     Logo
     </div>
-    <div id="nav_login">
+    <div id="nav_login">  
         <asp:HyperLink ID="RegLink" Font-Underline="False" runat="server" 
             NavigateUrl="~/login.aspx" CssClass="LogLink"><span>Registracija</span></asp:HyperLink>
         <asp:HyperLink ID="LogInLink" Font-Underline="False" runat="server" CssClass="LogLink" 
             NavigateUrl="~/login.aspx">Prijava</asp:HyperLink>
     </div>
     
-    
-    
-    
     <br />
     <br />
     <br />
     <br />
     <br />
-    
- 
-    
-    
+     
     <div id="navigacija">
         <asp:HyperLink ID="IndexLink" Font-Underline="False" runat="server" 
             NavigateUrl="~/index.aspx" CssClass="NavLink">Početna</asp:HyperLink>

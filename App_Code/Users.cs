@@ -129,9 +129,9 @@ public class Users
     /*
     developer: Ivan
     */
-    public static string register(string username, string password, string email)
+    public static string register(string username, string password, string question, string answer, string email)
     {
-        string prehashed_pass, hashed_pass,pass_salt, created, updated, info = "", link;
+        string prehashed_pass, hashed_pass, pass_salt, hashed_answer, created, updated, info = "";
         bool userExists = false;
         int user_id;
         System.Random rnd = new System.Random();
@@ -163,14 +163,17 @@ public class Users
                 pass_salt = FormsAuthentication.HashPasswordForStoringInConfigFile(System.DateTime.Now.ToString(), "SHA1").ToLower();
                 prehashed_pass = password + pass_salt;
                 hashed_pass = FormsAuthentication.HashPasswordForStoringInConfigFile(prehashed_pass, "SHA1").ToLower();
+                hashed_answer = FormsAuthentication.HashPasswordForStoringInConfigFile(answer, "SHA1").ToLower();
 
                 created = System.DateTime.Now.Date.ToShortDateString();
                 updated = System.DateTime.Now.Date.ToShortDateString();
 
-                command.CommandText = "INSERT INTO users ([username], [password_hash], [pass_salt], [email], [created_at], [updated_at]) VALUES (@username, @password_hash, @pass_salt, @email, @created_at, @updated_at)";
+                command.CommandText = "INSERT INTO users ([username], [password_hash], [pass_salt], [sec_question], [sec_answer], [email], [created_at], [updated_at]) VALUES (@username, @password_hash, @pass_salt, @sec_question, @sec_answer, @email, @created_at, @updated_at)";
                 command.Parameters.AddWithValue("@username", username);
                 command.Parameters.AddWithValue("@password_hash", hashed_pass);
                 command.Parameters.AddWithValue("@pass_salt", pass_salt);
+                command.Parameters.AddWithValue("@sec_question", question);
+                command.Parameters.AddWithValue("@sec_answer", hashed_answer);
                 command.Parameters.AddWithValue("@email", email);
                 command.Parameters.AddWithValue("@created_at", created);
                 command.Parameters.AddWithValue("@updated_at", updated);
@@ -189,7 +192,7 @@ public class Users
                 conn.Close();
                 command.Parameters.Clear();
 
-                command.CommandText = "INSERT INTO confirmation VALUES(@user_id, @confirm_number)";
+                command.CommandText = "INSERT INTO confirmation ([user_ID], [confirmation_number]) VALUES(@user_id, @confirm_number)";
                 command.Parameters.AddWithValue("@user_id", user_id);
                 command.Parameters.AddWithValue("@confirm_number", confirm_number);
                 command.Connection = conn;
@@ -197,14 +200,15 @@ public class Users
                 command.ExecuteNonQuery();
                 conn.Close();
 
-                sendMail("www.xxxxx.hr/xxxxx.aspx?confirmID="+confirm_number, email);
+                //sendMail("www.xxxxx.hr/xxxxx.aspx?confirmID="+confirm_number, email);
 
                 info = "Registracija je uspješno obavljena.\nMolimo provjerite pretinac e-mail pošte i potvrdite registraciju.1";
             }
-            catch {}
+            catch { }
             finally
             {
                 command.Parameters.Clear();
+                command.Dispose();
                 conn.Close();
             }
         }
