@@ -13,12 +13,42 @@ body {
     
 }
 
-/* Ragistracija - prijava*/
+/* Ragistracija - prijava - trazilica*/
 #nav_login
 {
     float: right;
     padding-top: 3.2%;
     margin:0;
+}
+
+#search img
+{
+    height:17px;
+    width:17px;
+    position:relative; 
+    top:-85px;
+    left:-5px;
+}
+
+#search
+{
+    width:150px;
+    height:20px;
+    position:relative;
+    left:770px;
+    top:58px;
+    border-radius: 8px;
+    background-color: White;
+}
+
+#searchBox
+{
+    border:none;
+    width: 125px;
+    height:15px;
+    position:relative;
+    top:-69px;
+    left:20px;
 }
 
 A.LogLink

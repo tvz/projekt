@@ -17,6 +17,8 @@ public partial class pregledProjekata : System.Web.UI.Page
 {
     protected static List<Projects> search_list = new List<Projects>();
     protected List<Projects> sorted_list = new List<Projects>();
+    string searchParamName;
+    bool searchBoxUsed = false;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -28,6 +30,12 @@ public partial class pregledProjekata : System.Web.UI.Page
         ClientScript.RegisterClientScriptBlock(this.GetType(), "ShowCreatedAtEndpicker", scriptCreatedAtEnd, true);
         string scriptExpirationEnd = "$(document).ready(function(){$('#" + TextBoxExpirationDateEnd.ClientID + "'" + ").datepicker({ dateFormat: 'dd.mm.yy' });});";
         ClientScript.RegisterClientScriptBlock(this.GetType(), "ShowExpirationDateEndpicker", scriptExpirationEnd, true);
+        if (Request["searchBox"] != null)
+        {
+            searchParamName = Request["searchBox"].ToString();
+            searchBoxUsed = true;
+            ButtonSearch_Click(sender, e);
+        }
     }
 
     protected void Page_Init(object sender, EventArgs e)
@@ -72,7 +80,14 @@ public partial class pregledProjekata : System.Web.UI.Page
         expirationStart = expirationDateStart.ToShortDateString();
         expirationEnd = expirationDateEnd.ToShortDateString();
 
-        search_list = Projects.searchProjects(TextBoxProjectName.Text, TextBoxGoalStart.Text, TextBoxGoalEnd.Text,
+        if (searchBoxUsed == true)
+        {
+            search_list = Projects.searchProjects(searchParamName, TextBoxGoalStart.Text, TextBoxGoalEnd.Text,
+            createdAtStart, createdAtEnd, expirationStart, expirationEnd);
+            this.TextBoxProjectName.Text = searchParamName;
+        }
+        else
+            search_list = Projects.searchProjects(TextBoxProjectName.Text, TextBoxGoalStart.Text, TextBoxGoalEnd.Text,
             createdAtStart, createdAtEnd, expirationStart, expirationEnd);
 
         showProjects(search_list);
