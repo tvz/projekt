@@ -39,6 +39,9 @@ body {
     top:58px;
     border-radius: 8px;
     background-color: White;
+    border-color:#d02552;
+    border-style:solid;
+    border-width: 1px;
 }
 
 #searchBox
@@ -47,7 +50,7 @@ body {
     width: 125px;
     height:15px;
     position:relative;
-    top:-69px;
+    top:-68px;
     left:20px;
 }
 

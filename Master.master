@@ -40,6 +40,15 @@
 	            }
 	            return false;
 	        });
+
+	        $('#searchBox').focus(function (e) {
+	            if (e.target.value == e.target.defaultValue)
+	                e.target.value = '';
+	        });
+	        $('#searchBox').blur(function (e) {
+	            if (e.target.value == '')
+	                e.target.value = e.target.defaultValue;
+	        });
 	    });
 
 	    $(function() {
@@ -89,7 +98,7 @@
     </div>
     <div id="search">
     <form method="POST" action="pregledProjekata.aspx">
-    <input id="searchBox" name="searchBox" type="text" autocomplete="off" /> 
+    <input id="searchBox" name="searchBox" type="text" value="Pretraži projekte..." autocomplete="off" /> 
     <img alt="" src="img/Search-icon.png" />
        </form>
     </div>
