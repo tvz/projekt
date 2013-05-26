@@ -14,7 +14,29 @@
     <link href="css/custom-theme/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
 	<script type="text/javascript"  src="js/jquery-1.9.1.js"></script>
 	<script type="text/javascript"  src="js/jquery-ui-1.10.3.custom.js"></script>
-	<script type="text/javascript">
+    <script type="text/javascript">
+        function popup(url) {
+            var width = 500;
+            var height = 300;
+            var left = (screen.width - width) / 2;
+            var top = (screen.height - height) / 2;
+            var params = 'width=' + width + ', height=' + height;
+            params += ', top=' + top + ', left=' + left;
+            params += ', toolbar=no';
+            params += ', menubar=no';
+            params += ', resizable=no';
+            params += ', directories=no';
+            params += ', scrollbars=no';
+            params += ', status=no';
+            params += ', location=no';
+            newwin = window.open(url, 'd', params);
+            if (window.focus) {
+                newwin.focus()
+            }
+            return false;
+        }
+    </script>
+	<script>
 	    $(document).ready(function () {
 	        var x = $("[id$=_HiddenField1]").val();
 	        if (x % 2 == 0) {
