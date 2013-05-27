@@ -8,7 +8,7 @@ using System.Configuration;
 using System.Data.OleDb;
 using System.Net.Mail;
 using System.Web.Security;
-using System.Collections.Generic
+using System.Collections.Generic;
 using System.Text;
 
 public class Users
