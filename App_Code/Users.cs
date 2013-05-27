@@ -293,6 +293,7 @@ public class Users
                 command.CommandText = "DELETE FROM confirmation WHERE user_ID=@user_ID";
                 command.Connection = conn;
                 command.Parameters.AddWithValue("@user_ID", id);
+                command.ExecuteNonQuery();
             }
         }
         catch{}
