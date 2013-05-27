@@ -48,15 +48,11 @@ public class Projects
         bool created = false;
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
         OleDbCommand command = new OleDbCommand();
-        DateTime created_at = DateTime.Now; 
-        DateTime updated_at = DateTime.Now; 
-        command.CommandText = "INSERT INTO projects ([name], [description], [goal], [expiration_date], [created_at], [updated_at], [image_path], [video_path], [user_id]) VALUES (@name, @description, @goal, @expiration_date, @created_at, @updated_at, @image_path, @video_path, @user_id)";
+        command.CommandText = "INSERT INTO projects ([name], [description], [goal], [expiration_date], [created_at], [updated_at], [image_path], [video_path], [user_id], [enabled]) VALUES (@name, @description, @goal, @expiration_date, NOW(), NOW(), @image_path, @video_path, @user_id, 'False')";
         command.Parameters.AddWithValue("@name", name);
         command.Parameters.AddWithValue("@description", description);
         command.Parameters.AddWithValue("@goal", goal);
         command.Parameters.AddWithValue("@expiration_date", expiration_date.ToShortDateString());
-        command.Parameters.AddWithValue("@created_at", created_at.ToShortDateString());
-        command.Parameters.AddWithValue("@updated_at", updated_at.ToShortDateString());
         command.Parameters.AddWithValue("@image_path", image_path);
         command.Parameters.AddWithValue("@video_path", video_path);
         command.Parameters.AddWithValue("@user_id", user_id);
@@ -64,8 +60,12 @@ public class Projects
         try
         {
             conn.Open();
+            command.Transaction = conn.BeginTransaction();
             if (command.ExecuteNonQuery() == 1)
+            {
                 created = true;
+                command.Transaction.Commit();
+            }
             else
             {
                 /*nisam siguran da li treba rollback ako se unosi samo jedan red ali nek tu bude za svaki slucaj*/
@@ -74,6 +74,7 @@ public class Projects
         }
         catch
         {
+            command.Transaction.Rollback();
         }
         finally
         {
@@ -82,6 +83,42 @@ public class Projects
         }
         return created;
     }
+
+    /*developer: Emilio
+     description: metoda briše projekt.*/
+    public static bool Delete(int id)
+    {
+        bool obrisan = false;
+        OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
+        OleDbCommand command = new OleDbCommand();
+        command.CommandText = "DELETE FROM projects WHERE ID = @id";
+        command.Parameters.AddWithValue("@id", id);
+        command.Connection = conn;
+        try
+        {
+            conn.Open();
+            command.Transaction = conn.BeginTransaction();
+            if (command.ExecuteNonQuery() == 1)
+            {
+                obrisan = true;
+                command.Transaction.Commit();
+            }
+            else
+                command.Transaction.Rollback();
+        }
+        catch
+        {
+            command.Transaction.Rollback();
+        }
+        finally
+        {
+            command.Dispose();
+            conn.Close();
+        }
+        return obrisan;
+    }
+
+
 
     /*developer:Emilio
      description: metoda dohvaca jedan project iz baze*/
