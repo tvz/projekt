@@ -248,7 +248,7 @@ public class Projects
         if (projectName.Length > 0)
         {
             command.CommandText = "SELECT projects.ID,projects.name,projects.description,projects.goal," +
-            "projects.created_at,projects.expiration_date,projects.image_path,users.username FROM" +
+            "projects.created_at,projects.expiration_date,projects.image_path,projects.video_path,users.username FROM" +
             "(projects INNER JOIN users ON projects.user_id = users.ID) WHERE [projects.name] LIKE @name" +
             " OR [projects.goal] BETWEEN @goalStart AND @goalEnd OR projects.created_at BETWEEN @createdStart AND @createdEnd" +
             " OR projects.expiration_date BETWEEN @expirationStart AND @expirationEnd OR ([projects.name] LIKE @name AND [projects.goal] BETWEEN @goalStart AND @goalEnd)" +
@@ -273,7 +273,7 @@ public class Projects
         else
         {
             command.CommandText = "SELECT projects.ID,projects.name,projects.description,projects.goal," +
-            "projects.created_at,projects.expiration_date,projects.image_path,users.username FROM" +
+            "projects.created_at,projects.expiration_date,projects.image_path,projects.vide_path,users.username FROM" +
             "(projects INNER JOIN users ON projects.user_id = users.ID) WHERE [projects.name] = @name" +
             " OR [projects.goal] BETWEEN @goalStart AND @goalEnd OR projects.created_at BETWEEN @createdStart AND @createdEnd" +
             " OR projects.expiration_date BETWEEN @expirationStart AND @expirationEnd OR ([projects.name] = @name AND [projects.goal] BETWEEN @goalStart AND @goalEnd)" +
@@ -311,6 +311,7 @@ public class Projects
                 project.created_at = Convert.ToDateTime(reader.GetValue(++column));
                 project.expiration_date = Convert.ToDateTime(reader.GetValue(++column));
                 project.image_path = reader.GetValue(++column).ToString();
+                project.video_path = reader.GetValue(++column).ToString();
                 project.project_owner_username = reader.GetValue(++column).ToString();
                 search_list.Add(project);
             }
