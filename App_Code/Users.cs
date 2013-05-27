@@ -269,7 +269,7 @@ public class Users
      * description: metoda prima confirm_number preuzet iz url-a (obradjeno na stranici na koju ce url voditi)
      * na temelju te varijable aktivira korisnika
      */
-    public static void activaction(int confirm_url)
+    public static void activaction(int confirmNumFromUrl)
     {
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
         OleDbCommand command = new OleDbCommand();
@@ -279,23 +279,29 @@ public class Users
         {
             command.Connection = conn;
             command.CommandText = "SELECT user_ID FROM confirmation WHERE confirm_number=@confirm_number";
-            command.Parameters.AddWithValue("@confirm_number", confirm_url);
+            command.Parameters.AddWithValue("@confirm_number", confirmNumFromUrl);
             conn.Open();
             id = System.Int32.Parse(command.ExecuteScalar().ToString());
             conn.Close();
             command.Parameters.Clear();
 
-            //naravno, field1 il kak ce se vec zvat ce imat odredjen atribut
-            command.CommandText = "UPDATE status SET Field1='' WHERE ID=@id";
+            command.CommandText = "UPDATE users SET Enabled='True' WHERE ID=@id";
             command.Parameters.AddWithValue("@id", id);
             conn.Open();
-            command.ExecuteNonQuery();
+            if (command.ExecuteNonQuery()==1)
+            {
+                command.CommandText = "DELETE FROM confirmation WHERE user_ID=@user_ID";
+                command.Connection = conn;
+                command.Parameters.AddWithValue("@user_ID", id);
+                command.ExecuteNonQuery();
+            }
         }
         catch{}
         finally
         {
             conn.Close();
             command.Parameters.Clear();
+            command.Dispose();
         }
     }
 

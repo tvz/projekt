@@ -69,6 +69,7 @@
         <asp:Label ID="LabelSearchResult" runat="server" Text=""
          CssClass="labele" BorderStyle="None"></asp:Label><br /> <br />
    </div>
+   <hr />
   <br />
        <div runat="server" id="projekti_search">
     </div>
