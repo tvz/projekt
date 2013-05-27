@@ -8,7 +8,8 @@ using System.Configuration;
 using System.Data.OleDb;
 using System.Net.Mail;
 using System.Web.Security;
-using System.Collections.Generic;
+using System.Collections.Generic
+using System.Text;
 
 public class Users
 {
@@ -245,7 +246,7 @@ public class Users
                 command.ExecuteNonQuery();
                 conn.Close();
 
-                //sendMail("www.xxxxx.hr/xxxxx.aspx?confirmID="+confirm_number, email);
+                sendMail("http://www.zicalica.hr/user.aspx?confirmID="+confirm_number, email, "activation");
 
                 info = "Registracija je uspješno obavljena.\nMolimo provjerite pretinac e-mail pošte i potvrdite registraciju.1";
             }
@@ -299,23 +300,148 @@ public class Users
     }
 
     /*developer: Ivan
-     * description: metoda salje mail korisniku s linkom za aktivaciju racuna
+     * description: metoda salje mail korisniku s linkom za aktivaciju racuna 
+     * ili s privremenim passwordom
      */
-    private static void sendMail(string link, string email)
+    public static void sendMail(string link, string email, string identificator)
     {
         MailMessage msg = new MailMessage();
         //kad se odlucimo za mail, onda ce SmtpClient konstruktor imat ispravan atribut
         SmtpClient smtp = new SmtpClient("");
-        
-        try
-        {       
-            //trebamo se dogovorit oko maila i stranice na koju ce link usmjeravati
-            //pretpostavljam da cemo imat user stranicu, cisto je logicki, pa bu link vjerojatno na nju
+
+        if (identificator == "activation")
             msg.Subject = "Potvrda registracije";
-            msg.Body = ""+link;
+        else if (identificator == "pass")
+            msg.Subject = "Privremena lozinka";
+        else msg.Subject = "Povrat korisničkog imena";
+
+        try
+        {
+            /*trebamo se dogovorit oko maila i stranice na koju ce link usmjeravati
+            link ce ic na user stranicu ukoliko se radi o aktivaciji
+            u suprotnom ce sadrzavati privremeni pass i link prema loginu
+            msg.Body = "" + link;
             msg.To.Add(email);
-            smtp.Send(msg);
+            smtp.Send(msg);*/
         }
         catch { }
+    }
+
+    /*developer: Ivan
+     * description: metoda sluzi za kreiranje privremene lozinke u slucaju zaborava
+     */
+    public static string checkAndGeneratePassword(string username, string email, string answer)
+    {
+        OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
+        OleDbCommand command = new OleDbCommand();
+        OleDbCommand commandPass = new OleDbCommand();
+        string status = null, tempHashPass, pass_salt, tempPrehashedPass, hashed_answer;
+        StringBuilder temp_password = new StringBuilder();
+        Random random = new Random();
+
+        //ako se salje email
+        if (answer == null)
+        {
+            command.CommandText = "SELECT sec_question FROM users WHERE email=@email";
+            command.Parameters.AddWithValue("@email", email);
+            command.Connection = conn;
+            try
+            {
+                conn.Open();
+                status = command.ExecuteScalar().ToString();
+            }
+            catch { }
+            finally
+            {
+                conn.Close();
+                command.Dispose();
+            }
+        }
+        //ako se salje odgovor 
+        else
+        {
+            System.Diagnostics.Debug.WriteLine(email + " " + answer);
+            hashed_answer = FormsAuthentication.HashPasswordForStoringInConfigFile(answer, "SHA1");
+            command.CommandText = "SELECT username FROM users WHERE sec_answer=@sec_answer AND email=@email";
+            command.Parameters.AddWithValue("@sec_answer", hashed_answer);
+            command.Parameters.AddWithValue("@email", email);
+            commandPass.CommandText = "UPDATE users SET [password_hash]=@password_hash, [pass_salt]=@pass_salt WHERE email=@email";
+            commandPass.Connection = conn;
+            command.Connection = conn;
+
+            try
+            {
+                conn.Open();
+                status = command.ExecuteScalar().ToString();
+
+                //generiranje privremene lozinke
+                if (status != null)
+                {
+                    pass_salt = FormsAuthentication.HashPasswordForStoringInConfigFile(System.DateTime.Now.ToString(), "SHA1").ToLower();
+                    char ch;
+                    for (int i = 0; i < 4; i++)
+                    {
+                        ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 65)));
+                        temp_password.Append(ch);
+                        temp_password.Append(random.Next(0, 99));
+                    }
+                    System.Diagnostics.Debug.WriteLine(temp_password.ToString());
+                    tempPrehashedPass = temp_password.ToString() + pass_salt;
+                    tempHashPass = FormsAuthentication.HashPasswordForStoringInConfigFile(tempPrehashedPass, "SHA1").ToLower();
+
+                    commandPass.Parameters.AddWithValue("@password_hash", tempHashPass);
+                    commandPass.Parameters.AddWithValue("@pass_salt", pass_salt);
+                    commandPass.Parameters.AddWithValue("@email", email);
+                    commandPass.ExecuteNonQuery();
+
+                    string msgBody = temp_password.ToString() + "\nlink prema loginu" +
+                        "\nNakon prijave, molimo Vas da promijenite lozinku.";
+                    sendMail(msgBody, email, "pass");
+                }
+            }
+            catch { }
+            finally
+            {
+                conn.Close();
+                command.Dispose();
+                commandPass.Dispose();
+            }
+        }
+        return status;
+    }
+
+    /*developer: Ivan
+     * description: metoda vraca korisnicko ime
+     */
+    public static bool checkAndGiveUsername(string email)
+    {
+        string username = null;
+        bool status = false;
+        OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
+        OleDbCommand command = new OleDbCommand();
+
+        command.CommandText = "SELECT username FROM users WHERE email=@email";
+        command.Parameters.AddWithValue("@email", email);
+        command.Connection = conn;
+
+        try
+        {
+            conn.Open();
+            username = Convert.ToString(command.ExecuteScalar());
+            if (username != null)
+            {
+                status = true;
+                string msgBody = "Vaše korisničko ime je: " + username;
+                sendMail(msgBody, email, "username");
+            }
+        }
+        catch { }
+        finally
+        {
+            conn.Close();
+            command.Dispose();
+        }
+
+        return status;
     }
 }
