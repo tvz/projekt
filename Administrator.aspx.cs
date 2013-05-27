@@ -22,6 +22,8 @@ public partial class Administrator : System.Web.UI.Page
             DropDownList2_SelectedIndexChanged(new object(), new EventArgs());
         }
     }
+    /*Emilio
+     metoda izvlaci projekte iz baze i puni gridview ovisno o izboru u dropdownu*/
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
     {
         SqlDataSource1.ConnectionString = ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString;
@@ -41,6 +43,8 @@ public partial class Administrator : System.Web.UI.Page
         }
     }
 
+    /*Emilio
+     metoda vezana uz button update*/
     protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
         int index = e.RowIndex;
@@ -57,12 +61,17 @@ public partial class Administrator : System.Web.UI.Page
         SqlDataSource1.UpdateParameters.Add("@id", GridView1.DataKeys[e.RowIndex]["ID"].ToString());
         DropDownList1_SelectedIndexChanged(new object(), new EventArgs());
     }
+
+    /*Emilio
+     metoda vezana uz button edit*/
     protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
     {
         GridView1.EditIndex = e.NewEditIndex;
         DropDownList1_SelectedIndexChanged(new object(), new EventArgs());
     }
 
+    /*Emilio
+     metoda vezana uz button delete*/
     protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
 
@@ -71,10 +80,15 @@ public partial class Administrator : System.Web.UI.Page
         SqlDataSource1.DeleteParameters.Add("@id", GridView1.DataKeys[e.RowIndex]["ID"].ToString());
         DropDownList1_SelectedIndexChanged(new object(), new EventArgs());
     }
+    /*Emilio
+     metoda vezana uz button cancel*/
     protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
     {
         DropDownList1_SelectedIndexChanged(new object(), new EventArgs());
     }
+
+    /*Emilio
+     metoda izvlaci korisnike iz baze i puni gridview ovisno o izboru u dropdownu*/
     protected void DropDownList2_SelectedIndexChanged(object sender, EventArgs e)
     {
         SqlDataSource2.ConnectionString = ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString;
@@ -94,6 +108,8 @@ public partial class Administrator : System.Web.UI.Page
         }
     }
 
+    /*Emilio
+     metoda vezana uz button update*/
     protected void GridView2_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
         int index = e.RowIndex;
@@ -106,12 +122,16 @@ public partial class Administrator : System.Web.UI.Page
         SqlDataSource2.UpdateParameters.Add("@id", GridView2.DataKeys[e.RowIndex]["ID"].ToString());
         DropDownList2_SelectedIndexChanged(new object(), new EventArgs());
     }
+    /*Emilio
+     metoda vezana uz button edit*/
     protected void GridView2_RowEditing(object sender, GridViewEditEventArgs e)
     {
         GridView2.EditIndex = e.NewEditIndex;
         DropDownList2_SelectedIndexChanged(new object(), new EventArgs());
     }
 
+    /*Emilio
+     metoda vezana uz button delete*/
     protected void GridView2_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
 
@@ -120,6 +140,9 @@ public partial class Administrator : System.Web.UI.Page
         SqlDataSource2.DeleteParameters.Add("@id", GridView2.DataKeys[e.RowIndex]["ID"].ToString());
         DropDownList2_SelectedIndexChanged(new object(), new EventArgs());
     }
+
+    /*Emilio
+     metoda vezana uz button edit*/
     protected void GridView2_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
     {
         DropDownList2_SelectedIndexChanged(new object(), new EventArgs());
