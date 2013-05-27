@@ -48,7 +48,11 @@ public partial class Administrator : System.Web.UI.Page
     protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
         int index = e.RowIndex;
-
+        string video_path = e.NewValues["video_path"].ToString();
+        video_path = video_path.Replace("watch?v=", "embed/");
+        video_path = video_path.Replace("watch?feature=player_detailpage&v=", "embed/");
+        video_path = video_path.Replace("watch?v=", "embed/");
+        video_path = video_path.Replace("&", "?");
         SqlDataSource1.UpdateParameters.Clear();
         SqlDataSource1.UpdateCommand = "UPDATE projects SET [name]=@name, [description]=@description, [goal]=@goal ,expiration_date=@expiration_date, [updated_at]=NOW(), [image_path]=@image_path, [video_path]=@video_path, [enabled]=@enabled WHERE [ID] = @id";
         SqlDataSource1.UpdateParameters.Add("@name", e.NewValues["name"].ToString());
@@ -56,7 +60,7 @@ public partial class Administrator : System.Web.UI.Page
         SqlDataSource1.UpdateParameters.Add("@goal", e.NewValues["goal"].ToString());
         SqlDataSource1.UpdateParameters.Add("@expiration_date", e.NewValues["expiration_date"].ToString());
         SqlDataSource1.UpdateParameters.Add("@image_path", e.NewValues["image_path"].ToString());
-        SqlDataSource1.UpdateParameters.Add("@video_path", e.NewValues["video_path"].ToString());
+        SqlDataSource1.UpdateParameters.Add("@video_path", video_path);
         SqlDataSource1.UpdateParameters.Add("@enabled", e.NewValues["enabled"].ToString());
         SqlDataSource1.UpdateParameters.Add("@id", GridView1.DataKeys[e.RowIndex]["ID"].ToString());
         DropDownList1_SelectedIndexChanged(new object(), new EventArgs());
