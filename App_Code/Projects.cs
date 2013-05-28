@@ -273,7 +273,7 @@ public class Projects
         else
         {
             command.CommandText = "SELECT projects.ID,projects.name,projects.description,projects.goal," +
-            "projects.created_at,projects.expiration_date,projects.image_path,projects.vide_path,users.username FROM" +
+            "projects.created_at,projects.expiration_date,projects.image_path,projects.video_path,users.username FROM" +
             "(projects INNER JOIN users ON projects.user_id = users.ID) WHERE [projects.name] = @name" +
             " OR [projects.goal] BETWEEN @goalStart AND @goalEnd OR projects.created_at BETWEEN @createdStart AND @createdEnd" +
             " OR projects.expiration_date BETWEEN @expirationStart AND @expirationEnd OR ([projects.name] = @name AND [projects.goal] BETWEEN @goalStart AND @goalEnd)" +
