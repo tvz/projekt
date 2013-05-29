@@ -5,18 +5,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Žicalica</title>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    
+    <link href="css/style.css" rel="stylesheet" type="text/css" />   
     <link href='http://fonts.googleapis.com/css?family=Chango&subset=latin,latin-ext' rel='stylesheet' type='text/css'/>
-    
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script> 
-
     <link rel="icon" type="image/png" href="img/zicalica_favicon.png"/>
     <link href="css/custom-theme/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
-	<script type="text/javascript"  src="js/jquery-1.9.1.js"></script>
-	<script type="text/javascript"  src="js/jquery-ui-1.10.3.custom.js"></script>    
-    <script type="text/javascript"  src="js/script.js"></script>
-
+    
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script> 
+    <script src="https://connect.facebook.net/hr_HR/all.js#xfbml=1" type="text/javascript"></script>
+	<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.10.3.custom.js"></script>    
+    <script type="text/javascript" src="js/script.js"></script>
 	<script>	    
 	    $(function() {
 
@@ -77,7 +75,9 @@
     </div>
     
     <br />
-    
+     <!-- ovdje ide adresa naše stranice na facebooku koju ćemo valjda imati -->
+     <!-- ak ne, lako ovo maknemo -->
+     <div class="fb-like" data-href="https://www.facebook.com/TVZ.Zagreb?fref=ts" data-send="true" data-width="450" data-show-faces="true"></div>
     <br />
     <br />
     <br />
