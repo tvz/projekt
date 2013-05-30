@@ -12,7 +12,6 @@
     
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script> 
     <script src="https://connect.facebook.net/hr_HR/all.js#xfbml=1" type="text/javascript"></script>
-	<!-- <script type="text/javascript" src="js/facebook.js"></script> -->
     <script type="text/javascript"" src="js/jquery-1.9.1.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.10.3.custom.js"></script>    
     <script type="text/javascript" src="js/script.js"></script>
@@ -78,7 +77,10 @@
     <br />
      <!-- ovdje ide adresa naše stranice na facebooku koju ćemo valjda imati -->
      <!-- ak ne, lako ovo maknemo -->
-     <div class="fb-like" data-href="https://www.facebook.com/TVZ.Zagreb?fref=ts" data-send="true" data-width="450" data-show-faces="true"></div>
+    <div id="social">
+    <div class="fb-like" data-href="https://www.facebook.com/TVZ.Zagreb?fref=ts" data-send="true" data-width="450" data-show-faces="true"></div>
+    </div>
+    <b style="position:relative;left:700px;top:100px;">u ovu prazninu treba nekej ubacit</b> 
     <br />
     <br />
     <br />

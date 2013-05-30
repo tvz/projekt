@@ -17,6 +17,11 @@ input[type="submit"] {
     cursor:pointer;
 }
 
+#social
+{
+    margin:100px 18px -120px;
+}
+
 /* Registracija - prijava - trazilica*/
 #nav_login
 {
