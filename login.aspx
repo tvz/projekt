@@ -2,11 +2,11 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 <br />
-    <br />
-
-    
+    <br />  
     <form id="form1" runat="server">
-    
+
+    <!-- za inicijalizaciju fb komponenti -->
+    <div id="fb-root"></div>
     
        <!--login -->
     <div class="log-reg">
@@ -32,7 +32,8 @@
             <TitleTextStyle CssClass="prijava" />
         </asp:Login>
         <a href="" onclick="popup('povratImeLozinka.aspx')">Zaboravili ste korisničko ime ili lozinku?</a>
-    
+        <br />
+        <fb:login-button autologoutlink="true" width="200" max-rows="1"></fb:login-button>
     </div>
     
     <!--registracija -->
