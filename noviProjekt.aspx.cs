@@ -23,7 +23,11 @@ public partial class noviProjekt : System.Web.UI.Page
         DateTime expiration_date;
         DateTime.TryParseExact(TextBox_expiration_date.Text, "dd/MM/yyyy", null, DateTimeStyles.None, out expiration_date);
         /*id korisnika je trenutno hardkodiran ali kad rijesimo userpage onda cu to promijeniti*/
-        string video_path = TextBox_video_path.Text.Replace("watch?v=", "embed/").Replace("&", "?");
+        string video_path = TextBox_video_path.Text;
+        video_path = video_path.Replace("watch?v=", "embed/");
+        video_path = video_path.Replace("watch?feature=player_detailpage&v=", "embed/");
+        video_path = video_path.Replace("watch?v=", "embed/");
+        video_path = video_path.Replace("&", "?");
 
         bool created = Projects.Create(TextBox_name.Text,
                          TextBox_description.Text,

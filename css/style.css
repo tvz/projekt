@@ -13,7 +13,16 @@ body {
     
 }
 
-/* Ragistracija - prijava - trazilica*/
+input[type="submit"] { 
+    cursor:pointer;
+}
+
+#social
+{
+    margin:100px 18px -120px;
+}
+
+/* Registracija - prijava - trazilica*/
 #nav_login
 {
     float: right;
@@ -67,12 +76,22 @@ A.LogLink:hover
    color:#d02552;
 }
 
-
 span
 {
     border-right: 1px solid #282828;
     padding-right:10px;
     margin-right:10px;
+}
+
+#prikazi_opcije
+{
+    color:Blue;
+}
+
+#prikazi_opcije:hover
+{
+    color: #d02552;
+    cursor: pointer;
 }
 
 /*glavna navigacija*/
@@ -327,9 +346,7 @@ img
     color:#000;
     border-width:1px;
     height: 150px;
-    width: 250px;
-    
-    
+    width: 250px;   
 }
 
 .poravnanje
@@ -340,9 +357,8 @@ img
     margin-bottom: 5px;
 }
 
-.poravnanjeHide
+.poravnanjeNP
 {
-    display:none;
     padding-left: 25%;
     margin-left:auto;
     margin-right:auto;

@@ -45,7 +45,7 @@ public partial class index : System.Web.UI.Page
             if (project.video_path.Length > 0)
             {
                 html = "<h2>" + project.name + "</h2>"
-                    + "<iframe width='320' height='180' src='"+project.video_path +"' frameborder='0' allowfullscreen></iframe>";
+                    + "&nbsp;&nbsp;&nbsp;<iframe width='320' height='180' src='"+project.video_path+"' frameborder='0' allowfullscreen></iframe>";
             }
             else 
             {

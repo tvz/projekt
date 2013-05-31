@@ -8,6 +8,7 @@ using System.Configuration;
 using System.Data.OleDb;
 using System.Net.Mail;
 using System.Web.Security;
+using System.Collections.Generic;
 using System.Text;
 
 public class Users
@@ -124,6 +125,50 @@ public class Users
             conn.Close();
         }
         return user;
+    }
+
+    /*developer: Emilio
+     descripion: metoda dohvaca sve korisnike i vraca listu korisnika*/
+    public static List<Users> fetch_all()
+    {
+        OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
+        OleDbCommand command = new OleDbCommand();
+        OleDbDataReader reader;
+        command.Connection = conn;
+        command.CommandText = "SELECT * FROM users";
+
+        List<Users> users_list = new List<Users>();
+        try
+        {
+            conn.Open();
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                int column = -1;
+                Users user = new Users();
+                user.id = Convert.ToInt32(reader.GetValue(++column));
+                user.username = reader.GetValue(++column).ToString();
+                user.password_hash = reader.GetValue(++column).ToString();
+                user.pass_salt = reader.GetValue(++column).ToString();
+                user.created_at = Convert.ToDateTime(reader.GetValue(++column));
+                user.updated_at = Convert.ToDateTime(reader.GetValue(++column));
+                user.role_id = Convert.ToInt32(reader.GetValue(++column));
+                user.paypal_id = reader.GetValue(++column).ToString();
+                user.email = reader.GetValue(++column).ToString();
+                user.status_id = Convert.ToInt32(reader.GetValue(++column));
+                users_list.Add(user);
+            }
+
+        }
+        catch
+        {
+        }
+        finally
+        {
+            command.Dispose();
+            conn.Close();
+        }
+        return users_list;
     }
 
     /*
@@ -272,7 +317,7 @@ public class Users
      * description: metoda prima confirm_number preuzet iz url-a (obradjeno na stranici na koju ce url voditi)
      * na temelju te varijable aktivira korisnika
      */
-    public static void activaction(int confirm_url)
+    public static void activaction(int confirmNumFromUrl)
     {
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
         OleDbCommand command = new OleDbCommand();
@@ -282,23 +327,29 @@ public class Users
         {
             command.Connection = conn;
             command.CommandText = "SELECT user_ID FROM confirmation WHERE confirm_number=@confirm_number";
-            command.Parameters.AddWithValue("@confirm_number", confirm_url);
+            command.Parameters.AddWithValue("@confirm_number", confirmNumFromUrl);
             conn.Open();
             id = System.Int32.Parse(command.ExecuteScalar().ToString());
             conn.Close();
             command.Parameters.Clear();
 
-            //naravno, field1 il kak ce se vec zvat ce imat odredjen atribut
-            command.CommandText = "UPDATE status SET Field1='' WHERE ID=@id";
+            command.CommandText = "UPDATE users SET Enabled='True' WHERE ID=@id";
             command.Parameters.AddWithValue("@id", id);
             conn.Open();
-            command.ExecuteNonQuery();
+            if (command.ExecuteNonQuery()==1)
+            {
+                command.CommandText = "DELETE FROM confirmation WHERE user_ID=@user_ID";
+                command.Connection = conn;
+                command.Parameters.AddWithValue("@user_ID", id);
+                command.ExecuteNonQuery();
+            }
         }
         catch{}
         finally
         {
             conn.Close();
             command.Parameters.Clear();
+            command.Dispose();
         }
     }
 

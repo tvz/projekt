@@ -148,17 +148,23 @@ public partial class pregledProjekata : System.Web.UI.Page
             button.InnerText = "DONIRAJ";
             button.ID = project.id.ToString();
             button.ServerClick += new EventHandler(MakeDonation);
-            html = "<h2>" + project.name + "</h2>"
-                + "<img  src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> "
-                + "<h3><b>AUTOR PROJEKTA:</b> " + project.project_owner_username + "</h3>"
-                + "<h3><b>OPIS PROJEKTA:</b> " + project.description + " </h3>"
-                + "<h3><b>POTREBNO:</b> " + project.goal + " Kunića" + " </h3>"
-                + "<h3><b>SAKUPLJENO:</b> " + project.DonationSum() + " Kunića " + "(" + project.DonationsPercent() + "%)" + "</h3>"
-                + "<h3><b>ZAPOČETO:</b> " +project.created_at.ToShortDateString()+"</h3>"
-                + "<h3 style=\"margin-bottom:-50px;\"><b>DO KRAJA:</b> " + (project.expiration_date - DateTime.Now).Days + " dana" + "</h3>";
-          
-            HtmlGenericControl div = new HtmlGenericControl("div");           
-            div.Attributes.Add("style", "background-color: rgba(255,255,255,0.45);width: 345px;border-radius: 10px;float:left;height: 550px;margin-right: 25px;margin-bottom:4%;");
+            if (project.video_path.Length > 0)
+            {
+                html = "<h2>" + project.name + "</h2>"
+                    + "&nbsp;&nbsp;&nbsp;<iframe width='320' height='180' src='" + project.video_path + "' frameborder='0' allowfullscreen></iframe>";
+            }
+            else
+            {
+                html = "<h2>" + project.name + "</h2>"
+                    + "<img  src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> ";
+            }
+            html += "<h3><b>AUTOR PROJEKTA:</b> " + project.project_owner_username + "</h3>"
+            + "<h3><b>OPIS PROJEKTA:</b> " + project.description + " </h3>"
+            + "<h3><b>SAKUPLJENO:</b> " + project.DonationSum() + " Kunića " + "(" + project.DonationsPercent() + "%)" + "</h3>"
+            + "<h3><b>DO KRAJA:</b> " + (project.expiration_date - DateTime.Now).Days + "Dana" + "</h3>";
+
+            HtmlGenericControl div = new HtmlGenericControl("div");
+            div.Attributes.Add("class", "proj");
             div.InnerHtml = html;
             div.Controls.Add(button);
            
