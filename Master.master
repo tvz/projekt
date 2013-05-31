@@ -9,70 +9,15 @@
     
     <link href='http://fonts.googleapis.com/css?family=Chango&subset=latin,latin-ext' rel='stylesheet' type='text/css'/>
     
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>  
-    <link rel="icon" type="image/png" href="img/zicalica_favicon.png">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script> 
+
+    <link rel="icon" type="image/png" href="img/zicalica_favicon.png"/>
     <link href="css/custom-theme/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
 	<script type="text/javascript"  src="js/jquery-1.9.1.js"></script>
-	<script type="text/javascript"  src="js/jquery-ui-1.10.3.custom.js"></script>
-    <script type="text/javascript">
-        function popup(url) {
-            var width = 500;
-            var height = 300;
-            var left = (screen.width - width) / 2;
-            var top = (screen.height - height) / 2;
-            var params = 'width=' + width + ', height=' + height;
-            params += ', top=' + top + ', left=' + left;
-            params += ', toolbar=no';
-            params += ', menubar=no';
-            params += ', resizable=no';
-            params += ', directories=no';
-            params += ', scrollbars=no';
-            params += ', status=no';
-            params += ', location=no';
-            newwin = window.open(url, 'd', params);
-            if (window.focus) {
-                newwin.focus()
-            }
-            return false;
-        }
-    </script>
-	<script>
-	    $(document).ready(function () {
-	        var x = $("[id$=_HiddenField1]").val();
-	        if (x % 2 == 0) {
-	            $(".poravnanjeHide").toggle();
-	            if ($("#prikazi_opcije").text() == 'Prikaži dodatne opcije') {
-	                $("#prikazi_opcije").text("Sakrij dodatne opcije");
-	            }
-	            else {
-	                $("#prikazi_opcije").text("Prikaži dodatne opcije");
-	            }
-	            return false;
-	        }
+	<script type="text/javascript"  src="js/jquery-ui-1.10.3.custom.js"></script>    
+    <script type="text/javascript"  src="js/script.js"></script>
 
-	        $("#prikazi_opcije").click(function () {
-	            $(".poravnanjeHide").slideToggle("slow");
-	            x++;
-	            $("[id$=_HiddenField1]").val(x);
-	            if ($("#prikazi_opcije").text() == 'Prikaži dodatne opcije') {
-	                $("#prikazi_opcije").text("Sakrij dodatne opcije");
-	            }
-	            else {
-	                $("#prikazi_opcije").text("Prikaži dodatne opcije");
-	            }
-	            return false;
-	        });
-
-	        $('#searchBox').focus(function (e) {
-	            if (e.target.value == e.target.defaultValue)
-	                e.target.value = '';
-	        });
-	        $('#searchBox').blur(function (e) {
-	            if (e.target.value == '')
-	                e.target.value = e.target.defaultValue;
-	        });
-	    });
-
+	<script>	    
 	    $(function() {
 
 	        $("#button").button();

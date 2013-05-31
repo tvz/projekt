@@ -3,10 +3,12 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <form id="Form1" runat="server">
     <h1>
         Najnoviji projekti</h1>
+        
     
     <div runat="server" id="projekti_novi">
         <!--prikaz tri projekta u ravnini-->
@@ -131,5 +133,7 @@
             <asp:Button ID="Button6" runat="server" Text="DONIRAJ!" CssClass="gumb" />
         </div>
     </div>
+    <a href="userPage.aspx">Administracija mojih projekata</a>
     </form>
+    
 </asp:Content>

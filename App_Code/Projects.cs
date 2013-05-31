@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System;
 public class Projects
 {
+    
     /*varijable koje predstavljaju atribute u bazi*/
     public int id;
     public string name;
@@ -28,6 +29,53 @@ public class Projects
         //
         // TODO: Add constructor logic here
         //
+    }
+
+
+    //By:Andor
+    //Update-a opis projekta iz projekata nekog korisnika.Prema opisu projekta ga nade,a
+    //ID za provjeru da vise projekata nema isti opis
+
+    public static bool storeChange(string description,string descriptionOld,int ID)
+    {
+        bool success = false;
+       
+        
+        int projectID = ID;
+        OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
+        OleDbCommand command = new OleDbCommand();
+        command.CommandText = "UPDATE projects SET description=@description1 WHERE description=@descriptionOld1 AND ID=@projectID";
+        command.Parameters.AddWithValue("@description1",description.ToString());
+        command.Parameters.AddWithValue("@ddescriptionOld1",descriptionOld.ToString());
+        command.Parameters.AddWithValue("@projectID",ID);
+        command.Connection = conn;
+        try
+        {
+            conn.Open();
+
+
+            if (command.ExecuteNonQuery() == 1)
+            {
+                success = true;
+            }
+            else
+            {
+               
+                command.Transaction.Rollback();
+            }
+        }
+
+        catch
+        {
+        }
+        finally
+        {
+            command.Dispose();
+            conn.Close();
+        }
+    return success;
+        
+       
     }
 
     public Projects(string name, string description, float goal, DateTime expiration_date, string image_path, string video_path, int user_id)
@@ -82,6 +130,54 @@ public class Projects
         }
         return created;
     }
+    //By:Andor
+    //Metoda vraca projekt iz liste projekata usera  
+    //predstavljenog sa userId na odredenoj poziciji
+
+    public static Projects returnSeq(int userId,int position)
+    { 
+        OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
+        OleDbCommand command = new OleDbCommand();
+        OleDbDataReader reader;
+        command.Connection = conn;
+        command.CommandText = "SELECT projects.ID,projects.name, projects.description, projects.goal, projects.expiration_date, projects.image_path, projects.video_path,projects.user_id FROM projects WHERE user_id=@userId";
+        command.Parameters.AddWithValue("@userId", userId);
+        List<Projects> projects_list = new List<Projects>();
+        try
+        {
+            conn.Open();
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                int column = -1;
+                Projects project = new Projects();
+                project.id = Convert.ToInt32(reader.GetValue(++column));
+                project.name = reader.GetValue(++column).ToString();
+                project.description = reader.GetValue(++column).ToString();
+                project.goal = Convert.ToSingle(reader.GetValue(++column));
+                project.expiration_date = Convert.ToDateTime(reader.GetValue(++column));
+                project.image_path = reader.GetValue(++column).ToString();
+                project.video_path = reader.GetValue(++column).ToString();
+                project.user_id = Convert.ToInt32(reader.GetValue(++column));
+                projects_list.Add(project);
+            }
+
+        }
+        catch
+        {
+        }
+        finally
+        {
+            command.Dispose();
+            conn.Close();
+        }
+        return projects_list[position];
+    }
+    
+    
+    
+    
+    
 
     /*developer:Emilio
      description: metoda dohvaca jedan project iz baze*/
@@ -127,6 +223,58 @@ public class Projects
         }
         return project;
     }
+
+    //By:Andor.
+    //Metoda vraca listu projekata koje je odredeni korisnik predstavljen sa user_id napravio
+    
+    public static List<Projects> fetch_all_projects(int userId)
+    {
+        OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
+        OleDbCommand command = new OleDbCommand();
+        OleDbDataReader reader;
+        command.Connection = conn;
+        command.CommandText = "SELECT projects.ID,projects.name, projects.description, projects.goal, projects.expiration_date, projects.image_path, projects.video_path,projects.user_id FROM projects WHERE user_id=@userId";
+        command.Parameters.AddWithValue("@userId", userId);
+        List<Projects> projects_list = new List<Projects>();
+        try
+        {
+            conn.Open();
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                int column = -1;
+                Projects project = new Projects();
+                project.id = Convert.ToInt32(reader.GetValue(++column));
+                project.name = reader.GetValue(++column).ToString();
+                project.description = reader.GetValue(++column).ToString();
+                project.goal = Convert.ToSingle(reader.GetValue(++column));
+                project.expiration_date = Convert.ToDateTime(reader.GetValue(++column));
+                project.image_path = reader.GetValue(++column).ToString();
+                project.video_path = reader.GetValue(++column).ToString();
+                project.user_id = Convert.ToInt32(reader.GetValue(++column));
+                projects_list.Add(project);
+            }
+
+        }
+        catch
+        {
+        }
+        finally
+        {
+            command.Dispose();
+            conn.Close();
+        }
+        return projects_list;
+    }
+
+
+
+
+
+
+
+
+
 
     /*developer: Emilio
      descripion: metoda dohvaca sve projekte i vraca listu projekata*/

@@ -12,7 +12,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Collections.Generic;
 
-//jer ima promjena test
+//jer ima promjena test2
 
 public partial class index : System.Web.UI.Page
 {
@@ -20,6 +20,7 @@ public partial class index : System.Web.UI.Page
     {
         ListProjects();
         Session["list_projects"] = null;
+        
     }
 
     /*developer: Emilio

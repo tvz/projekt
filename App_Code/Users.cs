@@ -33,6 +33,54 @@ public class Users
     {
     }
 
+    //By :Andor,metoda vraca userID na temelju username-a
+    
+
+
+    public static int getUserId(string uName)
+    {   int returnVar=-1;
+        OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
+        OleDbCommand command = new OleDbCommand();
+        OleDbDataReader reader;
+        command.Connection = conn;
+        command.CommandText = "SELECT ID FROM users WHERE username = @uName";
+        command.Parameters.AddWithValue("@uName", uName);
+        try
+        {
+            conn.Open();
+            reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                int p = -1;
+                 returnVar=(int)reader.GetValue(++p);
+               
+                    
+                }
+            }
+        
+        catch
+        {
+           
+        }
+        finally
+        {
+            command.Dispose();
+            conn.Close();
+        }
+        return returnVar;
+       
+    }
+
+  
+
+    
+    
+    
+    
+    
+
+
+
     /*
      developer: Emilio*/
     public static Users FetchUser(int user_id)

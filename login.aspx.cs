@@ -29,6 +29,7 @@ public partial class login : System.Web.UI.Page
             e.Authenticated = true;
             FormsAuthentication.SetAuthCookie(Login1.UserName, true);
             FormsAuthentication.RedirectFromLoginPage(Login1.UserName, true);
+            Session["username"] = Login1.UserName;
         }
     }
 
@@ -50,6 +51,7 @@ public partial class login : System.Web.UI.Page
         }
         else
         {
+            
             CreateUserWizard1.ContinueDestinationPageUrl = "~/index.aspx";
             CreateUserWizard1.ContinueButtonText = "Nastavi";
         }
