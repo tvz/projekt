@@ -160,17 +160,27 @@ h1
 .proj
 {
    background-color: rgba(255,255,255,0.45);
-   width: 345px;
+   width: 328px;
    border-radius: 10px; 
    float:left;
    height: 550px;
-   margin-right: 25px;
+   margin-right: 20px;
    margin-bottom:4%;
+}
+
+.proj:first-child
+{
+    margin-left:40px;
 }
 
 .proj:nth-child(3n+3)
 {
     margin-right:0;
+}
+
+.proj:nth-child(3n+4)
+{
+    margin-left:40px;
 }
 
 h2
