@@ -71,10 +71,7 @@
    </div>
    <hr />
   <br />
-       <div runat="server" id="projekti_search">
-    </div>
-    
-     <div runat="server" id="Div1">
+       <div runat="server" id="projekti_search" style="height:594px;overflow:auto;">
     </div>
    
     </form>

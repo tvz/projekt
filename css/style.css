@@ -139,7 +139,7 @@ hr
 
 .druga_lin
 {
-    margin-top:690px; 
+    margin-top:3%; 
 }
 
 /*--------------------*/
@@ -164,11 +164,11 @@ h1
    border-radius: 10px; 
    float:left;
    height: 550px;
-   margin-right: 37px;
+   margin-right: 25px;
    margin-bottom:4%;
 }
 
-.proj:last-child
+.proj:nth-child(3n+3)
 {
     margin-right:0;
 }
