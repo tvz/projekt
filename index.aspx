@@ -35,6 +35,10 @@
     <div runat="server" id="projekti_stari" style="height:594px;overflow:auto;">
     </div>
     </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="scrollOldLeft" EventName="Click" />
+            <asp:AsyncPostBackTrigger ControlID="scrollOldRight" EventName="Click" />
+        </Triggers>
     </asp:UpdatePanel>
     </form>
 </asp:Content>

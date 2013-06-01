@@ -16,12 +16,12 @@ using System.Collections.Generic;
 
 public partial class index : System.Web.UI.Page
 {
-    private static int start = 0, end = 3, length;
+    private static int startNew = 0, endNew = 3, startOld = 0, endOld = 3, lengthNew, lengthOld;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        ListProjects(start, end);
-        Session["list_projects"] = null;     
+        ListProjects(startNew, endNew, startOld, endOld);
+        Session["list_projects"] = null;
     }
 
     /*developer:Ivan
@@ -34,34 +34,50 @@ public partial class index : System.Web.UI.Page
         if (bttn.ID == "scrollNewRight")
         {
             scrollNewLeft.Visible = true;
-            if (length > (start + 3))
+            if (lengthNew > (startNew + 3))
             {
-                start += 3;
-                if (length > (start + end))
-                    end = 3;
-                else end = length - start - 1;
+                startNew += 3;
+                if (lengthNew > (startNew + endNew))
+                    endNew = 3;
+                else endNew = lengthNew - startNew;
             }
-            ListProjects(start, end);
-            if (((length - 1) - start - end) == 0)
+            ListProjects(startNew, endNew, startOld, endOld);
+            if (((lengthNew - 1) - startNew - endNew) == 0)
                 scrollNewRight.Visible = false;
         }
         else if (bttn.ID == "scrollNewLeft")
         {
             scrollNewRight.Visible = true;
-            end = 3;
-            if (0 <= (start - 3))
-                start -= 3;
-            ListProjects(start, end);
-            if (start == 0)
+            endNew = 3;
+            if (0 <= (startNew - 3))
+                startNew -= 3;
+            ListProjects(startNew, endNew, startOld, endOld);
+            if (startNew == 0)
                 scrollNewLeft.Visible = false;
         }
         else if (bttn.ID == "scrollOldLeft")
         {
-            //nedovrseno
+            scrollOldRight.Visible = true;
+            endOld = 3;
+            if (0 <= (startOld - 3))
+                startOld -= 3;
+            ListProjects(startNew, endNew, startOld, endOld);
+            if (startOld == 0)
+                scrollOldLeft.Visible = false;
         }
         else if (bttn.ID == "scrollOldRight")
         {
-            //nedovrseno
+            scrollOldLeft.Visible = true;
+            if (lengthOld > (startOld + 3))
+            {
+                startOld += 3;
+                if (lengthOld > (startOld + endOld))
+                    endOld = 3;
+                else endOld = lengthOld - startOld;
+            }
+            ListProjects(startNew, endNew, startOld, endOld);
+            if (((lengthOld - 1) - startOld - endOld) == 0)
+                scrollOldRight.Visible = false;
         }
     }
 
@@ -69,10 +85,9 @@ public partial class index : System.Web.UI.Page
     description: metoda cita projekte iz baze i prikazuje na index.aspx*/
     //notice:dogovor jer da se ne prcka po tudjim metodama, no buduci da ti delas zavrsni,
     //netko je moral listanje napravit :)
-    private void ListProjects(int start, int end)
+    private void ListProjects(int startNew, int endNew, int startOld, int endOld)
     {
         List<Projects> projects_list = Projects.fetch_all();
-        length = projects_list.Count;
         List<Projects> newProjects = new List<Projects>();
         List<Projects> oldProjects = new List<Projects>();
 
@@ -92,6 +107,10 @@ public partial class index : System.Web.UI.Page
             else newProjects.Add(project);
         }
 
+        //System.Diagnostics.Debug.WriteLine("new: " + newProjects.Count + " old: " + oldProjects.Count+ " start:"+start+" end:"+end);
+        lengthNew = newProjects.Count;
+        lengthOld = oldProjects.Count;
+
         naslovNovi.InnerHtml = "Najnoviji projekti (" + newProjects.Count + ")";
         naslovStari.InnerHtml = "Projekti pred istekom vremena za donaciju (" + oldProjects.Count + ")";
 
@@ -105,7 +124,7 @@ public partial class index : System.Web.UI.Page
         else
         {
             scrollNewRight.Visible = true;
-            newProjectsTemp = newProjects.GetRange(start, end);
+            newProjectsTemp = newProjects.GetRange(startNew, endNew);
         }
 
         if (oldProjects.Count <= 3)
@@ -117,7 +136,7 @@ public partial class index : System.Web.UI.Page
         else
         {
             scrollOldRight.Visible = true;
-            oldProjectsTemp = oldProjects.GetRange(start, end);
+            oldProjectsTemp = oldProjects.GetRange(startOld, endOld);
         }
 
         //novi projekti
