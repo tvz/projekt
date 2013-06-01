@@ -42,7 +42,7 @@ public partial class index : System.Web.UI.Page
                 else endNew = lengthNew - startNew;
             }
             ListProjects(startNew, endNew, startOld, endOld);
-            if (((lengthNew - 1) - startNew - endNew) == 0)
+            if ((lengthNew - startNew - endNew) == 0)
                 scrollNewRight.Visible = false;
         }
         else if (bttn.ID == "scrollNewLeft")
@@ -76,7 +76,7 @@ public partial class index : System.Web.UI.Page
                 else endOld = lengthOld - startOld;
             }
             ListProjects(startNew, endNew, startOld, endOld);
-            if (((lengthOld - 1) - startOld - endOld) == 0)
+            if ((lengthOld - startOld - endOld) == 0)
                 scrollOldRight.Visible = false;
         }
     }
@@ -84,7 +84,7 @@ public partial class index : System.Web.UI.Page
     /*developer: Emilio
     description: metoda cita projekte iz baze i prikazuje na index.aspx*/
     //notice:dogovor jer da se ne prcka po tudjim metodama, no buduci da ti delas zavrsni,
-    //netko je moral listanje napravit :)
+    //netko je moral listanje napravit (Ivan)
     private void ListProjects(int startNew, int endNew, int startOld, int endOld)
     {
         List<Projects> projects_list = Projects.fetch_all();

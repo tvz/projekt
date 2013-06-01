@@ -24,7 +24,6 @@ public class Projects
     /*sve ostale varijable*/
     public string project_owner_username;
 
-
     public Projects()
     {
         //
@@ -32,16 +31,24 @@ public class Projects
         //
     }
 
+    public Projects(string name, string description, float goal, DateTime expiration_date, string image_path, string video_path, int user_id)
+    {
+        this.name = name;
+        this.description = description;
+        this.goal = goal;
+        this.expiration_date = expiration_date;
+        this.image_path = image_path;
+        this.video_path = video_path;
+        this.user_id = user_id;
+    }
 
     //By:Andor
     //Update-a opis projekta iz projekata nekog korisnika.Prema opisu projekta ga nade,a
     //ID za provjeru da vise projekata nema isti opis
-
     public static bool storeChange(string description,string descriptionOld,int ID)
     {
         bool success = false;
-       
-        
+             
         int projectID = ID;
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
         OleDbCommand command = new OleDbCommand();
@@ -54,14 +61,12 @@ public class Projects
         {
             conn.Open();
 
-
             if (command.ExecuteNonQuery() == 1)
             {
                 success = true;
             }
             else
-            {
-               
+            {            
                 command.Transaction.Rollback();
             }
         }
@@ -74,20 +79,7 @@ public class Projects
             command.Dispose();
             conn.Close();
         }
-    return success;
-        
-       
-    }
-
-    public Projects(string name, string description, float goal, DateTime expiration_date, string image_path, string video_path, int user_id)
-    {
-        this.name = name;
-        this.description = description;
-        this.goal = goal;
-        this.expiration_date = expiration_date;
-        this.image_path = image_path;
-        this.video_path = video_path;
-        this.user_id = user_id;
+    return success;     
     }
 
     /*developer: Emilio
@@ -132,10 +124,10 @@ public class Projects
         }
         return created;
     }
+
     //By:Andor
     //Metoda vraca projekt iz liste projekata usera  
     //predstavljenog sa userId na odredenoj poziciji
-
     public static Projects returnSeq(int userId,int position)
     { 
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
@@ -175,11 +167,6 @@ public class Projects
         }
         return projects_list[position];
     }
-    
-    
-    
-    
-    
 
     /*developer: Emilio
      description: metoda briše projekt.*/
@@ -263,8 +250,7 @@ public class Projects
     }
 
     //By:Andor.
-    //Metoda vraca listu projekata koje je odredeni korisnik predstavljen sa user_id napravio
-    
+    //Metoda vraca listu projekata koje je odredeni korisnik predstavljen sa user_id napravio   
     public static List<Projects> fetch_all_projects(int userId)
     {
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
@@ -305,24 +291,16 @@ public class Projects
         return projects_list;
     }
 
-
-
-
-
-
-
-
-
-
     /*developer: Emilio
      descripion: metoda dohvaca sve projekte i vraca listu projekata*/
+    //isto kak sam napisal i u index.aspx.cs (Ivan)
     public static List<Projects> fetch_all()
     {
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
         OleDbCommand command = new OleDbCommand();
         OleDbDataReader reader;
         command.Connection = conn;
-        command.CommandText = "SELECT projects.ID,projects.name, projects.description, projects.goal, projects.expiration_date, projects.image_path, projects.video_path, users.username FROM (projects INNER JOIN users ON projects.user_id = users.ID) GROUP BY projects.ID, projects.name, projects.description, projects.goal,projects.expiration_date, projects.image_path, projects.video_path, users.username";
+        command.CommandText = "SELECT projects.ID,projects.name, projects.description, projects.goal, projects.expiration_date, projects.image_path, projects.video_path, projects.enabled, users.username FROM (projects INNER JOIN users ON projects.user_id = users.ID) GROUP BY projects.ID, projects.name, projects.description, projects.goal,projects.expiration_date, projects.image_path, projects.video_path, projects.enabled, users.username";
 
         List<Projects> projects_list = new List<Projects>();
         try
@@ -331,17 +309,20 @@ public class Projects
             reader = command.ExecuteReader();
             while (reader.Read())
             {
-                int column = -1;
-                Projects project = new Projects();
-                project.id = Convert.ToInt32(reader.GetValue(++column));
-                project.name = reader.GetValue(++column).ToString();
-                project.description = reader.GetValue(++column).ToString();
-                project.goal = Convert.ToSingle(reader.GetValue(++column));
-                project.expiration_date = Convert.ToDateTime(reader.GetValue(++column));
-                project.image_path = reader.GetValue(++column).ToString();
-                project.video_path = reader.GetValue(++column).ToString();
-                project.project_owner_username = reader.GetValue(++column).ToString();
-                projects_list.Add(project);
+                if (reader.GetValue(7).ToString() == "True")
+                {
+                    int column = -1;
+                    Projects project = new Projects();
+                    project.id = Convert.ToInt32(reader.GetValue(++column));
+                    project.name = reader.GetValue(++column).ToString();
+                    project.description = reader.GetValue(++column).ToString();
+                    project.goal = Convert.ToSingle(reader.GetValue(++column));
+                    project.expiration_date = Convert.ToDateTime(reader.GetValue(++column));
+                    project.image_path = reader.GetValue(++column).ToString();
+                    project.video_path = reader.GetValue(++column).ToString();
+                    project.project_owner_username = reader.GetValue(++column).ToString();
+                    projects_list.Add(project);
+                }
             }
 
         }
