@@ -23,8 +23,14 @@ public class Transactions
         //
     }
 
-    /*developer: Emilio
-     description: upisuje nepotvrdenu transakciju u bazu*/
+    /// <summary>
+    /// Developer: Emilio
+    /// Description: upisuje nepotvrdenu transakciju u bazu
+    /// </summary>
+    /// <param name="project_id">ID projekta</param>
+    /// <param name="amount">kolicina novca za donaciju</param>
+    /// <param name="preapproval_key">PayPalov preapproval key</param>
+    /// <returns>Uspjesnost upisa transakcije</returns>
     public static bool Prefill(int project_id, float amount, string preapproval_key)
     {
         bool created = false;
@@ -61,8 +67,18 @@ public class Transactions
         }
         return created;
     }
-    /*developer:Emilio
-     description: nakon sto paypal vrati potvrdu transakcije popunimo transakciju sa ostalim podacima i oznacimo ju kao potvrdenu*/
+         
+    /// <summary>
+    /// Developer:Emilio
+    /// Description: nakon sto paypal vrati potvrdu transakcije popunimo transakciju sa ostalim podacima i oznacimo ju kao potvrdenu
+    /// </summary>
+    /// <param name="preapproval_key">PayPalov preapproval key</param>
+    /// <param name="memo"></param>
+    /// <param name="preapproval_approved"></param>
+    /// <param name="preapproval_starting_date">Pocetni datum</param>
+    /// <param name="preapproval_ending_date">Datum isteka</param>
+    /// <param name="sender_email"></param>
+    /// <returns>Uspjesnost upisa potvrdjene transakcije</returns>
     public static bool Postfill(string preapproval_key,
                                 string memo,
                                 string preapproval_approved, 
@@ -105,8 +121,12 @@ public class Transactions
         return created;
     }
 
-    /*developer:Emilio
-     description: Metoda dohvaca sumu donacija za odredeni projekt*/
+    /// <summary>
+    /// Developer:Emilio
+    /// Description: Metoda dohvaca sumu donacija za odredeni projekt
+    /// </summary>
+    /// <param name="project_id">ID projekta</param>
+    /// <returns>Sumu donacija</returns>
     public static float PaymentAmountSum(int project_id)
     {
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
