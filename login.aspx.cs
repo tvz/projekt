@@ -18,9 +18,12 @@ public partial class login : System.Web.UI.Page
         Session["list_projects"] = null;
     }
 
-    /*developer:Emilio
-    description: metoda logira korisnika i preusmjerava ga na index page(zasada)
-    */
+    /// <summary>
+    /// Developer: Emilio
+    /// Description: metoda logira korisnika i preusmjerava ga na index page(zasada)
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     protected void Login1_Authenticate(object sender, AuthenticateEventArgs e)
     {
         bool status = Users.Login(Login1.UserName, Login1.Password);
@@ -33,9 +36,12 @@ public partial class login : System.Web.UI.Page
         }
     }
 
-    /* developer: Ivan
-     * description: metoda kreira novog korisnika i preusmjerava ga na index page (zasada)
-     */
+    /// <summary>
+    /// Developer: Ivan
+    /// Description: metoda kreira novog korisnika i preusmjerava ga na index page (zasada) 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     protected void CreateUserWizard1_CreatedUser(object sender, EventArgs e)
     {
         string info;
