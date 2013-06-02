@@ -63,10 +63,13 @@ public partial class pregledProjekata : System.Web.UI.Page
         this.LabelSearchResult.Text = "";
     }
 
-    /*developer: Ivan
-     * description: metoda salje parametre za pretrazivanje searchProjects metodi
-     * u klasi Projects te nazad dobiva listu projekata
-     */
+    /// <summary>
+    /// Developer: Ivan
+    /// Description: metoda salje parametre za pretrazivanje searchProjects metodi
+    /// u klasi Projects te nazad dobiva listu projekata
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     protected void ButtonSearch_Click(object sender, EventArgs e)
     {
         DateTime createdAtDateStart, expirationDateStart, createdAtDateEnd, expirationDateEnd;
@@ -102,9 +105,12 @@ public partial class pregledProjekata : System.Web.UI.Page
         Session["list_projects"] = search_list;
     }
     
-    /*developer: Ivan
-     * description: metoda sortira listu projekata
-     */
+    /// <summary>
+    /// Developer: Ivan
+    /// Description: metoda sortira listu projekata po zadanim kriterijima
+    /// </summary>
+    /// <param name="list">Nesortirana lista projekata</param>
+    /// <returns>Sortirana lista projekata</returns>
     private List<Projects> Sort(List<Projects> list)
     {
         if (RadioButtonASC.Checked == true)
@@ -132,9 +138,11 @@ public partial class pregledProjekata : System.Web.UI.Page
         return sorted_list;
     }
 
-    /*developer: Ivan
-     * description: metoda prikazuje projekte iz liste
-     */
+    /// <summary>
+    /// Developer: Ivan
+    /// Description: metoda prikazuje projekte iz liste
+    /// </summary>
+    /// <param name="list"></param>
     private void showProjects(List<Projects> list)
     {
         string html = null;
@@ -172,12 +180,15 @@ public partial class pregledProjekata : System.Web.UI.Page
         } 
     }
 
-    /*developer: Emilio
-     description: metoda salje donaciju preko paypala
-     */
+    /// <summary>
+    /// Developer: Emilio
+    /// Description: metoda salje donaciju preko paypala
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void MakeDonation(object sender, EventArgs e)
     {
-        /*Uz svaki dinamicki kreirani button vezan je id projekta.
+        /* TODO: Uz svaki dinamicki kreirani button vezan je id projekta.
          * Bolje bi bilo da se salju request parametri sa id projekta, ali jednostavnije je bilo implementirati ovako.
          * Planiram to promijenit u buducnosti.*/
         HtmlButton button = (HtmlButton)sender;
@@ -193,5 +204,4 @@ public partial class pregledProjekata : System.Web.UI.Page
                              + "&return=" + HttpContext.Current.Request.Url;
         Response.Redirect("https://www.sandbox.paypal.com/cgi-bin/webscr?" + paypalParams);
     }
-
 }
