@@ -74,10 +74,11 @@ public partial class userPage : System.Web.UI.Page
     {
 
         string description = TextBoxPromjena.Text;
-        string descriptionOld = dOGlobal;
+        //string descriptionOld = dOGlobal;
         int ID = IDGlobal;
 
-        bool success = Projects.storeChange(description, descriptionOld, ID);
+        //bool success = Projects.storeChange(description, descriptionOld, ID);
+        bool success = Projects.storeChange(description, ID);
         if (success == true)
         {
             LabelOpisProjekta.Text = "Promjena je uspjesno pohranjena";

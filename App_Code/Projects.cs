@@ -42,19 +42,26 @@ public class Projects
         this.user_id = user_id;
     }
 
-    //By:Andor
-    //Update-a opis projekta iz projekata nekog korisnika.Prema opisu projekta ga nade,a
-    //ID za provjeru da vise projekata nema isti opis
-    public static bool storeChange(string description,string descriptionOld,int ID)
+    /// <summary>
+    /// Developer: Andor
+    /// Azuriranje opisa projekta iz projekata korisnika.
+    /// </summary>
+    /// <param name="description"></param>
+    /// <param name="descriptionOld"></param>
+    /// <param name="ID"></param>
+    /// <returns></returns>
+    public static bool storeChange(string description/*,string descriptionOld*/,int ID)
     {
         bool success = false;
              
         int projectID = ID;
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
         OleDbCommand command = new OleDbCommand();
-        command.CommandText = "UPDATE projects SET description=@description1 WHERE description=@descriptionOld1 AND ID=@projectID";
+        // By: Vladimir Ivančev; ako već postoji jedinstveni ID onda nam ne treba provjera po starom descriptionu
+        // command.CommandText = "UPDATE projects SET description=@description1 WHERE description=@descriptionOld1 AND ID=@projectID";
+        command.CommandText = "UPDATE projects SET description=@description1 WHERE ID=@projectID";
         command.Parameters.AddWithValue("@description1",description.ToString());
-        command.Parameters.AddWithValue("@ddescriptionOld1",descriptionOld.ToString());
+        // command.Parameters.AddWithValue("@descriptionOld1",descriptionOld.ToString());
         command.Parameters.AddWithValue("@projectID",ID);
         command.Connection = conn;
         try
@@ -82,8 +89,18 @@ public class Projects
     return success;     
     }
 
-    /*developer: Emilio
-     description: metoda kreira novi projekt i sprema u bazu.*/
+    /// <summary>
+    /// Developer: Emilio
+    /// Description: metoda kreira novi projekt i sprema ga u bazu.
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="description"></param>
+    /// <param name="goal"></param>
+    /// <param name="expiration_date"></param>
+    /// <param name="image_path"></param>
+    /// <param name="video_path"></param>
+    /// <param name="user_id"></param>
+    /// <returns></returns>
     public static bool Create(string name, string description, float goal, DateTime expiration_date, string image_path, string video_path, int user_id)
     {   
         bool created = false;
@@ -125,9 +142,14 @@ public class Projects
         return created;
     }
 
-    //By:Andor
-    //Metoda vraca projekt iz liste projekata usera  
-    //predstavljenog sa userId na odredenoj poziciji
+    /// <summary>
+    /// Developer: Andor
+    /// Description: Metoda vraca projekt iz liste projekata usera  
+    /// predstavljenog sa userId na odredenoj poziciji
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <param name="position"></param>
+    /// <returns></returns>
     public static Projects returnSeq(int userId,int position)
     { 
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
@@ -168,8 +190,12 @@ public class Projects
         return projects_list[position];
     }
 
-    /*developer: Emilio
-     description: metoda briše projekt.*/
+    /// <summary>
+    /// Developer: Emilio
+    /// Description: Metoda brise projekt iz baze
+    /// </summary>
+    /// <param name="id">ID projekta</param>
+    /// <returns>bool koji označava je li brisanje uspjelo</returns>
     public static bool Delete(int id)
     {
         bool obrisan = false;
@@ -202,10 +228,12 @@ public class Projects
         return obrisan;
     }
 
-
-
-    /*developer:Emilio
-     description: metoda dohvaca jedan project iz baze*/
+    /// <summary>
+    /// Developer:Emilio
+    /// Description: Metoda dohvaca jedan project iz baze
+    /// </summary>
+    /// <param name="project_id">ID projekta</param>
+    /// <returns>Projekt</returns>
     public static Projects FetchProject(int project_id)
     {
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
@@ -236,7 +264,6 @@ public class Projects
                 project.video_path = reader.GetValue(++column).ToString();
                 project.user_id = Convert.ToInt32(reader.GetValue(++column));
             }
-
         }
         catch
         {
@@ -249,8 +276,12 @@ public class Projects
         return project;
     }
 
-    //By:Andor.
-    //Metoda vraca listu projekata koje je odredeni korisnik predstavljen sa user_id napravio   
+    /// <summary>
+    /// Developer: Andor
+    /// Description: Metoda vraca listu projekata koje je odredeni korisnik predstavljen sa user_id napravio   
+    /// </summary>
+    /// <param name="userId">ID korisnika</param>
+    /// <returns>Lista projekata od zadanog korisnika</returns>
     public static List<Projects> fetch_all_projects(int userId)
     {
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
@@ -291,9 +322,12 @@ public class Projects
         return projects_list;
     }
 
-    /*developer: Emilio
-     descripion: metoda dohvaca sve projekte i vraca listu projekata*/
-    //isto kak sam napisal i u index.aspx.cs (Ivan)
+    /// <summary>
+    /// Developer: Emilio
+    /// Description: metoda dohvaca sve projekte i vraca listu projekata
+    /// By Ivan: isto kak sam napisal i u index.aspx.cs
+    /// </summary>
+    /// <returns></returns>
     public static List<Projects> fetch_all()
     {
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
@@ -336,22 +370,37 @@ public class Projects
         }
         return projects_list;
     }
-    /*developer: Emilio
-     descripion: metoda vraca sumu sonacija za projekt*/
+
+    /// <summary>
+    /// Developer: Emilio
+    /// Descripion: metoda vraca sumu donacija za projekt
+    /// </summary>
+    /// <returns></returns>
     public float DonationSum()
     {
         return Transactions.PaymentAmountSum(this.id);
     }
-    /*developer: Emilio
-     descripion: metoda vraca postotak sakupljenih donacija u odnosu na project goal*/
+
+    /// <summary>
+    /// Developer: Emilio
+    /// Descripion: metoda vraca postotak sakupljenih donacija u odnosu na project goal
+    /// </summary>
+    /// <returns>Postotak sakupljenih donacija</returns>
     public float DonationsPercent()
     {
         return (Transactions.PaymentAmountSum(this.id) / this.goal) * 100;
     }
 
-    /*developer: Ivan
-     * description: metoda pretrazuje projekte i vraca listu projekata
+    /*
+     * 
      */   
+
+    /// <summary>
+    /// Developer: Ivan
+    /// Description: metoda pretrazuje projekte i vraca listu projekata
+    /// </summary>
+    /// <param name="searchParameters">Parametri za pretragu</param>
+    /// <returns>Lista projekata</returns>
     public static List<Projects> searchProjects(params string[] searchParameters)
     {
         List<Projects> search_list = new List<Projects>();
