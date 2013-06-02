@@ -16,8 +16,12 @@ public partial class noviProjekt : System.Web.UI.Page
         ClientScript.RegisterClientScriptBlock(this.GetType(), "ShowDatepicker", script, true);
      }
 
-    /*developer: Emilio
-     description: metoda sprema novi projekt*/
+    /// <summary>
+    /// Developer: Emilio
+    /// Description: metoda sprema novi projekt u bazu
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     protected void Button1_Click(object sender, EventArgs e)
     {
         DateTime expiration_date;
