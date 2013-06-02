@@ -504,7 +504,7 @@ public class Users
     /// Description: funkcija vraća bool vrijednost koja pokazuje je li trenutno logirani korisnik administrator
     /// </summary>
     /// <returns>bool vrijednost o korisnikovom admin stanju</returns>
-    public bool isUserAdmin()
+    public static bool isUserAdmin()
     {
         //TODO: Implementirati provjeru je li trenutno logirani korisnik administrator
         return true;
