@@ -34,10 +34,12 @@ public class Users
     {
     }
 
-    //By :Andor,metoda vraca userID na temelju username-a
-    
-
-
+    /// <summary>
+    /// Developer: Andor
+    /// Description: metoda vraca userID na temelju username-a
+    /// </summary>
+    /// <param name="uName">korisnicko ime korisnika</param>
+    /// <returns>Korisnicki ID</returns>
     public static int getUserId(string uName)
     {   int returnVar=-1;
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
@@ -72,18 +74,12 @@ public class Users
        
     }
 
-  
-
-    
-    
-    
-    
-    
-
-
-
-    /*
-     developer: Emilio*/
+    /// <summary>
+    /// Developer: Emilio
+    /// Description: Metoda vraca korisnicke podatke na temelju korisnickog ID-a
+    /// </summary>
+    /// <param name="user_id">Korisnicki ID</param>
+    /// <returns>Korisnicki podaci</returns>
     public static Users FetchUser(int user_id)
     {
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
@@ -127,8 +123,11 @@ public class Users
         return user;
     }
 
-    /*developer: Emilio
-     descripion: metoda dohvaca sve korisnike i vraca listu korisnika*/
+    /// <summary>
+    /// Developer: Emilio
+    /// Descripion: metoda dohvaca sve korisnike i vraca listu korisnika
+    /// </summary>
+    /// <returns>Lista svih korisnika</returns>
     public static List<Users> fetch_all()
     {
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
@@ -171,9 +170,13 @@ public class Users
         return users_list;
     }
 
-    /*
-     developer: Emilio
-     */
+    /// <summary>
+    /// Developer: Emilio
+    /// Description: Logira korisnika ako su ulazni parametri tocni
+    /// </summary>
+    /// <param name="username">Korisnicko ime</param>
+    /// <param name="password">lozinka</param>
+    /// <returns>Uspjesnost logiranja</returns>
     public static bool Login(string username, string password)
     {
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
@@ -220,9 +223,16 @@ public class Users
         return login_status;
     }
 
-    /*
-    developer: Ivan
-    */
+    /// <summary>
+    /// Developer: Ivan
+    /// Description: Registrira novog korisnika
+    /// </summary>
+    /// <param name="username">Korisnicko ime</param>
+    /// <param name="password">Lozinka</param>
+    /// <param name="question">Sigurnosno pitanje</param>
+    /// <param name="answer">Sigurnosni odgovor</param>
+    /// <param name="email">E-mail</param>
+    /// <returns>Uspjesnost registracije</returns>
     public static string register(string username, string password, string question, string answer, string email)
     {
         string prehashed_pass, hashed_pass, pass_salt, hashed_answer, created, updated, info = "";
@@ -312,11 +322,12 @@ public class Users
         return info;
     }
 
-    /*
-     * developer: Ivan
-     * description: metoda prima confirm_number preuzet iz url-a (obradjeno na stranici na koju ce url voditi)
-     * na temelju te varijable aktivira korisnika
-     */
+    /// <summary>
+    /// Developer: Ivan
+    /// Description: metoda prima confirm_number preuzet iz url-a (obradjeno na stranici na koju ce url voditi)
+    /// na temelju te varijable aktivira korisnika
+    /// </summary>
+    /// <param name="confirmNumFromUrl">Konfirmacijski broj za aktivaciju korisnika</param>
     public static void activaction(int confirmNumFromUrl)
     {
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
@@ -353,10 +364,15 @@ public class Users
         }
     }
 
-    /*developer: Ivan
-     * description: metoda salje mail korisniku s linkom za aktivaciju racuna 
-     * ili s privremenim passwordom
-     */
+    /// <summary>
+    /// Developer: Ivan
+    /// Description: metoda salje mail korisniku s linkom za aktivaciju racuna 
+    /// ili s privremenim passwordom
+    /// </summary>
+    /// <param name="link">link za aktivaciju racuna</param>
+    /// <param name="email">Korisnicki e-mail</param>
+    /// <param name="identificator">Ovisno o identifikatoru se odabire tip maila
+    /// potvrda registracije korisnika ili privremena lozinka</param>
     public static void sendMail(string link, string email, string identificator)
     {
         MailMessage msg = new MailMessage();
@@ -381,9 +397,14 @@ public class Users
         catch { }
     }
 
-    /*developer: Ivan
-     * description: metoda sluzi za kreiranje privremene lozinke u slucaju zaborava
-     */
+    /// <summary>
+    /// Developer: Ivan
+    /// Description: metoda sluzi za kreiranje privremene lozinke u slucaju zaborava
+    /// </summary>
+    /// <param name="username">Korisnicko ime</param>
+    /// <param name="email">Korisnicki e-mail</param>
+    /// <param name="answer">Korisnikov sigurnosni odgovor</param>
+    /// <returns></returns>
     public static string checkAndGeneratePassword(string username, string email, string answer)
     {
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
@@ -464,9 +485,12 @@ public class Users
         return status;
     }
 
-    /*developer: Ivan
-     * description: metoda vraca korisnicko ime
-     */
+    /// <summary>
+    /// Developer: Ivan
+    /// Description: metoda vraca korisnicko ime
+    /// </summary>
+    /// <param name="email">Korisnicki e-mail</param>
+    /// <returns></returns>
     public static bool checkAndGiveUsername(string email)
     {
         string username = null;
