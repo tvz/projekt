@@ -33,11 +33,13 @@ public partial class povratImeLozinka : System.Web.UI.Page
         this.MultiViewRetrieve.ActiveViewIndex = 1;
     }
 
-    /*
-     * developer: Ivan
-     * description: metoda prima te šalje argumente i javlja korisniku status
-     * u vezi s procesom vracanja lozinke
-     */
+    /// <summary>
+    /// Developer: Ivan
+    /// Description: metoda prima te šalje argumente i javlja korisniku status
+    /// u vezi s procesom vracanja lozinke
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     protected void ButtonSubmitPassword_Click(object sender, EventArgs e)
     {
         string email, question;
@@ -72,8 +74,14 @@ public partial class povratImeLozinka : System.Web.UI.Page
 
     }
 
-    /*developer: Ivan
-     */
+    /// <summary>
+    /// Developer: Ivan
+    /// Description: Funkcija provjerava postojanje korisnika i s obzirom na postojanje radi slijedece.
+    /// U slucaju da korisnik postoji salje korisniku email sa korisnickim podacima.
+    /// Ako ne postoji, obavjestava kako navedeni korisnik ne postoji.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     protected void ButtonSubmitUsername_Click(object sender, EventArgs e)
     {
         bool status = Users.checkAndGiveUsername(this.TextBoxEmail.Text);
@@ -81,6 +89,7 @@ public partial class povratImeLozinka : System.Web.UI.Page
         {
             Panel1.Controls.Clear();
             this.LabelStatus.Text = "Provjerite e-mail pretinac.";
+            // TODO: Kad se implementira email server, omogućiti slanje maila korisniku
         }
         else
             this.LabelStatus.Text = "Korisnik s upisanom e-mail adresom ne postoji.";
