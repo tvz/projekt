@@ -498,4 +498,15 @@ public class Users
 
         return status;
     }
+
+    /// <summary>
+    /// Developer: Vladimir Ivančev
+    /// Description: funkcija vraća bool vrijednost koja pokazuje je li trenutno logirani korisnik administrator
+    /// </summary>
+    /// <returns>bool vrijednost o korisnikovom admin stanju</returns>
+    public bool isUserAdmin()
+    {
+        //TODO: Implementirati provjeru je li trenutno logirani korisnik administrator
+        return true;
+    }
 }
