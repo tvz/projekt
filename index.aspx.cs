@@ -182,12 +182,12 @@ public partial class index : System.Web.UI.Page
         {
             if (project.video_path.Length > 0)
             {
-                html = "<a href='projektInfo.aspx?id=" + project.id + "' title='Saznaj više' class='projectLink'><h2>" + project.name + "</h2></a>"
+                html = "<a href='projektInfo.aspx?name=" + project.name + "' title='Saznaj više' class='projectLink'><h2>" + project.name + "</h2></a>"
                     + "&nbsp<iframe width='320' height='180' src='" + project.video_path + "' frameborder='0' allowfullscreen></iframe>";
             }
             else
             {
-                html = "<a href='projektInfo.aspx?id=" + project.id + "' title='Saznja više' class='projectLink'><h2>" + project.name + "</h2></a>"
+                html = "<a href='projektInfo.aspx?name=" + project.name + "' title='Saznja više' class='projectLink'><h2>" + project.name + "</h2></a>"
                     + "<img  src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> ";
             }
             html += "<h3><b>AUTOR PROJEKTA:</b> " + project.project_owner_username + "</h3>"
@@ -206,12 +206,12 @@ public partial class index : System.Web.UI.Page
         {
             if (project.video_path.Length > 0)
             {
-                html = "<a href='projektInfo.aspx?id=" + project.id + "' title='Saznaj više' class='projectLink'><h2>" + project.name + "</h2></a>"
+                html = "<a href='projektInfo.aspx?name=" + project.name + "' title='Saznaj više' class='projectLink'><h2>" + project.name + "</h2></a>"
                     + "&nbsp<iframe width='320' height='180' src='" + project.video_path + "' frameborder='0' allowfullscreen></iframe>";
             }
             else
             {
-                html = "<a href='projektInfo.aspx?id='" + project.id + "' title='Saznaj više' class='projectLink'><h2>" + project.name + "</h2></a>"
+                html = "<a href='projektInfo.aspx?name='" + project.name + "' title='Saznaj više' class='projectLink'><h2>" + project.name + "</h2></a>"
                     + "<img  src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> ";
             }
             html += "<h3><b>AUTOR PROJEKTA:</b> " + project.project_owner_username + "</h3>"

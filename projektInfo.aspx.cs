@@ -16,7 +16,7 @@ public partial class projektInfo : System.Web.UI.Page
         List<Projects> projects_list = Projects.fetch_all();
         string urlParam = null, whatToShow = null;
 
-        urlParam = Request.QueryString["id"];
+        urlParam = Request.QueryString["name"];
 
         if (Session["whichToShow"] != null && urlParam == null)
         {
@@ -40,12 +40,12 @@ public partial class projektInfo : System.Web.UI.Page
                 {
                     if (project.video_path.Length > 0)
                     {
-                        html = "<a href='projektInfo.aspx?id=" + project.id + "' title='Saznaj više' class='projectLink'><h2>" + project.name + "</h2></a>"
+                        html = "<a href='projektInfo.aspx?name=" + project.name + "' title='Saznaj više' class='projectLink'><h2>" + project.name + "</h2></a>"
                             + "&nbsp<iframe width='320' height='180' src='" + project.video_path + "' frameborder='0' allowfullscreen></iframe>";
                     }
                     else
                     {
-                        html = "<a href='projektInfo.aspx?id=" + project.id + "' title='Saznja više' class='projectLink'><h2>" + project.name + "</h2></a>"
+                        html = "<a href='projektInfo.aspx?name=" + project.name + "' title='Saznja više' class='projectLink'><h2>" + project.name + "</h2></a>"
                             + "<img  src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> ";
                     }
                     html += "<h3><b>AUTOR PROJEKTA:</b> " + project.project_owner_username + "</h3>"
@@ -66,12 +66,12 @@ public partial class projektInfo : System.Web.UI.Page
                 {
                     if (project.video_path.Length > 0)
                     {
-                        html = "<a href='projektInfo.aspx?id=" + project.id + "' title='Saznaj više' class='projectLink'><h2>" + project.name + "</h2></a>"
+                        html = "<a href='projektInfo.aspx?name=" + project.name + "' title='Saznaj više' class='projectLink'><h2>" + project.name + "</h2></a>"
                             + "&nbsp<iframe width='320' height='180' src='" + project.video_path + "' frameborder='0' allowfullscreen></iframe>";
                     }
                     else
                     {
-                        html = "<a href='projektInfo.aspx?id=" + project.id + "' title='Saznja više' class='projectLink'><h2>" + project.name + "</h2></a>"
+                        html = "<a href='projektInfo.aspx?name=" + project.name + "' title='Saznja više' class='projectLink'><h2>" + project.name + "</h2></a>"
                             + "<img  src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> ";
                     }
                     html += "<h3><b>AUTOR PROJEKTA:</b> " + project.project_owner_username + "</h3>"
@@ -88,18 +88,13 @@ public partial class projektInfo : System.Web.UI.Page
         else
         {
             foreach (Projects project in projects_list)
-                if (project.id == (Convert.ToInt32(showParam)))
+                if (project.name == showParam)
                 {
-                    //HtmlButton button = new HtmlButton();
                     Button bttn = new Button();
                     bttn.Attributes.Add("class", "gumbDoniraj");
                     bttn.Text = "DONIRAJ";
                     bttn.ID = project.id.ToString();
                     bttn.Click += new EventHandler(MakeDonation);
-                    //button.Attributes.Add("class", "gumbDoniraj");
-                    //button.InnerText = "DONIRAJ";
-                    //button.ID = project.id.ToString();
-                    //button.ServerClick += new EventHandler(MakeDonation);
                     if (project.video_path.Length > 0)
                     {
                         html = "<h2>" + project.name + "</h2>"
