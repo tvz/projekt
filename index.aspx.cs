@@ -42,9 +42,12 @@ public partial class index : System.Web.UI.Page
         }
     }
 
-    /*developer:Ivan
-     * description: metoda gleda koji je button pritisnut te salje zahtjev za listanje
-     */
+    /// <summary>
+    /// Developer: Ivan Perički
+    /// Description: metoda gleda koji je button pritisnut te salje zahtjev za listanje
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     protected void scroll(object sender, EventArgs e)
     {
         ImageButton bttn = (ImageButton)sender;
@@ -110,10 +113,16 @@ public partial class index : System.Web.UI.Page
         }
     }
 
-    /*developer: Emilio
-    description: metoda cita projekte iz baze i prikazuje na index.aspx*/
-    //notice:dogovor jer da se ne prcka po tudjim metodama, no buduci da ti delas zavrsni,
-    //netko je moral listanje napravit :)
+    /// <summary>
+    /// Developer: Emilio
+    /// Description: Metoda cita projekte iz baze i prikazuje na index.aspx
+    /// Notice:dogovor jer da se ne prcka po tudjim metodama, no buduci da ti delas zavrsni,
+    /// netko je moral listanje napravit (Ivan)
+    /// </summary>
+    /// <param name="startNew">Indeks pocetnog novog projekta</param>
+    /// <param name="endNew">Indeks zavrsnog novog projekta</param>
+    /// <param name="startOld">Indeks pocetnog starog projekta</param>
+    /// <param name="endOld">Indeks zavrsnog starog projekta</param>
     private void ListProjects(int startNew, int endNew, int startOld, int endOld)
     {
         List<Projects> projects_list = Projects.fetch_all();
@@ -218,18 +227,5 @@ public partial class index : System.Web.UI.Page
 
     }
 
-    /*developer: Emilio
-     description: metoda salje donaciju preko paypala
-     metoda ce se u buducnosti izmijeniti i bolje strukturirati, sad sluzi samo kao test.*/
-    private void MakeDonation(object sender, EventArgs e)
-    {
-        /*Uz svaki dinamicki kreirani button vezan je id projekta.
-         * Bolje bi bilo da se salju request parametri sa id projekta, ali jednostavnije je bilo implementirati ovako.
-         * Planiram to promijenit u buducnosti.*/
-        HtmlButton button = (HtmlButton)sender;
-        Session["project_id"] = button.ID;
-        Response.Redirect("iznosDonacije.aspx");
-
-    }
     private void Postfill() { }
 }
