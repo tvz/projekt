@@ -20,80 +20,100 @@ public partial class index : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        ListProjects(startNew, endNew, startOld, endOld);
+        scroll(null, null);
         Session["list_projects"] = null;
     }
 
-    /// <summary>
-    /// Developer: Ivan Perički
-    /// Description: metoda gleda koji je button pritisnut te salje zahtjev za listanje
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    protected void scroll(object sender, EventArgs e)
+    /*developer:Ivan
+     *description: metoda preusmjerava na stranicu za ispis svih projekata u rubrici 
+     */
+    protected void showAll(object sender, EventArgs e)
     {
-        Button bttn = (Button)sender;
-
-        if (bttn.ID == "scrollNewRight")
+        LinkButton bttn = (LinkButton)sender;
+        if (bttn.ID == "showNewer")
         {
-            scrollNewLeft.Visible = true;
-            if (lengthNew > (startNew + 3))
-            {
-                startNew += 3;
-                if (lengthNew > (startNew + endNew))
-                    endNew = 3;
-                else endNew = lengthNew - startNew;
-            }
-            ListProjects(startNew, endNew, startOld, endOld);
-            if ((lengthNew - startNew - endNew) == 0)
-                scrollNewRight.Visible = false;
+            Session["whichToShow"] = "new";
+            Response.Redirect("~/projektInfo.aspx");
         }
-        else if (bttn.ID == "scrollNewLeft")
+        else
         {
-            scrollNewRight.Visible = true;
-            endNew = 3;
-            if (0 <= (startNew - 3))
-                startNew -= 3;
-            ListProjects(startNew, endNew, startOld, endOld);
-            if (startNew == 0)
-                scrollNewLeft.Visible = false;
-        }
-        else if (bttn.ID == "scrollOldLeft")
-        {
-            scrollOldRight.Visible = true;
-            endOld = 3;
-            if (0 <= (startOld - 3))
-                startOld -= 3;
-            ListProjects(startNew, endNew, startOld, endOld);
-            if (startOld == 0)
-                scrollOldLeft.Visible = false;
-        }
-        else if (bttn.ID == "scrollOldRight")
-        {
-            scrollOldLeft.Visible = true;
-            if (lengthOld > (startOld + 3))
-            {
-                startOld += 3;
-                if (lengthOld > (startOld + endOld))
-                    endOld = 3;
-                else endOld = lengthOld - startOld;
-            }
-            ListProjects(startNew, endNew, startOld, endOld);
-            if ((lengthOld - startOld - endOld) == 0)
-                scrollOldRight.Visible = false;
+            Session["whichToShow"] = "old";
+            Response.Redirect("~/projektInfo.aspx");
         }
     }
 
-    /// <summary>
-    /// Developer: Emilio
-    /// Description: Metoda cita projekte iz baze i prikazuje na index.aspx
-    /// Notice:dogovor jer da se ne prcka po tudjim metodama, no buduci da ti delas zavrsni,
-    /// netko je moral listanje napravit (Ivan)
-    /// </summary>
-    /// <param name="startNew">Indeks pocetnog novog projekta</param>
-    /// <param name="endNew">Indeks zavrsnog novog projekta</param>
-    /// <param name="startOld">Indeks pocetnog starog projekta</param>
-    /// <param name="endOld">Indeks zavrsnog starog projekta</param>
+    /*developer:Ivan
+     * description: metoda gleda koji je button pritisnut te salje zahtjev za listanje
+     */
+    protected void scroll(object sender, EventArgs e)
+    {
+        ImageButton bttn = (ImageButton)sender;
+
+        if (sender == null)
+        {
+            ListProjects(startNew, endNew, startOld, endOld);
+        }
+        else
+        {
+            if (bttn.ID == "scrollNewRight")
+            {
+
+                scrollNewLeft.Enabled = true;
+                if (lengthNew > (startNew + 3))
+                {
+                    startNew += 3;
+                    if (lengthNew > (startNew + endNew))
+                        endNew = 3;
+                    else endNew = lengthNew - startNew;
+                }
+                ListProjects(startNew, endNew, startOld, endOld);
+                if ((lengthNew - startNew - endNew) == 0)
+                    scrollNewRight.Enabled = false;
+            }
+            else if (bttn.ID == "scrollNewLeft")
+            {
+
+                scrollNewRight.Enabled = true;
+                endNew = 3;
+                if (0 <= (startNew - 3))
+                    startNew -= 3;
+                ListProjects(startNew, endNew, startOld, endOld);
+                if (startNew == 0)
+                    scrollNewLeft.Enabled = false;
+            }
+            else if (bttn.ID == "scrollOldLeft")
+            {
+
+                scrollOldRight.Enabled = true;
+                endOld = 3;
+                if (0 <= (startOld - 3))
+                    startOld -= 3;
+                ListProjects(startNew, endNew, startOld, endOld);
+                if (startOld == 0)
+                    scrollOldLeft.Enabled = false;
+            }
+            else if (bttn.ID == "scrollOldRight")
+            {
+
+                scrollOldLeft.Enabled = true;
+                if (lengthOld > (startOld + 3))
+                {
+                    startOld += 3;
+                    if (lengthOld > (startOld + endOld))
+                        endOld = 3;
+                    else endOld = lengthOld - startOld;
+                }
+                ListProjects(startNew, endNew, startOld, endOld);
+                if ((lengthOld - startOld - endOld) == 0)
+                    scrollOldRight.Enabled = false;
+            }
+        }
+    }
+
+    /*developer: Emilio
+    description: metoda cita projekte iz baze i prikazuje na index.aspx*/
+    //notice:dogovor jer da se ne prcka po tudjim metodama, no buduci da ti delas zavrsni,
+    //netko je moral listanje napravit :)
     private void ListProjects(int startNew, int endNew, int startOld, int endOld)
     {
         List<Projects> projects_list = Projects.fetch_all();
@@ -151,19 +171,14 @@ public partial class index : System.Web.UI.Page
         //novi projekti
         foreach (Projects project in newProjectsTemp)
         {
-            HtmlButton button = new HtmlButton();
-            button.Attributes.Add("class", "gumb");
-            button.InnerText = "DONIRAJ";
-            button.ID = project.id.ToString();
-            button.ServerClick += new EventHandler(MakeDonation);
             if (project.video_path.Length > 0)
             {
-                html = "<h2>" + project.name + "</h2>"
+                html = "<a href='projektInfo.aspx?id=" + project.id + "' title='Saznaj više' class='projectLink'><h2>" + project.name + "</h2></a>"
                     + "&nbsp<iframe width='320' height='180' src='" + project.video_path + "' frameborder='0' allowfullscreen></iframe>";
             }
             else
             {
-                html = "<h2>" + project.name + "</h2>"
+                html = "<a href='projektInfo.aspx?id=" + project.id + "' title='Saznja više' class='projectLink'><h2>" + project.name + "</h2></a>"
                     + "<img  src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> ";
             }
             html += "<h3><b>AUTOR PROJEKTA:</b> " + project.project_owner_username + "</h3>"
@@ -174,26 +189,20 @@ public partial class index : System.Web.UI.Page
             HtmlGenericControl div = new HtmlGenericControl("div");
             div.Attributes.Add("class", "proj");
             div.InnerHtml = html;
-            div.Controls.Add(button);
             projekti_novi.Controls.Add(div);
         }
 
         //stari projekti
         foreach (Projects project in oldProjectsTemp)
         {
-            HtmlButton button = new HtmlButton();
-            button.Attributes.Add("class", "gumb");
-            button.InnerText = "DONIRAJ";
-            button.ID = project.id.ToString();
-            button.ServerClick += new EventHandler(MakeDonation);
             if (project.video_path.Length > 0)
             {
-                html = "<h2>" + project.name + "</h2>"
+                html = "<a href='projektInfo.aspx?id=" + project.id + "' title='Saznaj više' class='projectLink'><h2>" + project.name + "</h2></a>"
                     + "&nbsp<iframe width='320' height='180' src='" + project.video_path + "' frameborder='0' allowfullscreen></iframe>";
             }
             else
             {
-                html = "<h2>" + project.name + "</h2>"
+                html = "<a href='projektInfo.aspx?id='" + project.id + "' title='Saznaj više' class='projectLink'><h2>" + project.name + "</h2></a>"
                     + "<img  src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> ";
             }
             html += "<h3><b>AUTOR PROJEKTA:</b> " + project.project_owner_username + "</h3>"
@@ -204,18 +213,14 @@ public partial class index : System.Web.UI.Page
             HtmlGenericControl div = new HtmlGenericControl("div");
             div.Attributes.Add("class", "proj");
             div.InnerHtml = html;
-            div.Controls.Add(button);
             projekti_stari.Controls.Add(div);
         }
+
     }
 
-    /// <summary>
-    /// Developer: Emilio
-    /// Description: metoda salje donaciju preko paypala
-    /// metoda ce se u buducnosti izmijeniti i bolje strukturirati, sad sluzi samo kao test.
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
+    /*developer: Emilio
+     description: metoda salje donaciju preko paypala
+     metoda ce se u buducnosti izmijeniti i bolje strukturirati, sad sluzi samo kao test.*/
     private void MakeDonation(object sender, EventArgs e)
     {
         /*Uz svaki dinamicki kreirani button vezan je id projekta.
@@ -226,6 +231,5 @@ public partial class index : System.Web.UI.Page
         Response.Redirect("iznosDonacije.aspx");
 
     }
-
     private void Postfill() { }
 }

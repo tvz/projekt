@@ -129,11 +129,11 @@
     <form method="POST" action="pregledProjekata.aspx">
     <input id="searchBox" name="searchBox" type="text" value="Pretraži projekte..." autocomplete="off" /> 
     <img alt="" src="img/Search-icon.png" />
-       </form>
+    </form>
     </div>
     <div id="nav_login">  
         <asp:HyperLink ID="RegLink" Font-Underline="False" runat="server" 
-            NavigateUrl="~/login.aspx" CssClass="LogLink"><span>Registracija</span></asp:HyperLink>
+            NavigateUrl="~/login.aspx" CssClass="LogLink"><span class="span">Registracija</span></asp:HyperLink>
         <asp:HyperLink ID="LogInLink" Font-Underline="False" runat="server" CssClass="LogLink" 
             NavigateUrl="~/login.aspx">Prijava</asp:HyperLink>
             <br />
@@ -145,7 +145,7 @@
      <!-- ovdje ide adresa naše stranice na facebooku koju ćemo valjda imati -->
      <!-- ak ne, lako ovo maknemo -->
     <div id="social">
-    <div class="fb-like" data-href="https://www.facebook.com/TVZ.Zagreb?fref=ts" data-send="true" data-width="450" data-show-faces="true"></div>
+    <div class="fb-like" data-href="https://www.facebook.com/TVZ.Zagreb?fref=ts" data-send="true" data-width="450" data-show-faces="false"></div>
     </div>
     <b style="position:absolute;left:700px;top:200px;">u ovu prazninu treba nekej ubacit</b> 
     <br />

@@ -26,17 +26,15 @@ input[type="submit"] {
 #nav_login
 {
     float: right;
-    padding-top: 3.2%;
-    margin:0;
+    margin-top:-12px;
 }
 
 #search img
 {
     height:17px;
     width:17px;
-    position:relative; 
-    top:-85px;
-    left:-5px;
+    float:left;
+    margin-top: -67px;
 }
 
 #search
@@ -76,7 +74,7 @@ A.LogLink:hover
    color:#d02552;
 }
 
-span
+.span
 {
     border-right: 1px solid #282828;
     padding-right:10px;
@@ -148,7 +146,7 @@ h1
 {
     text-transform: uppercase;
     padding-top:3%;
-    padding-bottom:4%;
+    margin-bottom:-25px;
     font-family: Corbel;
     font-size: 25px;
     font-weight:bold;
@@ -157,7 +155,42 @@ h1
 }
 
 /*projekti*/
+.next
+{
+    position:relative;
+    top:300px;
+    left:1000px;
+}
+
+.previous
+{
+    position:relative;
+    top:300px;
+    left:-40px;
+}
+
+.projectLink:hover
+{
+    text-decoration:underline;
+}
+
+.projectLink
+{
+    text-decoration:none;
+}
+
 .proj
+{
+   background-color: rgba(255,255,255,0.45);
+   width: 328px;
+   border-radius: 10px; 
+   float:left;
+   height: 500px;
+   margin-right: 20px;
+   margin-bottom:4%;
+}
+
+.projSingle
 {
    background-color: rgba(255,255,255,0.45);
    width: 328px;
@@ -223,6 +256,7 @@ h5
     font-weight:bold;
     color: #000;  
 }
+
 .gumb
 {
     border-radius: 10px;
@@ -235,6 +269,20 @@ h5
     padding-right: 8%;
     margin: 5%;
     font-family: Corbel;
+}
+
+.gumbDoniraj
+{
+    border-radius: 10px;
+    background-color:#d02552;
+    color:#fff;
+    padding-top: 4%;
+    padding-bottom: 4%;
+    padding-left: 8%;
+    padding-right: 8%;
+    font-family: Corbel;
+    float:right;
+    margin: 5%;
 }
 
 img
