@@ -13,6 +13,12 @@ body {
     
 }
 
+.logo
+{
+   height: 130px;
+    width: 400px; 
+    }
+
 input[type="submit"] { 
     cursor:pointer;
 }

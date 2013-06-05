@@ -122,8 +122,9 @@
     <div id="fb-root"></div>
    
     <div id="logo">
-   <asp:Image ID="Image1" runat="server" ImageUrl="~/img/logo.png" Height="133px" 
-            Width="434px" />
+   <asp:HyperLink ID="HyperLink1" runat="server"  NavigateUrl="~/index.aspx">
+   <asp:Image ID="Image1" runat="server" CssClass="logo" ImageUrl="~/img/logo.png" />
+</asp:HyperLink>
     </div>
     <div id="search">
     <form method="POST" action="pregledProjekata.aspx">
