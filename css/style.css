@@ -19,7 +19,7 @@ input[type="submit"] {
 
 #social
 {
-    margin:100px 18px -120px;
+    margin-left:35%;
 }
 
 /* Registracija - prijava - trazilica*/
@@ -42,7 +42,7 @@ input[type="submit"] {
     width:150px;
     height:20px;
     position:relative;
-    left:770px;
+    left:87%;
     top:58px;
     border-radius: 8px;
     background-color: White;
@@ -123,7 +123,7 @@ A.NavLink:active
 /*---------------------*/
 hr
 {
-  
+  margin-top:3%;
   height: 1px;
   background-color: #fff;
   color: #fff;
@@ -139,6 +139,8 @@ hr
 {
     margin-top:3%; 
 }
+
+
 
 /*--------------------*/
 
@@ -319,6 +321,16 @@ img
     font-style:bold;
   
 }
+.linkovi
+{   
+    color:#d02552;
+    font-family: Corbel;
+    font-size: 18px;
+    font-style:bold;
+  
+}
+
+
 .textbox
 {
     border-color:#d02552;

@@ -3,14 +3,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" style="height: 653px">
     <div id="pozadina">
     <h2>UNESITE PODATKE O PROJEKTIMA KOJE ŽELITE PREGLEDATI:</h2>
     <div class="poravnanje">
     <asp:Label ID="LabelProjectName" runat="server" Text="Ime projekta" 
             CssClass="labele" BorderStyle="None"></asp:Label><br />
     <asp:TextBox ID="TextBoxProjectName" runat="server" CssClass="textbox"></asp:TextBox><br />
-    <label id="prikazi_opcije">Prikaži dodatne opcije</label>
+    <label id="prikazi_opcije" class="linkovi" style="color: #D02552">Prikaži dodatne opcije</label>
 
     <br />
     </div>
@@ -69,9 +69,9 @@
         <asp:Label ID="LabelSearchResult" runat="server" Text=""
          CssClass="labele" BorderStyle="None"></asp:Label><br /> <br />
    </div>
-   <hr />
+   
   <br />
-       <div runat="server" id="projekti_search" style="height:594px;overflow:auto;">
+       <div runat="server" id="projekti_search" style="height:23px; overflow:auto;">
     </div>
    
     </form>

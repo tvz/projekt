@@ -32,7 +32,8 @@
     </div>
     <div style="margin:auto;clear:both;"></div>
     <div style="text-align:center;">
-    <asp:LinkButton ID="showNewer" runat="server" onclick="showAll">Pregledaj sve</asp:LinkButton>
+    <asp:LinkButton ID="showNewer" runat="server" onclick="showAll" BorderStyle="None" 
+            CssClass="linkovi">Pregledaj sve</asp:LinkButton>
     </div>
     <!-- služi da bi spriječio preklapanje novih i starih projekata -->
     <div style="margin:auto;clear:both;"></div>
@@ -64,7 +65,7 @@
     </asp:UpdatePanel>
     <div style="margin:auto;clear:both;"></div>
     <div style="text-align:center;">
-    <asp:LinkButton ID="showOlder" runat="server" onclick="showAll">Pregledaj sve</asp:LinkButton>
+    <asp:LinkButton ID="showOlder" runat="server" onclick="showAll" CssClass="linkovi">Pregledaj sve</asp:LinkButton>
     </div>
     </div>
     </form>
