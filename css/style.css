@@ -467,3 +467,31 @@ img
     margin-bottom:2px;
     
 }
+
+/* povrat imelozinka */
+
+.panel
+{
+    margin-left:5%;
+    margin-right:5%;
+    text-decoration:nonline;
+     font-family: Corbel;
+    font-size: 17px;
+    font-weight:bold;
+    color: #000;
+    
+}
+.gumb3
+{
+    border-radius: 5px;
+    background-color:#d02552;
+    color:#fff;
+    float: right;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 4%;
+    padding-right: 4%;
+    margin-right: 4%;
+    margin-bottom: 4%;
+    font-family: Corbel;
+}
