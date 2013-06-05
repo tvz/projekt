@@ -520,7 +520,7 @@ button.ui-button::-moz-focus-inner {
 
 /* states and images */
 .ui-icon {
-	width: 8px;
+	width: 14px;
 	height: 20px;
 }
 .ui-icon,
@@ -702,9 +702,9 @@ button.ui-button::-moz-focus-inner {
 .ui-icon-circle-plus { background-position: 0 -192px; }
 .ui-icon-circle-minus { background-position: -16px -192px; }
 .ui-icon-circle-close { background-position: -32px -192px; }
-.ui-icon-circle-triangle-e { background-position: -46px -192px; }
+.ui-icon-circle-triangle-e { background-position: -50px -192px; }
 .ui-icon-circle-triangle-s { background-position: -40px -199px; }
-.ui-icon-circle-triangle-w { background-position: -79px -192px; }
+.ui-icon-circle-triangle-w { background-position: -81px -192px; }
 .ui-icon-circle-triangle-n { background-position: -75px -192px; }
 .ui-icon-circle-arrow-e { background-position: -112px -192px; }
 .ui-icon-circle-arrow-s { background-position: -128px -192px; }
