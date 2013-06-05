@@ -18,9 +18,9 @@
     </asp:UpdateProgress>
     </div>
     <asp:ImageButton ID="scrollNewLeft" runat="server" ImageUrl="~/img/previous.png" 
-            Width="70px" onclick="scroll" CssClass="previous"/>
+            onclick="scroll" CssClass="previous"/>
     <asp:ImageButton ID="scrollNewRight" runat="server" ImageUrl="~/img/next.png" 
-            Width="70px" onclick="scroll" CssClass="next"/>   
+            onclick="scroll" CssClass="next"/>   
     <div runat="server" id="projekti_novi" style="height:534px;">
     </div>
     </ContentTemplate>
