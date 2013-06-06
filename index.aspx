@@ -10,7 +10,7 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">   
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server" ChildrenAsTriggers="False" UpdateMode="Conditional">   
     <ContentTemplate>
     <div style="margin:35px 0px -35px 520px; height:10px;">
     <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
@@ -41,7 +41,7 @@
 
     <div id="stariProjekti">
     <h1 id="naslovStari" runat="server">Projekti pred istekom vremena za donaciju</h1>
-    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+    <asp:UpdatePanel ID="UpdatePanel2" runat="server" ChildrenAsTriggers="False" UpdateMode="Conditional">
     <ContentTemplate>
     <div style="margin:35px 0px -35px 520px; height:10px;">
     <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel2">
