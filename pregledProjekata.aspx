@@ -72,6 +72,18 @@
      Collapsed="True">
 </ajaxToolkit:CollapsiblePanelExtender> --%>
 
+<script type="text/javascript">
+    function pageLoad(sender, args) {
+        smoothAnimation();
+    }
+
+    function smoothAnimation() {
+        var collPanel = $find('<%= CollapsiblePanelExtender1.ClientID %>');
+        collPanel._animation._fps = 60;
+        collPanel._animation._duration = .70;
+    }
+</script>
+
 <br />
         <asp:Button ID="ButtonSearch" runat="server" onclick="ButtonSearch_Click" 
         Text="Pretraži" CssClass="gumb2" />

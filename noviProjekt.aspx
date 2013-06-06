@@ -8,11 +8,11 @@
     
         <div id="pozadina">
         <h2>UNESITE PODATKE O SVOM PROJEKTU:</h2>
-        <div class="poravnanjeNP">
+        <div class="poravnanje">
         <asp:Label ID="Label_ime" runat="server" Text="Ime projekta:" CssClass="labele" 
                 BorderStyle="None"></asp:Label>
         </div>
-        <div class="poravnanjeNP">
+        <div class="poravnanje">
         <asp:TextBox ID="TextBox_name" runat="server" CssClass="textbox" Width="250px"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TextBox_name"
             ErrorMessage="Morate unijeti ime projekta!" EnableTheming="True" 
@@ -20,12 +20,12 @@
         </div>
         
         
-        <div class="poravnanjeNP">
+        <div class="poravnanje">
         <asp:Label ID="Label_vrijednost" runat="server" Text="Vrijednost projekta:" 
                 CssClass="labele" BorderStyle="None"></asp:Label>
         </div>
                
-        <div class="poravnanjeNP">
+        <div class="poravnanje">
         <asp:TextBox ID="TextBox_goal" runat="server" CssClass="textbox" Width="250px"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TextBox_goal"
             ErrorMessage="Morate unijeti vrijednost projekta!" BorderStyle="None" 
@@ -37,12 +37,12 @@
          </div>
        
         
-        <div class="poravnanjeNP">
+        <div class="poravnanje">
         <asp:Label ID="Label4" runat="server" Text="Datum isteka projekta:" 
                 CssClass="labele" BorderStyle="None"></asp:Label>
          </div>       
         
-        <div class="poravnanjeNP">
+        <div class="poravnanje">
         <asp:TextBox ID="TextBox_expiration_date" runat="server" CssClass="textbox" 
                 Width="250px"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox_expiration_date"
@@ -52,35 +52,35 @@
         
         
         
-        <div class="poravnanjeNP">
+        <div class="poravnanje">
         <asp:Label ID="Label5" runat="server" Text="URL slike:" CssClass="labele" 
                 BorderStyle="None"></asp:Label>
         </div>
         
-        <div class="poravnanjeNP">
+        <div class="poravnanje">
         <asp:TextBox ID="TextBox_image_path" runat="server" CssClass="textbox" 
                 Width="250px"></asp:TextBox>
         </div>
         
         
         
-        <div class="poravnanjeNP">
+        <div class="poravnanje">
         <asp:Label ID="Label6" runat="server" Text="URL videa:" CssClass="labele" 
                 BorderStyle="None"></asp:Label>
         </div>
         
-        <div class="poravnanjeNP">
+        <div class="poravnanje">
         <asp:TextBox ID="TextBox_video_path" runat="server" CssClass="textbox" 
                 Width="250px"></asp:TextBox>
         </div>
         
         
-        <div class="poravnanjeNP">
+        <div class="poravnanje">
         <asp:Label ID="Label_opis" runat="server" Text="Opis projekta:" CssClass="labele" 
                 BorderStyle="None"></asp:Label>
         </div>
         
-        <div class="poravnanjeNP">
+        <div class="poravnanje">
         <asp:TextBox ID="TextBox_description" runat="server" CssClass="textboxOpis" 
                 TextMode="MultiLine"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TextBox_description"
