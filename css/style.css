@@ -13,13 +13,19 @@ body {
     
 }
 
+.logo
+{
+   height: 130px;
+    width: 400px; 
+    }
+
 input[type="submit"] { 
     cursor:pointer;
 }
 
 #social
 {
-    margin:100px 18px -120px;
+    margin-left:35%;
 }
 
 /* Registracija - prijava - trazilica*/
@@ -42,7 +48,7 @@ input[type="submit"] {
     width:150px;
     height:20px;
     position:relative;
-    left:770px;
+    left:87%;
     top:58px;
     border-radius: 8px;
     background-color: White;
@@ -123,7 +129,7 @@ A.NavLink:active
 /*---------------------*/
 hr
 {
-  
+  margin-top:3%;
   height: 1px;
   background-color: #fff;
   color: #fff;
@@ -139,6 +145,8 @@ hr
 {
     margin-top:3%; 
 }
+
+
 
 /*--------------------*/
 
@@ -159,7 +167,8 @@ h1
 {
     position:relative;
     top:300px;
-    left:1000px;
+    left:963px;
+    width: 97px;
 }
 
 .previous
@@ -167,6 +176,7 @@ h1
     position:relative;
     top:300px;
     left:-40px;
+    width: 97px;
 }
 
 .projectLink:hover
@@ -287,7 +297,7 @@ h5
 
 img
 {
-    height: 200px;
+    height: 146px;
     width:320px;
     padding-left:1.5%;
 }
@@ -319,6 +329,16 @@ img
     font-style:bold;
   
 }
+.linkovi
+{   
+    color:#d02552;
+    font-family: Corbel;
+    font-size: 18px;
+    font-style:bold;
+  
+}
+
+
 .textbox
 {
     border-color:#d02552;
@@ -448,4 +468,27 @@ img
 {
     margin-bottom:2px;
     
+}
+
+
+.panel
+{
+    margin-left:5%;
+    margin-right:5%;
+    text-decoration:nonline;
+     font-family: Corbel;
+    font-size: 17px;
+    font-weight:bold;
+    color: #000;
+    
+}
+.gumb3
+{
+    border-radius: 5px;
+    background-color:#d02552;
+    color:#fff;
+    float: right;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    font-family: Corbel;
 }

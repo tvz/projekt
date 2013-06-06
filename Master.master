@@ -122,8 +122,9 @@
     <div id="fb-root"></div>
    
     <div id="logo">
-   <asp:Image ID="Image1" runat="server" ImageUrl="~/img/logo.png" Height="133px" 
-            Width="434px" />
+   <asp:HyperLink ID="HyperLink1" runat="server"  NavigateUrl="~/index.aspx">
+   <asp:Image ID="Image1" runat="server" CssClass="logo" ImageUrl="~/img/logo.png" />
+</asp:HyperLink>
     </div>
     <div id="search">
     <form method="POST" action="pregledProjekata.aspx">
@@ -135,19 +136,14 @@
         <asp:HyperLink ID="RegLink" Font-Underline="False" runat="server" 
             NavigateUrl="~/login.aspx" CssClass="LogLink"><span class="span">Registracija</span></asp:HyperLink>
         <asp:HyperLink ID="LogInLink" Font-Underline="False" runat="server" CssClass="LogLink" 
-            NavigateUrl="~/login.aspx">Prijava</asp:HyperLink>
-            <br />
+            NavigateUrl="~/login.aspx"><span class="span">Prijava</span></asp:HyperLink>
+            
      <fb:login-button autologoutlink="true" data-perms="email" width="200" size="large" max-rows="1">
      </fb:login-button>
     </div>
     
-    <br />
-     <!-- ovdje ide adresa naše stranice na facebooku koju ćemo valjda imati -->
-     <!-- ak ne, lako ovo maknemo -->
-    <div id="social">
-    <div class="fb-like" data-href="https://www.facebook.com/TVZ.Zagreb?fref=ts" data-send="true" data-width="450" data-show-faces="false"></div>
-    </div>
-    <b style="position:absolute;left:700px;top:200px;">u ovu prazninu treba nekej ubacit</b> 
+    
+    
     <br />
     <br />
     <br />
@@ -171,6 +167,12 @@
         </asp:ContentPlaceHolder>
 
     <div style="margin:auto;clear:both;"></div>
-  <div style="height:50px; text-align:center;margin-top:10%;">FOOTER<br />INFO</div>
+  <hr />
+  <br />
+     <!-- ovdje ide adresa naše stranice na facebooku koju ćemo valjda imati -->
+     <!-- ak ne, lako ovo maknemo -->
+    <div id="social">
+    <div class="fb-like" data-href="https://www.facebook.com/TVZ.Zagreb?fref=ts" data-send="true" data-width="450" data-show-faces="false"></div>
+    </div>
 </body>
 </html>

@@ -30,7 +30,8 @@
                 CssClass="poruka" />
             <TitleTextStyle CssClass="prijava" />
         </asp:Login>
-        <a href="" onclick="popup('povratImeLozinka.aspx')">Zaboravili ste korisničko ime ili lozinku?</a>
+        <a href="" onclick="popup('povratImeLozinka.aspx')" class="linkovi" 
+            style="padding: 20px; clip: rect(auto, auto, 20px, auto);">Zaboravili ste korisničko ime ili lozinku?</a>
     </div>
     
     <!--registracija -->
