@@ -180,16 +180,8 @@ public partial class index : System.Web.UI.Page
         //novi projekti
         foreach (Projects project in newProjectsTemp)
         {
-            if (project.video_path.Length > 0)
-            {
-                html = "<a href='projektInfo.aspx?name=" + project.name + "' title='Saznaj više' class='projectLink'><h2>" + project.name + "</h2></a>"
-                    + "&nbsp<iframe width='320' height='180' src='" + project.video_path + "' frameborder='0' allowfullscreen></iframe>";
-            }
-            else
-            {
-                html = "<a href='projektInfo.aspx?name=" + project.name + "' title='Saznja više' class='projectLink'><h2>" + project.name + "</h2></a>"
+            html = "<a href='projektInfo.aspx?name=" + project.name + "' title='Saznja više' class='projectLink'><h2>" + project.name + "</h2></a>"
                     + "<img  src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> ";
-            }
             html += "<h3><b>AUTOR PROJEKTA:</b> " + project.project_owner_username + "</h3>"
             + "<h3><b>OPIS PROJEKTA:</b> " + project.description + " </h3>"
             + "<h3><b>SAKUPLJENO:</b> " + project.DonationSum() + " Kunića " + "(" + project.DonationsPercent() + "%)" + "</h3>"
@@ -204,16 +196,8 @@ public partial class index : System.Web.UI.Page
         //stari projekti
         foreach (Projects project in oldProjectsTemp)
         {
-            if (project.video_path.Length > 0)
-            {
-                html = "<a href='projektInfo.aspx?name=" + project.name + "' title='Saznaj više' class='projectLink'><h2>" + project.name + "</h2></a>"
-                    + "&nbsp<iframe width='320' height='180' src='" + project.video_path + "' frameborder='0' allowfullscreen></iframe>";
-            }
-            else
-            {
-                html = "<a href='projektInfo.aspx?name='" + project.name + "' title='Saznaj više' class='projectLink'><h2>" + project.name + "</h2></a>"
+            html = "<a href='projektInfo.aspx?name='" + project.name + "' title='Saznaj više' class='projectLink'><h2>" + project.name + "</h2></a>"
                     + "<img  src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> ";
-            }
             html += "<h3><b>AUTOR PROJEKTA:</b> " + project.project_owner_username + "</h3>"
             + "<h3><b>OPIS PROJEKTA:</b> " + project.description + " </h3>"
             + "<h3><b>SAKUPLJENO:</b> " + project.DonationSum() + " Kunića " + "(" + project.DonationsPercent() + "%)" + "</h3>"

@@ -52,4 +52,7 @@
             </asp:View>
         </asp:MultiView>
         </asp:Panel></div><p>
-         <asp:Label ID="LabelStatus" runat="server" CssClass="linkovi"></asp:Label></p></form></body></html>
+         <asp:Label ID="LabelStatus" runat="server" CssClass="linkovi"></asp:Label></p>
+         </form>
+    </body>
+</html>
