@@ -151,16 +151,8 @@ public partial class pregledProjekata : System.Web.UI.Page
         
         foreach (Projects project in list)
         {
-            if (project.video_path.Length > 0)
-            {
-                html = "<h2>" + project.name + "</h2>"
-                    + "&nbsp;&nbsp;&nbsp;<iframe width='320' height='180' src='" + project.video_path + "' frameborder='0' allowfullscreen></iframe>";
-            }
-            else
-            {
-                html = "<h2>" + project.name + "</h2>"
+            html = "<h2>" + project.name + "</h2>"
                     + "<img  src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> ";
-            }
             html += "<h3><b>AUTOR PROJEKTA:</b> " + project.project_owner_username + "</h3>"
             + "<h3><b>OPIS PROJEKTA:</b> " + project.description + " </h3>"
             + "<h3><b>SAKUPLJENO:</b> " + project.DonationSum() + " Kunića " + "(" + project.DonationsPercent() + "%)" + "</h3>"

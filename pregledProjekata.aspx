@@ -4,17 +4,20 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <form id="form1" runat="server" style="height: 653px">
+    <%-- <ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+    </ajaxToolkit:ToolkitScriptManager> --%>
+
     <div id="pozadina">
     <h2>UNESITE PODATKE O PROJEKTIMA KOJE ŽELITE PREGLEDATI:</h2>
     <div class="poravnanje">
     <asp:Label ID="LabelProjectName" runat="server" Text="Ime projekta" 
             CssClass="labele" BorderStyle="None"></asp:Label><br />
     <asp:TextBox ID="TextBoxProjectName" runat="server" CssClass="textbox"></asp:TextBox><br />
-    <label id="prikazi_opcije" class="linkovi" style="color: #D02552">Prikaži dodatne opcije</label>
-
-    <br />
+    <asp:Panel ID="prikazi_opcije" runat="server" CssClass="prikazi_opcije">
+        Prikaži dodatne opcije
+        </asp:Panel>
     </div>
-    
+    <asp:Panel ID="Panel1" runat="server" Visible="True">
     <div class="poravnanje" runat="server" id="vrijednost">
     <asp:Label ID="LabelGoal" runat="server" Text="Vrijednost projekta" 
             CssClass="labele" BorderStyle="None"></asp:Label> <br />
@@ -62,7 +65,15 @@
             oncheckedchanged="DropDownListSort_SelectedIndexChanged" 
             CssClass="labele" BorderStyle="None" />
        </div>
-              <asp:Button ID="ButtonSearch" runat="server" onclick="ButtonSearch_Click" 
+</asp:Panel> 
+
+<%-- <ajaxToolkit:CollapsiblePanelExtender ID="CollapsiblePanelExtender1" runat="server" 
+    TargetControlID="Panel1" CollapseControlID="prikazi_opcije" ExpandControlID="prikazi_opcije" 
+     Collapsed="True">
+</ajaxToolkit:CollapsiblePanelExtender> --%>
+
+<br />
+        <asp:Button ID="ButtonSearch" runat="server" onclick="ButtonSearch_Click" 
         Text="Pretraži" CssClass="gumb2" />
         <asp:Button ID="ButtonReset" runat="server" 
         Text="Obriši" CssClass="gumb2" onclick="ButtonReset_Click" /> <br />

@@ -24,7 +24,7 @@ function popup(url) {
 //jquery
 $(document).ready(function () {
     //za jquery slide div
-    $(".poravnanje").slice(1).toggle();
+    /*$(".poravnanje").slice(1).toggle();
 
     $("#prikazi_opcije").click(function () {
         $(".poravnanje").slice(1).slideToggle("slow");
@@ -35,7 +35,7 @@ $(document).ready(function () {
             $("#prikazi_opcije").text("Prikaži dodatne opcije");
         }
         return false;
-    });
+    });*/
 
     //za searchBox na masteru
     $('#searchBox').focus(function (e) {

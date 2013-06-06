@@ -87,12 +87,12 @@ A.LogLink:hover
     margin-right:10px;
 }
 
-#prikazi_opcije
+.prikazi_opcije
 {
     color:Blue;
 }
 
-#prikazi_opcije:hover
+.prikazi_opcije:hover
 {
     color: #d02552;
     cursor: pointer;
