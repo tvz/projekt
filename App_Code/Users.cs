@@ -272,15 +272,16 @@ public class Users
                 created = System.DateTime.Now.Date.ToShortDateString();
                 updated = System.DateTime.Now.Date.ToShortDateString();
 
-                command.CommandText = "INSERT INTO users ([username], [password_hash], [pass_salt], [sec_question], [sec_answer], [email], [created_at], [updated_at]) VALUES (@username, @password_hash, @pass_salt, @sec_question, @sec_answer, @email, @created_at, @updated_at)";
+                command.CommandText = "INSERT INTO users ([username], [password_hash], [pass_salt], [sec_question], [sec_answer], [created_at], [updated_at], [email], [enabled]) VALUES (@username, @password_hash, @pass_salt, @sec_question, @sec_answer, @created_at, @updated_at, @email, @enabled)";
                 command.Parameters.AddWithValue("@username", username);
                 command.Parameters.AddWithValue("@password_hash", hashed_pass);
                 command.Parameters.AddWithValue("@pass_salt", pass_salt);
                 command.Parameters.AddWithValue("@sec_question", question);
                 command.Parameters.AddWithValue("@sec_answer", hashed_answer);
-                command.Parameters.AddWithValue("@email", email);
                 command.Parameters.AddWithValue("@created_at", created);
                 command.Parameters.AddWithValue("@updated_at", updated);
+                command.Parameters.AddWithValue("@email", email);
+                command.Parameters.AddWithValue("@enabled", "False");
 
                 command.Connection = conn;
                 conn.Open();
