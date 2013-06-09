@@ -7,12 +7,9 @@
     <form id="Form1" runat="server">
     <div id="noviProjekti">
     <h1 id="naslovNovi" runat="server">Najnoviji projekti</h1>
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
-    </asp:ScriptManager>
 
-    <%-- http://ajaxcontroltoolkit.codeplex.com/
     <ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
-    </ajaxToolkit:ToolkitScriptManager> --%>
+    </ajaxToolkit:ToolkitScriptManager> 
 
     
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" ChildrenAsTriggers="False" UpdateMode="Conditional">   
@@ -31,7 +28,7 @@
 
     <!-- act -->
     <!-- animacije na buttone -->
-    <%--
+
         <ajaxToolkit:AnimationExtender ID="AnimationExtender1" runat="server" TargetControlID="scrollNewRight">
             <Animations>
                 <OnClick>
@@ -58,7 +55,7 @@
                 </OnClick>
             </Animations>
         </ajaxToolkit:AnimationExtender>
-        --%>
+
 
     </ContentTemplate>
         <Triggers>
@@ -97,7 +94,7 @@
 
     <!-- act -->
     <!-- animacije na buttone -->
-    <%--
+
     <ajaxToolkit:AnimationExtender ID="AnimationExtender3" runat="server" TargetControlID="scrollOldRight">
             <Animations>
                 <OnClick>
@@ -124,7 +121,7 @@
                 </OnClick>
             </Animations>
         </ajaxToolkit:AnimationExtender>
-        --%>
+
 
     </ContentTemplate>
         <Triggers>
@@ -135,7 +132,7 @@
 
     <!-- act -->
     <!-- update panel animation novi projekti-->
-    <%--
+
         <ajaxToolkit:UpdatePanelAnimationExtender ID="UpdatePanelAnimationExtender2" runat="server" TargetControlID="UpdatePanel1">       
             <Animations>
                 <OnUpdated>
@@ -146,11 +143,11 @@
                 </sequence>
                 </OnUpdated>
             </Animations>
-        </ajaxToolkit:UpdatePanelAnimationExtender> --%>
+        </ajaxToolkit:UpdatePanelAnimationExtender> 
 
     <!-- act -->
     <!-- update panel animation stari projekti -->
-    <%--
+
         <ajaxToolkit:UpdatePanelAnimationExtender ID="UpdatePanelAnimationExtender1" runat="server" TargetControlID="UpdatePanel2">       
             <Animations>
                 <OnUpdated>
@@ -161,7 +158,7 @@
                 </sequence>
                 </OnUpdated>
             </Animations>
-        </ajaxToolkit:UpdatePanelAnimationExtender> --%>
+        </ajaxToolkit:UpdatePanelAnimationExtender> 
 
     <div style="margin:auto;clear:both;"></div>
     <div style="text-align:center;">

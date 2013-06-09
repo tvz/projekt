@@ -41,7 +41,7 @@ public partial class projektInfo : System.Web.UI.Page
                     if (project.video_path.Length > 0)
                     {
                         html = "<a href='projektInfo.aspx?name=" + project.name + "' title='Saznaj više' class='projectLink'><h2>" + project.name + "</h2></a>"
-                            + "&nbsp<iframe width='320' height='180' src='" + project.video_path + "' frameborder='0' allowfullscreen></iframe>";
+                            + "&nbsp<iframe width='300' height='180' src='" + project.video_path + "' frameborder='0' allowfullscreen></iframe>";
                     }
                     else
                     {
@@ -67,7 +67,7 @@ public partial class projektInfo : System.Web.UI.Page
                     if (project.video_path.Length > 0)
                     {
                         html = "<a href='projektInfo.aspx?name=" + project.name + "' title='Saznaj više' class='projectLink'><h2>" + project.name + "</h2></a>"
-                            + "&nbsp<iframe width='320' height='180' src='" + project.video_path + "' frameborder='0' allowfullscreen></iframe>";
+                            + "&nbsp<iframe width='300' height='180' src='" + project.video_path + "' frameborder='0' allowfullscreen></iframe>";
                     }
                     else
                     {
@@ -98,7 +98,7 @@ public partial class projektInfo : System.Web.UI.Page
                     if (project.video_path.Length > 0)
                     {
                         html = "<h2>" + project.name + "</h2>"
-                            + "&nbsp<iframe width='320' height='180' src='" + project.video_path + "' frameborder='0' allowfullscreen></iframe>";
+                            + "&nbsp<iframe width='300' height='180' src='" + project.video_path + "' frameborder='0' allowfullscreen></iframe>";
                     }
                     else
                     {

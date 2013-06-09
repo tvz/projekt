@@ -2,6 +2,7 @@
 /// Klasa Projects predstavlja projects entitet u bazi podataka
 /// </summary>
 /// 
+using System.Data;
 using System.Data.OleDb;
 using System.Configuration;
 using System.Collections.Generic;
@@ -495,12 +496,36 @@ public class Projects
                 search_list.Add(project);
             }
         }
-        catch (System.Exception ex) { System.Diagnostics.Debug.WriteLine(ex.Message + "\n" + ex.StackTrace); }
+        catch {}
         finally
         {
             command.Dispose();
             conn.Close();
         }
         return search_list;
+    }
+
+    /*developer: Ivan
+     * description: metoda dohvaca info o projektu
+     */
+    public static DataTable fetchInfo()
+    {
+        DataTable news = new DataTable();
+        OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
+        string command = "SELECT name, description, created_at FROM projects ORDER BY created_at DESC";
+
+        try
+        {
+            conn.Open();
+            OleDbDataAdapter da = new OleDbDataAdapter(command, conn);
+            da.Fill(news);
+        }
+        catch { }
+        finally
+        {
+            conn.Close();
+        }
+
+        return news;
     }
 }

@@ -136,10 +136,10 @@
         <asp:HyperLink ID="RegLink" Font-Underline="False" runat="server" 
             NavigateUrl="~/login.aspx" CssClass="LogLink"><span class="span">Registracija</span></asp:HyperLink>
         <asp:HyperLink ID="LogInLink" Font-Underline="False" runat="server" CssClass="LogLink" 
-            NavigateUrl="~/login.aspx"><span class="span">Prijava</span></asp:HyperLink>
+            NavigateUrl="~/login.aspx"><span>Prijava</span></asp:HyperLink>
             
-     <fb:login-button autologoutlink="true" data-perms="email" width="200" size="large" max-rows="1">
-     </fb:login-button>
+     <!-- <fb:login-button autologoutlink="true" data-perms="email" width="200" size="large" max-rows="1">
+     </fb:login-button> -->
     </div>
     
     

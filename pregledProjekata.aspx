@@ -4,8 +4,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <form id="form1" runat="server" style="height: 653px">
-    <%-- <ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
-    </ajaxToolkit:ToolkitScriptManager> --%>
+    <ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+    </ajaxToolkit:ToolkitScriptManager>
 
     <div id="pozadina">
     <h2>UNESITE PODATKE O PROJEKTIMA KOJE ŽELITE PREGLEDATI:</h2>
@@ -67,10 +67,10 @@
        </div>
 </asp:Panel> 
 
-<%-- <ajaxToolkit:CollapsiblePanelExtender ID="CollapsiblePanelExtender1" runat="server" 
+ <ajaxToolkit:CollapsiblePanelExtender ID="CollapsiblePanelExtender1" runat="server" 
     TargetControlID="Panel1" CollapseControlID="prikazi_opcije" ExpandControlID="prikazi_opcije" 
      Collapsed="True">
-</ajaxToolkit:CollapsiblePanelExtender> --%>
+</ajaxToolkit:CollapsiblePanelExtender> 
 
 <script type="text/javascript">
     function pageLoad(sender, args) {

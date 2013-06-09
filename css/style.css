@@ -48,7 +48,7 @@ input[type="submit"] {
     width:150px;
     height:20px;
     position:relative;
-    left:87%;
+    left:70%;
     top:58px;
     border-radius: 8px;
     background-color: White;
@@ -167,8 +167,8 @@ h1
 {
     position:relative;
     top:300px;
-    left:963px;
-    width: 97px;
+    left:983px;
+    width: 70px;
 }
 
 .previous
@@ -176,7 +176,7 @@ h1
     position:relative;
     top:300px;
     left:-40px;
-    width: 97px;
+    width: 70px;
 }
 
 .projectLink:hover
@@ -192,7 +192,7 @@ h1
 .proj
 {
    background-color: rgba(255,255,255,0.45);
-   width: 328px;
+   width: 308px;
    border-radius: 10px; 
    float:left;
    height: 500px;
@@ -203,7 +203,7 @@ h1
 .projSingle
 {
    background-color: rgba(255,255,255,0.45);
-   width: 328px;
+   width: 308px;
    border-radius: 10px; 
    float:left;
    height: 550px;
@@ -213,7 +213,7 @@ h1
 
 .proj:first-child
 {
-    margin-left:40px;
+    margin-left:6%;
 }
 
 .proj:nth-child(3n+3)
@@ -223,7 +223,7 @@ h1
 
 .proj:nth-child(3n+4)
 {
-    margin-left:40px;
+    margin-left:55px;
 }
 
 h2
@@ -297,9 +297,9 @@ h5
 
 img
 {
-    height: 146px;
-    width:320px;
-    padding-left:1.5%;
+    height: 186px;
+    width:300px;
+    padding-left:1.3%;
 }
 
 /*login/reg*/
