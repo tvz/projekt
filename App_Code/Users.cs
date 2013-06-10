@@ -271,7 +271,7 @@ public class Users
 
         reader.Read();
         string temp = reader.GetValue(0).ToString();
-        if (temp == "0") userExists = true;
+        if (temp != "0") userExists = true;
 
         reader.Close();
         conn.Close();
