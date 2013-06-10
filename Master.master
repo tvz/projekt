@@ -173,6 +173,7 @@
      <!-- ak ne, lako ovo maknemo -->
     <div id="social">
     <div class="fb-like" data-href="https://www.facebook.com/TVZ.Zagreb?fref=ts" data-send="true" data-width="450" data-show-faces="false"></div>
+    <a href="RSSFeed.aspx">RSS</a>
     </div>
 </body>
 </html>

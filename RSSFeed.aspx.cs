@@ -4,6 +4,7 @@ using System.Linq;
 using System.Data;
 using System.ServiceModel.Syndication;
 using System.Xml;
+using System.Text;
 
 public partial class RSSFeed : System.Web.UI.Page
 {

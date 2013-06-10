@@ -512,7 +512,7 @@ public class Projects
     {
         DataTable news = new DataTable();
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
-        string command = "SELECT name, description, created_at FROM projects ORDER BY created_at DESC";
+        string command = "SELECT name, description, created_at, image_path FROM projects ORDER BY created_at DESC";
 
         try
         {
