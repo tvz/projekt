@@ -245,22 +245,7 @@ public class Users
         OleDbCommand command = new OleDbCommand();
         OleDbDataReader reader = null;
 
-        /**************************************STARI KOD
-        command.CommandText = "SELECT username FROM users";
-        command.Connection = conn;
-        conn.Open();
-        reader = command.ExecuteReader();
-
-        while (reader.Read())
-        {
-            string temp = reader.GetValue(0).ToString();
-            if (temp == username)
-                userExists = true;
-        }
-        reader.Close();
-        conn.Close();
-        ***************************************KRAJ STAROG KODA*/ 
-
+        //slobodno obrišeš ako ne valja il ak imaš nekej bolje, sve se točno vidi na githubu (Ivan)
 
         //**************************************NOVI KOD
         command.CommandText = "SELECT COUNT(*) FROM users WHERE username = @username";
