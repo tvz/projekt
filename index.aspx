@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <form id="Form1" runat="server">
     <div id="noviProjekti">
-    <h1 id="naslovNovi" runat="server">Najnoviji projekti</h1>
+    <h1 id="naslovNovi" runat="server">Novi projekti</h1>
 
     <ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
     </ajaxToolkit:ToolkitScriptManager> 

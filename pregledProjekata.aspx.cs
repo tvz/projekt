@@ -147,11 +147,11 @@ public partial class pregledProjekata : System.Web.UI.Page
     {
         string html = null;
         projekti_search.InnerHtml = "";
-        this.LabelSearchResult.Text = "Pronađeno: <b>"+list.Count+"</b>";
-        
+        this.LabelSearchResult.Text = "Pronađeno: <b>" + list.Count + "</b>";
+
         foreach (Projects project in list)
         {
-            html = "<h2>" + project.name + "</h2>"
+            html = "<a href='projektInfo.aspx?name=" + project.name + "' title='Saznaj više' class='projectLink'><h2>" + project.name + "</h2></a>"
                     + "<img  src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> ";
             html += "<h3><b>AUTOR PROJEKTA:</b> " + project.project_owner_username + "</h3>"
             + "<h3><b>OPIS PROJEKTA:</b> " + project.description + " </h3>"
@@ -160,7 +160,7 @@ public partial class pregledProjekata : System.Web.UI.Page
 
             HtmlGenericControl div = new HtmlGenericControl("div");
             div.Attributes.Add("class", "proj");
-            div.InnerHtml = html;        
+            div.InnerHtml = html;
             projekti_search.Controls.Add(div);
         } 
     }

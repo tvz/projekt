@@ -145,12 +145,11 @@ public partial class index : System.Web.UI.Page
             else newProjects.Add(project);
         }
 
-        //System.Diagnostics.Debug.WriteLine("new: " + newProjects.Count + " old: " + oldProjects.Count+ " start:"+start+" end:"+end);
         lengthNew = newProjects.Count;
         lengthOld = oldProjects.Count;
 
-        naslovNovi.InnerHtml = "Najnoviji projekti (" + newProjects.Count + ")";
-        naslovStari.InnerHtml = "Projekti pred istekom vremena za donaciju (" + oldProjects.Count + ")";
+        showNewer.Text += " (" + lengthNew.ToString() + ")";
+        showOlder.Text += " (" + lengthOld.ToString() + ")";
 
         //ako se u listi nalazi do 3 projekta
         if (newProjects.Count <= 3)
@@ -180,8 +179,8 @@ public partial class index : System.Web.UI.Page
         //novi projekti
         foreach (Projects project in newProjectsTemp)
         {
-            html = "<a href='projektInfo.aspx?name=" + project.name + "' title='Saznja više' class='projectLink'><h2>" + project.name + "</h2></a>"
-                    + "<img  src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> ";
+            html = "<a href='projektInfo.aspx?name=" + project.name + "' title='Saznaj više' class='projectLink'><h2>" + project.name + "</h2></a>"
+                    + "<img  src=" + "'" + project.image_path + "'" + " alt='Slika trenutno nije dostupna' >";
             html += "<h3><b>AUTOR PROJEKTA:</b> " + project.project_owner_username + "</h3>"
             + "<h3><b>OPIS PROJEKTA:</b> " + project.description + " </h3>"
             + "<h3><b>SAKUPLJENO:</b> " + project.DonationSum() + " Kunića " + "(" + project.DonationsPercent() + "%)" + "</h3>"

@@ -51,6 +51,7 @@ public class SyndicationHelper
             sItem.Links.Add(SyndicationLink.CreateAlternateLink(itemUrl));
             sItem.Content = SyndicationContent.CreateHtmlContent(description);
             sItem.PublishDate = DateTimeOffset.Parse(dt.ToString("r"));
+            
 
             items.Add(sItem);
         }

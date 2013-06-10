@@ -3,20 +3,20 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <form id="form1" runat="server" style="height: 653px">
+    <form id="form1" runat="server">
+
     <ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
     </ajaxToolkit:ToolkitScriptManager>
 
     <div id="pozadina">
-    <h2>UNESITE PODATKE O PROJEKTIMA KOJE ŽELITE PREGLEDATI:</h2>
+    <h2>UNESITE PODATKE O PROJEKTIMA KOJE ŽELITE PREGLEDATI</h2>
     <div class="poravnanje">
     <asp:Label ID="LabelProjectName" runat="server" Text="Ime projekta" 
             CssClass="labele" BorderStyle="None"></asp:Label><br />
     <asp:TextBox ID="TextBoxProjectName" runat="server" CssClass="textbox"></asp:TextBox><br />
-    <asp:Panel ID="prikazi_opcije" runat="server" CssClass="prikazi_opcije">
-        Prikaži dodatne opcije
-        </asp:Panel>
+    <asp:Panel ID="prikazi_opcije" runat="server" CssClass="prikazi_opcije"></asp:Panel>
     </div>
+
     <asp:Panel ID="Panel1" runat="server" Visible="True">
     <div class="poravnanje" runat="server" id="vrijednost">
     <asp:Label ID="LabelGoal" runat="server" Text="Vrijednost projekta" 
@@ -67,11 +67,10 @@
        </div>
 </asp:Panel> 
 
- <ajaxToolkit:CollapsiblePanelExtender ID="CollapsiblePanelExtender1" runat="server" 
+<ajaxToolkit:CollapsiblePanelExtender ID="CollapsiblePanelExtender1" runat="server" 
     TargetControlID="Panel1" CollapseControlID="prikazi_opcije" ExpandControlID="prikazi_opcije" 
-     Collapsed="True">
-</ajaxToolkit:CollapsiblePanelExtender> 
-
+     Collapsed="True" ExpandedText="Sakrij dodatne opcije" CollapsedText="Prikaži dodatne opcije" TextLabelID="prikazi_opcije">
+</ajaxToolkit:CollapsiblePanelExtender>
 <script type="text/javascript">
     function pageLoad(sender, args) {
         smoothAnimation();
@@ -92,9 +91,10 @@
         <asp:Label ID="LabelSearchResult" runat="server" Text=""
          CssClass="labele" BorderStyle="None"></asp:Label><br /> <br />
    </div>
-   
+   <br /><br />
+   <hr />
   <br />
-       <div runat="server" id="projekti_search" style="height:23px; overflow:auto;">
+       <div runat="server" id="projekti_search" style="height:554px;overflow:auto;">
     </div>
    
     </form>

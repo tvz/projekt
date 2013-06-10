@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Data;
 using System.ServiceModel.Syndication;
+using System.Xml.Linq;
 using System.Xml;
 using System.Text;
+using System.Web;
 
 public partial class RSSFeed : System.Web.UI.Page
 {
@@ -18,6 +20,7 @@ public partial class RSSFeed : System.Web.UI.Page
         XmlWriter writer = XmlWriter.Create(Response.Output, null);
 
         formatter.WriteTo(writer);
-        writer.Flush();
+
+        writer.Flush();      
     }
 }
