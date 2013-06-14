@@ -61,6 +61,10 @@ public partial class pregledProjekata : System.Web.UI.Page
         this.TextBoxExpirationDateStart.Text = "";
         this.TextBoxExpirationDateEnd.Text = "";
         this.LabelSearchResult.Text = "";
+        this.DropDownListSort.Enabled = false;
+        this.RadioButtonASC.Enabled = false;
+        this.RadioButtonDESC.Enabled = false;
+        projekti_search.Attributes.Clear();
     }
 
     /// <summary>
@@ -95,11 +99,17 @@ public partial class pregledProjekata : System.Web.UI.Page
 
         showProjects(search_list);
 
-        if (search_list.Count > 0)
+        if (search_list.Count > 1)
         {
             DropDownListSort.Enabled = true;
             RadioButtonASC.Enabled = true;
             RadioButtonDESC.Enabled = true;
+        }
+        else 
+        {
+            this.DropDownListSort.Enabled = false;
+            this.RadioButtonASC.Enabled = false;
+            this.RadioButtonDESC.Enabled = false;
         }
 
         Session["list_projects"] = search_list;
@@ -162,6 +172,7 @@ public partial class pregledProjekata : System.Web.UI.Page
             div.Attributes.Add("class", "proj");
             div.InnerHtml = html;
             projekti_search.Controls.Add(div);
+            projekti_search.Attributes.Add("style", "height:544px;overflow:auto");
         } 
     }
 }

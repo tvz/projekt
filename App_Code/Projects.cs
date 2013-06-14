@@ -355,7 +355,7 @@ public class Projects
                     project.expiration_date = Convert.ToDateTime(reader.GetValue(++column));
                     project.image_path = reader.GetValue(++column).ToString();
                     project.video_path = reader.GetValue(++column).ToString();
-                    project.project_owner_username = reader.GetValue(++column).ToString();
+                    project.project_owner_username = reader.GetValue(column+2).ToString();
                     projects_list.Add(project);
                 }
             }

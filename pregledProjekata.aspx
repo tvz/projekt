@@ -94,7 +94,7 @@
    <br /><br />
    <hr />
   <br />
-       <div runat="server" id="projekti_search" style="height:554px;overflow:auto;">
+       <div runat="server" id="projekti_search">
     </div>
    
     </form>
