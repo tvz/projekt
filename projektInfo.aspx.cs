@@ -10,8 +10,8 @@ public partial class projektInfo : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Request.UrlReferrer == null)
-            Response.Redirect("~/index.aspx");
+        //if (Request.UrlReferrer == null)
+          //  Response.Redirect("~/index.aspx");
 
         List<Projects> projects_list = Projects.fetch_all();
         string urlParam = null, whatToShow = null;
@@ -32,22 +32,21 @@ public partial class projektInfo : System.Web.UI.Page
     protected void showNewOrOldProjects(List<Projects> projects_list, string showParam)
     {
         string html;
+        int height = 570;
+        int count;
 
         if (showParam == "new")
         {
+            count = 0;
+            this.MultiView1.ActiveViewIndex = 0;
+            projectContainer.InnerHtml = "<h1 runat=\"server\">NOVI PROJEKTI</h1><br/><br/>";
+
             foreach (Projects project in projects_list)
                 if (DateTime.Now.AddDays(7) < project.expiration_date)
                 {
-                    if (project.video_path.Length > 0)
-                    {
-                        html = "<a href='projektInfo.aspx?name=" + project.name + "' title='Saznaj više' class='projectLink'><h2>" + project.name + "</h2></a>"
-                            + "&nbsp<iframe width='300' height='180' src='" + project.video_path + "' frameborder='0' allowfullscreen></iframe>";
-                    }
-                    else
-                    {
-                        html = "<a href='projektInfo.aspx?name=" + project.name + "' title='Saznja više' class='projectLink'><h2>" + project.name + "</h2></a>"
-                            + "<img  src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> ";
-                    }
+                    count++;
+                    html = "<a href='projektInfo.aspx?name=" + project.name + "' title='Saznja više' class='projectLink'><h2>" + project.name + "</h2></a>"
+                    + "<img  src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> ";
                     html += "<h3><b>AUTOR PROJEKTA:</b> " + project.project_owner_username + "</h3>"
                     + "<h3><b>OPIS PROJEKTA:</b> " + project.description + " </h3>"
                     + "<h3><b>SAKUPLJENO:</b> " + project.DonationSum() + " Kunića " + "(" + project.DonationsPercent() + "%)" + "</h3>"
@@ -57,23 +56,27 @@ public partial class projektInfo : System.Web.UI.Page
                     div.Attributes.Add("class", "proj");
                     div.InnerHtml = html;
                     projectContainer.Controls.Add(div);
+
+                    if (count % 3 == 0)
+                    {
+                        if (count > 3)
+                            height += 570;
+                        projectContainer.Attributes.Add("style", "height: " + height + "px;");
+                    }
                 }
         }
         else if (showParam == "old")
         {
+            count = 0;
+            this.MultiView1.ActiveViewIndex = 0;
+            projectContainer.InnerHtml = "<h1 runat=\"server\">PROJEKTI PRED ISTEKOM VREMENA ZA DONACIJU</h1><br/><br/>";
+
             foreach (Projects project in projects_list)
                 if (DateTime.Now.AddDays(7) >= project.expiration_date)
                 {
-                    if (project.video_path.Length > 0)
-                    {
-                        html = "<a href='projektInfo.aspx?name=" + project.name + "' title='Saznaj više' class='projectLink'><h2>" + project.name + "</h2></a>"
-                            + "&nbsp<iframe width='300' height='180' src='" + project.video_path + "' frameborder='0' allowfullscreen></iframe>";
-                    }
-                    else
-                    {
-                        html = "<a href='projektInfo.aspx?name=" + project.name + "' title='Saznja više' class='projectLink'><h2>" + project.name + "</h2></a>"
-                            + "<img  src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> ";
-                    }
+                    count++;
+                    html = "<a href='projektInfo.aspx?name=" + project.name + "' title='Saznja više' class='projectLink'><h2>" + project.name + "</h2></a>"
+                    + "<img  src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> ";
                     html += "<h3><b>AUTOR PROJEKTA:</b> " + project.project_owner_username + "</h3>"
                     + "<h3><b>OPIS PROJEKTA:</b> " + project.description + " </h3>"
                     + "<h3><b>SAKUPLJENO:</b> " + project.DonationSum() + " Kunića " + "(" + project.DonationsPercent() + "%)" + "</h3>"
@@ -83,10 +86,19 @@ public partial class projektInfo : System.Web.UI.Page
                     div.Attributes.Add("class", "proj");
                     div.InnerHtml = html;
                     projectContainer.Controls.Add(div);
+
+                    if (count % 3 == 0)
+                    {
+                        if (count > 3)
+                            height += 570;
+                        projectContainer.Attributes.Add("style", "height: " + height + "px;");
+                    }
                 }
         }
         else
         {
+            this.MultiView1.ActiveViewIndex = 1;
+
             foreach (Projects project in projects_list)
                 if (project.name == showParam)
                 {
