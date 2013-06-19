@@ -49,7 +49,7 @@
                         <EnableAction Enabled="false"></EnableAction>
                         <StyleAction AnimationTarget="projekti_novi" Attribute="display" Value="block"/>
                             <Parallel AnimationTarget="projekti_novi" Duration=".5" Fps="60">
-                                <FadeOut Duration="2"/>
+                                <FadeOut />
                             </Parallel>
                     </Sequence>
                 </OnClick>
@@ -115,7 +115,7 @@
                         <EnableAction Enabled="false"></EnableAction>
                         <StyleAction AnimationTarget="projekti_stari" Attribute="display" Value="block"/>
                             <Parallel AnimationTarget="projekti_stari" Duration=".5" Fps="60">
-                                <FadeOut Duration="2"/>
+                                <FadeOut />
                             </Parallel>
                     </Sequence>
                 </OnClick>

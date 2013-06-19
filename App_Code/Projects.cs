@@ -14,6 +14,7 @@ public class Projects
     public int id;
     public string name;
     public string description;
+    public string long_description;
     public float goal;
     public string image_path;
     public string video_path;
@@ -32,10 +33,11 @@ public class Projects
         //
     }
 
-    public Projects(string name, string description, float goal, DateTime expiration_date, string image_path, string video_path, int user_id)
+    public Projects(string name, string description, string long_description, float goal, DateTime expiration_date, string image_path, string video_path, int user_id)
     {
         this.name = name;
         this.description = description;
+        this.long_description = long_description;
         this.goal = goal;
         this.expiration_date = expiration_date;
         this.image_path = image_path;
@@ -102,14 +104,15 @@ public class Projects
     /// <param name="video_path"></param>
     /// <param name="user_id"></param>
     /// <returns></returns>
-    public static bool Create(string name, string description, float goal, DateTime expiration_date, string image_path, string video_path, int user_id)
+    public static bool Create(string name, string description, string long_description, float goal, DateTime expiration_date, string image_path, string video_path, int user_id)
     {   
         bool created = false;
         OleDbConnection conn = new OleDbConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
         OleDbCommand command = new OleDbCommand();
-        command.CommandText = "INSERT INTO projects ([name], [description], [goal], [expiration_date], [created_at], [updated_at], [image_path], [video_path], [user_id], [enabled]) VALUES (@name, @description, @goal, @expiration_date, NOW(), NOW(), @image_path, @video_path, @user_id, 'False')";
+        command.CommandText = "INSERT INTO projects ([name], [description], [long_description], [goal], [expiration_date], [created_at], [updated_at], [image_path], [video_path], [user_id], [enabled]) VALUES (@name, @description, @long_description, @goal, @expiration_date, NOW(), NOW(), @image_path, @video_path, @user_id, 'False')";
         command.Parameters.AddWithValue("@name", name);
         command.Parameters.AddWithValue("@description", description);
+        command.Parameters.AddWithValue("@long_description", long_description);
         command.Parameters.AddWithValue("@goal", goal);
         command.Parameters.AddWithValue("@expiration_date", expiration_date.ToShortDateString());
         command.Parameters.AddWithValue("@image_path", image_path);
@@ -257,6 +260,7 @@ public class Projects
                 project.id = Convert.ToInt32(reader.GetValue(++column));
                 project.name = reader.GetValue(++column).ToString();
                 project.description = reader.GetValue(++column).ToString();
+                project.long_description = reader.GetValue(++column).ToString();
                 project.goal = Convert.ToSingle(reader.GetValue(++column));
                 project.expiration_date = Convert.ToDateTime(reader.GetValue(++column));
                 project.created_at = Convert.ToDateTime(reader.GetValue(++column));
@@ -335,7 +339,7 @@ public class Projects
         OleDbCommand command = new OleDbCommand();
         OleDbDataReader reader;
         command.Connection = conn;
-        command.CommandText = "SELECT projects.ID,projects.name, projects.description, projects.goal, projects.expiration_date, projects.image_path, projects.video_path, projects.enabled, users.username FROM (projects INNER JOIN users ON projects.user_id = users.ID) GROUP BY projects.ID, projects.name, projects.description, projects.goal,projects.expiration_date, projects.image_path, projects.video_path, projects.enabled, users.username";
+        command.CommandText = "SELECT projects.ID,projects.name, projects.description, projects.long_description, projects.goal, projects.expiration_date, projects.image_path, projects.video_path, projects.enabled, users.username FROM (projects INNER JOIN users ON projects.user_id = users.ID) GROUP BY projects.ID, projects.name, projects.description, projects.goal,projects.expiration_date, projects.image_path, projects.video_path, projects.enabled, users.username";
 
         List<Projects> projects_list = new List<Projects>();
         try
@@ -344,13 +348,14 @@ public class Projects
             reader = command.ExecuteReader();
             while (reader.Read())
             {
-                if (reader.GetValue(7).ToString() == "True")
+                if (reader.GetValue(8).ToString() == "True")
                 {
                     int column = -1;
                     Projects project = new Projects();
                     project.id = Convert.ToInt32(reader.GetValue(++column));
                     project.name = reader.GetValue(++column).ToString();
                     project.description = reader.GetValue(++column).ToString();
+                    project.long_description = reader.GetValue(++column).ToString();
                     project.goal = Convert.ToSingle(reader.GetValue(++column));
                     project.expiration_date = Convert.ToDateTime(reader.GetValue(++column));
                     project.image_path = reader.GetValue(++column).ToString();

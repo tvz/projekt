@@ -80,6 +80,7 @@ public partial class projektInfo : System.Web.UI.Page
             this.MultiView1.ActiveViewIndex = 1;
 
             foreach (Projects project in projects_list)
+                //slijedi redizajn metode kroz sljedećih par dana
                 if (project.name == showParam)
                 {
                     Button bttn = new Button();
@@ -106,7 +107,7 @@ public partial class projektInfo : System.Web.UI.Page
                     div.Attributes.Add("class", "projSingle");
                     div.InnerHtml = html;
                     div.Controls.Add(bttn);
-                    projectContainer.Controls.Add(div);
+                    projectDisplay.Controls.Add(div);
                 }
         }
     }

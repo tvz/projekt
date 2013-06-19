@@ -5,9 +5,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <form id="form1" runat="server">
     
-    
+    <asp:MultiView ID="MultiView1" runat="server">
+        <asp:View ID="View1" runat="server">
         <div id="pozadina">
-        <h2>UNESITE PODATKE O SVOM PROJEKTU:</h2>
+        <h2>UNESITE PODATKE O SVOM PROJEKTU (1/2)</h2>
         <div class="poravnanje">
         <asp:Label ID="Label_ime" runat="server" Text="Ime projekta:" CssClass="labele" 
                 BorderStyle="None"></asp:Label>
@@ -76,7 +77,7 @@
         
         
         <div class="poravnanje">
-        <asp:Label ID="Label_opis" runat="server" Text="Opis projekta:" CssClass="labele" 
+        <asp:Label ID="Label_opis" runat="server" Text="Kratki opis projekta:" CssClass="labele" 
                 BorderStyle="None"></asp:Label>
         </div>
         
@@ -97,7 +98,34 @@
         
         &nbsp;
         </div>
+        </asp:View>
+
+        <asp:View ID="View2" runat="server">
+        <div id="pozadina2">
+        <h2>UNESITE PODATKE O SVOM PROJEKTU (2/2)</h2>
+            <asp:Label ID="Label1" runat="server" Text="Temeljni opis projekta:" CssClass="labele"></asp:Label>
+            <script>
+                tinymce.init({ selector: 'textarea', height: 300});            
+            </script>
+            <form method="post" action="noviProjekt.aspx">
+            <div class="textbox">
+                <textarea runat="server" id="long_descriptionBox" name="long_descriptionBox"></textarea>
+            </div>
+            </form>
+            <br />
+            <!-- putanja na serveru do dokumenta -->
+            <asp:CheckBox ID="CheckBoxAccept" runat="server"/>Prihvaćam <a href="">uvjete korištenja</a>
+            <br />
+            <asp:Button ID="Button2" runat="server" Text="SPREMI" 
+                CssClass="gumb2" OnClick="Button2_Click" />
+            <asp:Button ID="Button3" runat="server" Text="NATRAG" onclick="Button3_Click" 
+                CssClass="gumb2" />         
+            <br /><br />
+            </div>
+        </asp:View>
         
+        
+        </asp:MultiView>
     </form>
     
 </asp:Content>

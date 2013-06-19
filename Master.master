@@ -13,6 +13,7 @@
     <link rel="icon" type="image/png" href="img/zicalica_favicon.png"/>
     <link href="css/custom-theme/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
     
+    <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script> 
     <script type="text/javascript" src="https://connect.facebook.net/hr_HR/all.js#xfbml=1"></script>
     <script type="text/javascript"" src="js/jquery-1.9.1.js"></script>

@@ -420,18 +420,27 @@ img
 
 /*Novi projekt*/
 #pozadina
-{
-   
+{ 
    margin-top: 4%;
    padding-top:2%;
    padding: 4%;
    background-color: rgba(255,255,255,0.45);
    border-radius: 10px;  
-   
    width: 500px;
-  margin-left: 23%;
-   
+   margin-left: 23%; 
 }
+
+#pozadina2
+{
+   margin-top: 4%;
+   padding-top:2%;
+   padding: 4%;
+   background-color: rgba(255,255,255,0.45);
+   border-radius: 10px;  
+   width: 750px;
+   margin-left: 11%;   
+}
+
 
 .textboxOpis
 {
