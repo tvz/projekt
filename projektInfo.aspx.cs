@@ -32,21 +32,15 @@ public partial class projektInfo : System.Web.UI.Page
     protected void showNewOrOldProjects(List<Projects> projects_list, string showParam)
     {
         string html;
-        int height = 600;
-        int lengthNew = Convert.ToInt32(Session["lengthNew"].ToString());
-        int lengthOld = Convert.ToInt32(Session["lengthOld"].ToString());
-        int count;
 
         if (showParam == "new")
         {
-            count = lengthNew;
             this.MultiView1.ActiveViewIndex = 0;
-            projectContainer.InnerHtml = "<h1 runat=\"server\">NOVI PROJEKTI</h1><br/><br/>";
+            title.InnerText = "NOVI PROJEKTI";
 
             foreach (Projects project in projects_list)
                 if (DateTime.Now.AddDays(7) < project.expiration_date)
                 {
-                    count++;
                     html = "<a href='projektInfo.aspx?name=" + project.name + "' title='Saznja više' class='projectLink'><h2>" + project.name + "</h2></a>"
                     + "<img  src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> ";
                     html += "<h3><b>AUTOR PROJEKTA:</b> " + project.project_owner_username + "</h3>"
@@ -58,28 +52,16 @@ public partial class projektInfo : System.Web.UI.Page
                     div.Attributes.Add("class", "proj");
                     div.InnerHtml = html;
                     projectContainer.Controls.Add(div);
-
-                    if (lengthNew > 3)
-                    {
-                        if (count % 3 == 0 && count != 0)
-                        {
-                            height += 560;
-                        }
-                    }
-                    projectContainer.Attributes.Add("style", "height: " + height + "px;");
-                    count--;
                 }
         }
         else if (showParam == "old")
         {
-            count = lengthOld;
             this.MultiView1.ActiveViewIndex = 0;
-            projectContainer.InnerHtml = "<h1 runat=\"server\">PROJEKTI PRED ISTEKOM VREMENA ZA DONACIJU</h1><br/><br/>";
+            title.InnerText = "PROJEKTI PRED ISTEKOM VREMENA ZA DONACIJU";
 
             foreach (Projects project in projects_list)
                 if (DateTime.Now.AddDays(7) >= project.expiration_date)
                 {
-                    count++;
                     html = "<a href='projektInfo.aspx?name=" + project.name + "' title='Saznja više' class='projectLink'><h2>" + project.name + "</h2></a>"
                     + "<img  src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> ";
                     html += "<h3><b>AUTOR PROJEKTA:</b> " + project.project_owner_username + "</h3>"
@@ -91,16 +73,6 @@ public partial class projektInfo : System.Web.UI.Page
                     div.Attributes.Add("class", "proj");
                     div.InnerHtml = html;
                     projectContainer.Controls.Add(div);
-
-                    if (lengthOld > 3)
-                    {
-                        if (count % 3 == 0 && count != 0)
-                        {
-                            height += 560;
-                        }
-                    }
-                    projectContainer.Attributes.Add("style", "height: " + height + "px;");
-                    count--;
                 }
         }
         else

@@ -149,10 +149,6 @@ public partial class index : System.Web.UI.Page
         lengthNew = newProjects.Count;
         lengthOld = oldProjects.Count;
 
-        //koristimo pri ispisu svih projekata u kategoriji
-        Session["lengthNew"] = lengthNew;
-        Session["lengthOld"] = lengthOld;
-
         showNewer.Text += " (" + lengthNew.ToString() + ")";
         showOlder.Text += " (" + lengthOld.ToString() + ")";
 

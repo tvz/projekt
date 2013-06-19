@@ -6,7 +6,13 @@
 <form runat="server">
 <asp:MultiView ID="MultiView1" runat="server">
     <asp:View ID="ViewAll" runat="server">
-        <div id="projectContainer" runat="server"></div>
+        <div id="projectContainer" runat="server">
+            <div id="naslov" runat ="server">
+                <h1 id="title" runat="server"></h1>
+            </div>
+            <br /><br />
+            <div id="projekti" runat="server" style="overflow:auto;"></div>
+        </div>
     </asp:View>
     <asp:View ID="ViewProject" runat="server">
         <div id="projectDisplay" runat = "server"></div>

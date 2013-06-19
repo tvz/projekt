@@ -23,7 +23,7 @@
             onclick="scroll" CssClass="previous"/>
     <asp:ImageButton ID="scrollNewRight" runat="server" ImageUrl="~/img/next.png" 
             onclick="scroll" CssClass="next"/>   
-    <div runat="server" id="projekti_novi" style="height:534px;">
+    <div runat="server" id="projekti_novi">
     </div>
 
     <!-- act -->
@@ -89,7 +89,7 @@
             Width="70px" onclick="scroll" CssClass="previous"/>
     <asp:ImageButton ID="scrollOldRight" runat="server" ImageUrl="~/img/next.png" 
             Width="70px" onclick="scroll" CssClass="next"/> 
-    <div runat="server" id="projekti_stari" style="height:534px;">
+    <div runat="server" id="projekti_stari" >
     </div>
 
     <!-- act -->
