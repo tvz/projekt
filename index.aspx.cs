@@ -17,6 +17,7 @@ using System.Collections.Generic;
 public partial class index : System.Web.UI.Page
 {
     private static int startNew = 0, endNew = 3, startOld = 0, endOld = 3, lengthNew, lengthOld;
+    private static bool oldScroll = true, newScroll = true;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -148,6 +149,10 @@ public partial class index : System.Web.UI.Page
         lengthNew = newProjects.Count;
         lengthOld = oldProjects.Count;
 
+        //koristimo pri ispisu svih projekata u kategoriji
+        Session["lengthNew"] = lengthNew;
+        Session["lengthOld"] = lengthOld;
+
         showNewer.Text += " (" + lengthNew.ToString() + ")";
         showOlder.Text += " (" + lengthOld.ToString() + ")";
 
@@ -156,11 +161,13 @@ public partial class index : System.Web.UI.Page
         {
             scrollNewRight.Visible = false;
             scrollNewLeft.Visible = false;
+            newScroll = false;
             newProjectsTemp = newProjects;
         }
         else
         {
             scrollNewRight.Visible = true;
+            newScroll = true;
             newProjectsTemp = newProjects.GetRange(startNew, endNew);
         }
 
@@ -168,11 +175,13 @@ public partial class index : System.Web.UI.Page
         {
             scrollOldRight.Visible = false;
             scrollOldLeft.Visible = false;
+            oldScroll = false;
             oldProjectsTemp = oldProjects;
         }
         else
         {
             scrollOldRight.Visible = true;
+            oldScroll = true;
             oldProjectsTemp = oldProjects.GetRange(startOld, endOld);
         }
 
@@ -187,7 +196,9 @@ public partial class index : System.Web.UI.Page
             + "<h3><b>DO KRAJA:</b> " + (project.expiration_date - DateTime.Now).Days + "Dana" + "</h3>";
 
             HtmlGenericControl div = new HtmlGenericControl("div");
-            div.Attributes.Add("class", "proj");
+            if (newScroll == false)
+                div.Attributes.Add("class", "projNoScroll");
+            else div.Attributes.Add("class", "proj");
             div.InnerHtml = html;
             projekti_novi.Controls.Add(div);
         }
@@ -203,7 +214,9 @@ public partial class index : System.Web.UI.Page
             + "<h3><b>DO KRAJA:</b> " + (project.expiration_date - DateTime.Now).Days + "Dana" + "</h3>";
 
             HtmlGenericControl div = new HtmlGenericControl("div");
-            div.Attributes.Add("class", "proj");
+            if (oldScroll == false)
+                div.Attributes.Add("class", "projNoScroll");
+            else div.Attributes.Add("class", "proj");
             div.InnerHtml = html;
             projekti_stari.Controls.Add(div);
         }

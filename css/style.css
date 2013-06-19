@@ -200,6 +200,23 @@ h1
    margin-bottom:4%;
 }
 
+.projNoScroll
+{
+   background-color: rgba(255,255,255,0.45);
+   width: 308px;
+   border-radius: 10px; 
+   float: left;
+   height: 500px;
+   margin-right: 20px;
+   margin-top:7%;
+   margin-bottom:4%;
+}
+
+.projNoScroll:first-child
+{
+    margin-left:6%;
+}
+
 .projSingle
 {
    background-color: rgba(255,255,255,0.45);

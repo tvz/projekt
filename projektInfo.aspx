@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-<form id="Form1" runat="server">
+<form runat="server">
 <asp:MultiView ID="MultiView1" runat="server">
     <asp:View ID="ViewAll" runat="server">
         <div id="projectContainer" runat="server"></div>

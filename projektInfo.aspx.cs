@@ -32,12 +32,14 @@ public partial class projektInfo : System.Web.UI.Page
     protected void showNewOrOldProjects(List<Projects> projects_list, string showParam)
     {
         string html;
-        int height = 570;
+        int height = 600;
+        int lengthNew = Convert.ToInt32(Session["lengthNew"].ToString());
+        int lengthOld = Convert.ToInt32(Session["lengthOld"].ToString());
         int count;
 
         if (showParam == "new")
         {
-            count = 0;
+            count = lengthNew;
             this.MultiView1.ActiveViewIndex = 0;
             projectContainer.InnerHtml = "<h1 runat=\"server\">NOVI PROJEKTI</h1><br/><br/>";
 
@@ -57,17 +59,20 @@ public partial class projektInfo : System.Web.UI.Page
                     div.InnerHtml = html;
                     projectContainer.Controls.Add(div);
 
-                    if (count % 3 == 0)
+                    if (lengthNew > 3)
                     {
-                        if (count > 3)
-                            height += 570;
-                        projectContainer.Attributes.Add("style", "height: " + height + "px;");
+                        if (count % 3 == 0 && count != 0)
+                        {
+                            height += 560;
+                        }
                     }
+                    projectContainer.Attributes.Add("style", "height: " + height + "px;");
+                    count--;
                 }
         }
         else if (showParam == "old")
         {
-            count = 0;
+            count = lengthOld;
             this.MultiView1.ActiveViewIndex = 0;
             projectContainer.InnerHtml = "<h1 runat=\"server\">PROJEKTI PRED ISTEKOM VREMENA ZA DONACIJU</h1><br/><br/>";
 
@@ -87,12 +92,15 @@ public partial class projektInfo : System.Web.UI.Page
                     div.InnerHtml = html;
                     projectContainer.Controls.Add(div);
 
-                    if (count % 3 == 0)
+                    if (lengthOld > 3)
                     {
-                        if (count > 3)
-                            height += 570;
-                        projectContainer.Attributes.Add("style", "height: " + height + "px;");
+                        if (count % 3 == 0 && count != 0)
+                        {
+                            height += 560;
+                        }
                     }
+                    projectContainer.Attributes.Add("style", "height: " + height + "px;");
+                    count--;
                 }
         }
         else
