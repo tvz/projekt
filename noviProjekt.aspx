@@ -105,7 +105,14 @@
         <h2>UNESITE PODATKE O SVOM PROJEKTU (2/2)</h2>
             <asp:Label ID="Label1" runat="server" Text="Temeljni opis projekta:" CssClass="labele"></asp:Label>
             <script>
-                tinymce.init({ selector: 'textarea', height: 300});            
+                tinymce.init({
+                    selector: 'textarea',
+                    height: 300,
+                    theme: 'modern',
+                    plugins: 'print searchreplace hr preview image fullscreen insertdatetime link textcolor media',
+                    toolbar1: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                    toolbar2: 'print preview media | forecolor backcolor'
+                });            
             </script>
             <form method="post" action="noviProjekt.aspx">
             <div class="textbox">
