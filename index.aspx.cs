@@ -34,12 +34,12 @@ public partial class index : System.Web.UI.Page
         if (bttn.ID == "showNewer")
         {
             Session["whichToShow"] = "new";
-            Response.Redirect("~/projektInfo.aspx");
+            Response.Redirect("~/projektInfo.aspx?name=new");
         }
         else
         {
             Session["whichToShow"] = "old";
-            Response.Redirect("~/projektInfo.aspx");
+            Response.Redirect("~/projektInfo.aspx?name=old");
         }
     }
 

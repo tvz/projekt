@@ -8,25 +8,21 @@ using System.Web.UI.HtmlControls;
 
 public partial class projektInfo : System.Web.UI.Page
 {
+    private string urlParam;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         //if (Request.UrlReferrer == null)
-          //  Response.Redirect("~/index.aspx");
+        //  Response.Redirect("~/index.aspx");
 
         List<Projects> projects_list = Projects.fetch_all();
-        string urlParam = null, whatToShow = null;
 
         urlParam = Request.QueryString["name"];
 
-        if (Session["whichToShow"] != null && urlParam == null)
-        {
-            whatToShow = Session["whichToShow"].ToString();
-            showNewOrOldProjects(projects_list, whatToShow);
-        }
-        else
-        {
-            showNewOrOldProjects(projects_list, urlParam);
-        }
+        if (urlParam == null)
+            Response.Redirect("~/index.aspx");
+
+        showNewOrOldProjects(projects_list, urlParam);
     }
 
     protected void showNewOrOldProjects(List<Projects> projects_list, string showParam)
@@ -78,36 +74,38 @@ public partial class projektInfo : System.Web.UI.Page
         else
         {
             this.MultiView1.ActiveViewIndex = 1;
-
             foreach (Projects project in projects_list)
-                //slijedi redizajn metode kroz sljedećih par dana
                 if (project.name == showParam)
                 {
+                    string desc = System.Web.HttpUtility.HtmlDecode(project.long_description);
+                    string longDesc = desc.Replace("<hr />", "<hr style=\"background-color:#d02552;width:80%;margin-top:3%;margin-bottom:3%;\" />");
+
                     Button bttn = new Button();
                     bttn.Attributes.Add("class", "gumbDoniraj");
                     bttn.Text = "DONIRAJ";
                     bttn.ID = project.id.ToString();
                     bttn.Click += new EventHandler(MakeDonation);
+
+                    header.InnerHtml = "<h1>" + project.name + "</h1><br/>";
+                    long_description.InnerHtml = longDesc + "<br />";
                     if (project.video_path.Length > 0)
                     {
-                        html = "<h2>" + project.name + "</h2>"
-                            + "&nbsp<iframe width='300' height='180' src='" + project.video_path + "' frameborder='0' allowfullscreen></iframe>";
+                        multimedia.InnerHtml = "<iframe class='textbox' width='500' height='380' src='" + project.video_path + "' frameborder='0' allowfullscreen></iframe>";
                     }
                     else
                     {
-                        html = "<h2>" + project.name + "</h2>"
-                            + "<img  src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> ";
+                        multimedia.InnerHtml = "<img  class='textbox' src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> ";
                     }
-                    html += "<h3><b>AUTOR PROJEKTA:</b> " + project.project_owner_username + "</h3>"
-                    + "<h3><b>OPIS PROJEKTA:</b> " + project.description + " </h3>"
-                    + "<h3><b>SAKUPLJENO:</b> " + project.DonationSum() + " Kunića " + "(" + project.DonationsPercent() + "%)" + "</h3>"
-                    + "<h3><b>DO KRAJA:</b> " + (project.expiration_date - DateTime.Now).Days + "Dana" + "</h3>";
+                    info.InnerHtml = "<h3><b>AUTOR PROJEKTA</b><br />" + project.project_owner_username + "</h3>"
+                    + "<h3><b>KRATKI OPIS PROJEKTA</b> <br />" + project.description + " </h3>"
+                    + "<h3><b>SAKUPLJENO</b> <br />" + project.DonationSum() + " Kunića " + "(" + project.DonationsPercent() + "%)" + "</h3>"
+                    + "<h3><b>DO KRAJA</b> <br />" + (project.expiration_date - DateTime.Now).Days + "Dana" + "</h3>";
 
                     HtmlGenericControl div = new HtmlGenericControl("div");
                     div.Attributes.Add("class", "projSingle");
-                    div.InnerHtml = html;
-                    div.Controls.Add(bttn);
-                    projectDisplay.Controls.Add(div);
+                    //div.InnerHtml = html;
+                    //div.Controls.Add(bttn);
+                    //projectContainer.Controls.Add(div);
                 }
         }
     }
@@ -128,4 +126,15 @@ public partial class projektInfo : System.Web.UI.Page
         Response.Redirect("~/iznosDonacije.aspx");
     }
 
+    protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        this.TextBoxObjasnjenje.Visible = true;
+        this.ButtonPrijavi.Visible = true;
+        this.Label1.Visible = true;
+    }
+
+    protected void ButtonPrijavi_Click(object sender, EventArgs e)
+    {
+        
+    }
 }
