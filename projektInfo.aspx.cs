@@ -12,15 +12,12 @@ public partial class projektInfo : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        //if (Request.UrlReferrer == null)
-        //  Response.Redirect("~/index.aspx");
+        if (Request.UrlReferrer == null)
+            Response.Redirect("~/index.aspx");
 
         List<Projects> projects_list = Projects.fetch_all();
 
-        urlParam = Request.QueryString["name"];
-
-        if (urlParam == null)
-            Response.Redirect("~/index.aspx");
+        urlParam = Request.PathInfo.Substring(1);
 
         showNewOrOldProjects(projects_list, urlParam);
     }
@@ -37,7 +34,7 @@ public partial class projektInfo : System.Web.UI.Page
             foreach (Projects project in projects_list)
                 if (DateTime.Now.AddDays(7) < project.expiration_date)
                 {
-                    html = "<a href='projektInfo.aspx?name=" + project.name + "' title='Saznja više' class='projectLink'><h2>" + project.name + "</h2></a>"
+                    html = "<a href='projektInfo.aspx/" + project.name + "' title='Saznja više' class='projectLink'><h2>" + project.name + "</h2></a>"
                     + "<img  src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> ";
                     html += "<h3><b>AUTOR PROJEKTA:</b> " + project.project_owner_username + "</h3>"
                     + "<h3><b>OPIS PROJEKTA:</b> " + project.description + " </h3>"
@@ -58,7 +55,7 @@ public partial class projektInfo : System.Web.UI.Page
             foreach (Projects project in projects_list)
                 if (DateTime.Now.AddDays(7) >= project.expiration_date)
                 {
-                    html = "<a href='projektInfo.aspx?name=" + project.name + "' title='Saznja više' class='projectLink'><h2>" + project.name + "</h2></a>"
+                    html = "<a href='projektInfo.aspx/" + project.name + "' title='Saznja više' class='projectLink'><h2>" + project.name + "</h2></a>"
                     + "<img  src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> ";
                     html += "<h3><b>AUTOR PROJEKTA:</b> " + project.project_owner_username + "</h3>"
                     + "<h3><b>OPIS PROJEKTA:</b> " + project.description + " </h3>"
@@ -123,7 +120,7 @@ public partial class projektInfo : System.Web.UI.Page
          * Planiram to promijenit u buducnosti.*/
         Button button = (Button)sender;
         Session["project_id"] = button.ID;
-        Response.Redirect("~/iznosDonacije.aspx");
+        Response.Redirect("http://localhost:54125/zicalica/iznosDonacije.aspx");
     }
 
     protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
@@ -133,6 +130,12 @@ public partial class projektInfo : System.Web.UI.Page
         this.Label1.Visible = true;
     }
 
+    /// <summary>
+    /// Developer: Ivan
+    /// Description: metoda obađuje prijavu zbog neprimjerneog sadržaja
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     protected void ButtonPrijavi_Click(object sender, EventArgs e)
     {
         

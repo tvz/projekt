@@ -4,19 +4,22 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Žicalica</title>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />   
+    <title>Žicalica</title>  
     <link href='http://fonts.googleapis.com/css?family=Chango&subset=latin,latin-ext' rel='stylesheet' type='text/css'/>
-    <link rel="icon" type="image/png" href="img/zicalica_favicon.png"/>
-    <link href="css/custom-theme/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
-
-    <script src="tinymce/js/tinymce/tinymce.min.js"></script>    
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script> 
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script> 
     <script type="text/javascript" src="https://connect.facebook.net/hr_HR/all.js#xfbml=1"></script>
-    <script type="text/javascript"" src="js/jquery-1.9.1.js"></script>
-	<script type="text/javascript" src="js/jquery-ui-1.10.3.custom.js"></script>    
-    <script type="text/javascript" src="js/script.js"></script>
+
+    <!-- -->
+    <link href="http://localhost:54125/zicalica/css/custom-theme/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
+    <link href="http://localhost:54125/zicalica/css/style.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" type="image/png" href="http://localhost:54125/zicalica/img/zicalica_favicon.png"/>
+    <script type="text/javascript"" src="http://localhost:54125/zicalica/js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="http://localhost:54125/zicalica/js/jquery-ui-1.10.3.custom.js"></script>    
+    <script type="text/javascript" src="http://localhost:54125/zicalica/js/script.js"></script> 
+    <script src="http://localhost:54125/zicalica/tinymce/js/tinymce/tinymce.min.js"></script> 
+    <!-- -->
+   
 	<script>	    
 	    $(function() {
 
@@ -121,21 +124,21 @@
     <div id="fb-root"></div>
    
     <div id="logo">
-   <asp:HyperLink ID="HyperLink1" runat="server"  NavigateUrl="~/index.aspx">
-   <asp:Image ID="Image1" runat="server" CssClass="logo" ImageUrl="~/img/logo.png" />
+   <asp:HyperLink ID="HyperLink1" runat="server"  NavigateUrl="http://localhost:54125/zicalica/index.aspx">
+   <asp:Image ID="Image1" runat="server" CssClass="logo" ImageUrl="http://localhost:54125/zicalica/img/logo.png" />
 </asp:HyperLink>
     </div>
     <div id="search">
     <form method="POST" action="pregledProjekata.aspx">
     <input id="searchBox" name="searchBox" type="text" value="Pretraži projekte..." autocomplete="off" /> 
-    <img alt="" src="img/Search-icon.png" />
+    <img alt="" src="http://localhost:54125/zicalica/img/Search-icon.png" />
     </form>
     </div>
     <div id="nav_login">  
         <asp:HyperLink ID="RegLink" Font-Underline="False" runat="server" 
-            NavigateUrl="~/login.aspx" CssClass="LogLink"><span class="span">Registracija</span></asp:HyperLink>
+            NavigateUrl="http://localhost:54125/zicalica/login.aspx" CssClass="LogLink"><span class="span">Registracija</span></asp:HyperLink>
         <asp:HyperLink ID="LogInLink" Font-Underline="False" runat="server" CssClass="LogLink" 
-            NavigateUrl="~/login.aspx"><span>Prijava</span></asp:HyperLink>
+            NavigateUrl="http://localhost:54125/zicalica/login.aspx"><span>Prijava</span></asp:HyperLink>
             
      <!-- <fb:login-button autologoutlink="true" data-perms="email" width="200" size="large" max-rows="1">
      </fb:login-button> -->
@@ -150,13 +153,13 @@
      
     <div id="navigacija">
         <asp:HyperLink ID="IndexLink" Font-Underline="False" runat="server" 
-            NavigateUrl="~/index.aspx" CssClass="NavLink">Početna</asp:HyperLink>
+            NavigateUrl="http://localhost:54125/zicalica/index.aspx" CssClass="NavLink">Početna</asp:HyperLink>
         <asp:HyperLink ID="NoviProjLink" Font-Underline="False" runat="server" 
-            CssClass="NavLink" NavigateUrl="~/noviProjekt.aspx">Započni projekt</asp:HyperLink>
+            CssClass="NavLink" NavigateUrl="http://localhost:54125/zicalica/noviProjekt.aspx">Započni projekt</asp:HyperLink>
         <asp:HyperLink ID="PregledProjLink" Font-Underline="False" runat="server" 
-            CssClass="NavLink" NavigateUrl="~/pregledProjekata.aspx">Pregled projekata</asp:HyperLink>
+            CssClass="NavLink" NavigateUrl="http://localhost:54125/zicalica/pregledProjekata.aspx">Pregled projekata</asp:HyperLink>
         <asp:HyperLink ID="OnamaLink" Font-Underline="False" runat="server" 
-            CssClass="NavLink" NavigateUrl="~/Onama.aspx">O nama</asp:HyperLink>
+            CssClass="NavLink" NavigateUrl="http://localhost:54125/zicalica/Onama.aspx">O nama</asp:HyperLink>
     
     </div>
     

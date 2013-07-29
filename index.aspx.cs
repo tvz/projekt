@@ -34,12 +34,12 @@ public partial class index : System.Web.UI.Page
         if (bttn.ID == "showNewer")
         {
             Session["whichToShow"] = "new";
-            Response.Redirect("~/projektInfo.aspx?name=new");
+            Response.Redirect("~/projektInfo.aspx/new");
         }
         else
         {
             Session["whichToShow"] = "old";
-            Response.Redirect("~/projektInfo.aspx?name=old");
+            Response.Redirect("~/projektInfo.aspx/old");
         }
     }
 
@@ -184,7 +184,7 @@ public partial class index : System.Web.UI.Page
         //novi projekti
         foreach (Projects project in newProjectsTemp)
         {
-            html = "<a href='projektInfo.aspx?name=" + project.name + "' title='Saznaj više' class='projectLink'><h2>" + project.name + "</h2></a>"
+            html = "<a href='projektInfo.aspx/" + project.name + "' title='Saznaj više' class='projectLink'><h2>" + project.name + "</h2></a>"
                     + "<img  src=" + "'" + project.image_path + "'" + " alt='Slika trenutno nije dostupna' >";
             html += "<h3><b>AUTOR PROJEKTA:</b> " + project.project_owner_username + "</h3>"
             + "<h3><b>OPIS PROJEKTA:</b> " + project.description + " </h3>"
@@ -202,7 +202,7 @@ public partial class index : System.Web.UI.Page
         //stari projekti
         foreach (Projects project in oldProjectsTemp)
         {
-            html = "<a href='projektInfo.aspx?name=" + project.name + "' title='Saznaj više' class='projectLink'><h2>" + project.name + "</h2></a>"
+            html = "<a href='projektInfo.aspx/" + project.name + "' title='Saznaj više' class='projectLink'><h2>" + project.name + "</h2></a>"
                     + "<img  src=" + "'" + project.image_path + "'" + " alt=" + "'" + project.name + "'" + "> ";
             html += "<h3><b>AUTOR PROJEKTA:</b> " + project.project_owner_username + "</h3>"
             + "<h3><b>OPIS PROJEKTA:</b> " + project.description + " </h3>"

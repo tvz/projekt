@@ -42,7 +42,7 @@ public class SyndicationHelper
             DateTime dt = Convert.ToDateTime(date);
             dt.Subtract(TimeSpan.FromHours(2));
             SyndicationItem sItem = new SyndicationItem();
-            Uri itemUrl = new Uri("http://localhost:54125/zicalica/projektInfo.aspx?name="+title);
+            Uri itemUrl = new Uri("http://localhost:54125/zicalica/projektInfo.aspx/"+title);
 
             if(i==0)
                 feed.LastUpdatedTime = DateTimeOffset.Parse(dt.ToString("r"));
