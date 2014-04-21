@@ -1,4 +1,4 @@
-�ICALICA
+ŽICALICA
 =======
 
 Development discontinued.
